@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Đan Đỉnh Dạ Hành</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700;800&family=Mulish:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--n0:#0a0b1c;--n1:#14163a;--n2:#22265a;--am:#ffb24a;--am2:#c8761e;--br:#b8823a;--tx:#ece6ff;--mu:#a49ccc;--lv:#c8b8ff;--gn:#7ae0a0;--rd:#ff6a6a;--bl:#6ab8ff}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:#05050e;font:500 10.5px/1.35 Mulish,sans-serif;color:var(--tx);display:flex;justify-content:center;min-height:100vh}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+img{display:block;max-width:100%;user-select:none;-webkit-user-drag:none}
+.one{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sp{font-family:Spectral,serif}
+.app{position:relative;width:100%;max-width:430px;height:100vh;height:100dvh;overflow:hidden;background:var(--n0)}
+@media(min-width:520px){.app{height:min(932px,100vh);margin:auto 0;border-radius:22px;box-shadow:0 0 0 8px #020208,0 30px 80px #000}}
+.bf{border:12px solid transparent;border-image:url(assets/ui-d-khung.webp) 60 fill / 12px stretch}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:4px;height:26px;padding:0 10px;border:8px solid transparent;border-image:url(assets/ui-d-nut.webp) 22 24 fill / 8px 9px stretch;font:700 10.5px Mulish;color:#2a1204;white-space:nowrap}
+.btn.n{border-image-source:url(assets/ui-d-nut2.webp);color:var(--tx)}
+.btn.s{height:21px;font-size:9.5px;padding:0 4px}
+.btn:active{filter:brightness(1.15);transform:translateY(1px)}
+.ic{width:100%;height:100%;object-fit:contain}
+/* ===== ĐAN PHÒNG ===== */
+.scr{position:absolute;inset:0 0 58px;overflow:hidden;display:none}
+.scr.on{display:block}
+#s-dp{background:url(assets/dp-dem.webp) center 40%/cover}
+#s-dp::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 58%,rgba(255,140,40,.18),transparent 45%),linear-gradient(rgba(10,11,28,.55),transparent 22%,transparent 70%,rgba(10,11,28,.85));pointer-events:none}
+.ff{position:absolute;width:3px;height:3px;border-radius:50%;background:#ffe9a0;box-shadow:0 0 6px #ffd060;animation:ff linear infinite;opacity:0;z-index:2;pointer-events:none}
+@keyframes ff{0%{opacity:0;transform:translate(0,0)}20%{opacity:1}100%{opacity:0;transform:translate(30px,-160px)}}
+.top{position:absolute;left:6px;right:6px;top:6px;z-index:5;display:flex;gap:6px;align-items:center}
+.ava{width:44px;height:44px;flex:none;border-radius:50%;background:#14163a url(assets/nv-nu-dem.webp) 50% 12%/180%;box-shadow:0 0 0 2px var(--br),0 0 10px rgba(255,178,74,.4)}
+.who{flex:1;min-width:0}.who b{font:700 13px Spectral;display:block;line-height:1.1}.who small{font-size:9px;color:var(--lv)}
+.xp{height:5px;border-radius:3px;background:rgba(255,255,255,.1);margin-top:3px;overflow:hidden}.xp i{display:block;height:100%;background:linear-gradient(90deg,var(--am2),var(--am));box-shadow:0 0 6px var(--am)}
+.cur{display:flex;flex-direction:column;gap:2px;align-items:flex-end}
+.cur span{display:flex;align-items:center;gap:2px;font-weight:800;font-size:9.5px;background:rgba(10,11,28,.75);border:1px solid rgba(184,130,58,.6);border-radius:9px;padding:0 6px 0 1px}
+.cur img{width:15px;height:15px}
+.recipe{position:absolute;left:50%;top:60px;transform:translateX(-50%);z-index:5;display:flex;align-items:center;gap:6px;padding:3px 10px 3px 3px;border-radius:16px;background:linear-gradient(90deg,rgba(34,38,90,.95),rgba(20,22,58,.9));box-shadow:0 0 0 1px var(--br),0 4px 10px rgba(0,0,0,.5);white-space:nowrap}
+.recipe img{width:28px;height:28px}
+.recipe b{font:700 12px Spectral;color:var(--am)}.recipe small{display:block;font-size:8.5px;color:var(--mu)}
+.lo{position:absolute;left:50%;top:47%;width:230px;transform:translate(-50%,-50%);z-index:3;filter:drop-shadow(0 10px 20px rgba(0,0,0,.6))}
+.lo img{width:100%;animation:breathe 2.4s ease-in-out infinite}
+@keyframes breathe{50%{filter:brightness(1.12) drop-shadow(0 0 16px rgba(255,150,50,.6))}}
+.slot{position:absolute;z-index:4;width:50px;text-align:center;transform:translate(-50%,-50%);font-size:8.5px;font-weight:700}
+.slot i{display:block;width:46px;height:46px;margin:0 auto 1px;border-radius:50%;padding:7px;background:radial-gradient(circle at 40% 35%,#3a3e7a,#14163a);box-shadow:0 0 0 1.5px var(--br),0 0 12px rgba(255,178,74,.35),inset 0 0 10px rgba(0,0,0,.6)}
+.slot i.e{box-shadow:0 0 0 1.5px rgba(184,130,58,.5);border:1px dashed rgba(255,178,74,.4);display:grid;place-items:center;font-size:18px;color:var(--am);font-style:normal}
+.slot em{position:absolute;right:0;top:30px;font-style:normal;font-size:8.5px;background:var(--n1);border:1px solid var(--br);border-radius:6px;padding:0 3px}
+.slot span{display:block;text-shadow:0 1px 3px #000;white-space:nowrap}
+.heat{position:absolute;left:8px;top:120px;z-index:5;width:44px;text-align:center;font-size:8.5px;font-weight:700}
+.heat .t{position:relative;width:14px;height:170px;margin:4px auto;border-radius:7px;background:linear-gradient(#ff3a1a,#ffb24a 45%,#6ab8ff);box-shadow:0 0 0 1.5px var(--br),inset 0 0 6px rgba(0,0,0,.5)}
+.heat .t::before{content:'';position:absolute;left:-6px;right:-6px;top:34%;height:22%;border:1.5px solid #fff;border-radius:4px;box-shadow:0 0 6px #fff}
+.heat .k{position:absolute;left:50%;width:26px;height:26px;margin-left:-13px;border-radius:50%;padding:3px;background:radial-gradient(#ffe0a0,#c8761e);box-shadow:0 0 10px var(--am),0 0 0 1.5px #fff;cursor:grab;touch-action:none}
+.heat b{display:block;font:700 13px Spectral;color:var(--am)}
+.pred{position:absolute;right:6px;top:120px;z-index:5;width:112px;padding:0;font-size:9px}
+.pred .bf{padding:0}
+.ringp{width:58px;height:58px;margin:0 auto 4px;border-radius:50%;background:conic-gradient(var(--am) 68%,rgba(255,255,255,.1) 0);display:grid;place-items:center}
+.ringp div{width:46px;height:46px;border-radius:50%;background:var(--n1);display:grid;place-items:center;font:700 14px Spectral;color:var(--am)}
+.pred p{display:flex;justify-content:space-between;gap:2px;white-space:nowrap}.pred p b{color:var(--gn)}
+.mec{position:absolute;right:-12px;bottom:70px;width:150px;z-index:3;filter:drop-shadow(0 0 14px rgba(106,184,255,.4));pointer-events:none}
+.kai{position:absolute;left:50%;bottom:70px;transform:translateX(-50%);z-index:6;width:132px;height:52px;border:12px solid transparent;border-image:url(assets/ui-d-nut.webp) 22 24 fill / 12px 14px stretch;font:800 16px Spectral;color:#2a1204;letter-spacing:1px;animation:glow 1.6s infinite}
+@keyframes glow{50%{filter:drop-shadow(0 0 10px #ffb24a)}}
+.log{position:absolute;left:8px;bottom:8px;right:8px;z-index:5;height:54px;overflow:hidden;font-size:9px;line-height:1.45;color:var(--mu);background:linear-gradient(90deg,rgba(10,11,28,.75),rgba(10,11,28,.2));border-left:2px solid var(--br);padding:3px 6px}
+.log b{color:var(--am)}.log u{color:var(--gn);text-decoration:none}
+.side{position:absolute;left:8px;top:330px;z-index:5;display:grid;gap:6px}
+.sb{width:42px;text-align:center;font-size:8px;font-weight:700;text-shadow:0 1px 3px #000}
+.sb i{position:relative;display:block;width:38px;height:38px;margin:0 auto;border-radius:10px;padding:5px;background:linear-gradient(#2a2e6a,#14163a);box-shadow:0 0 0 1.5px var(--br)}
+.sb i.n::after{content:'';position:absolute;right:-2px;top:-2px;width:8px;height:8px;border-radius:50%;background:var(--rd);box-shadow:0 0 0 1px #fff}
+/* nav */
+.nav{position:absolute;left:0;right:0;bottom:0;height:58px;z-index:20;display:grid;grid-template-columns:repeat(5,1fr);background:linear-gradient(#1a1c48,#0e0f26);border-top:1.5px solid var(--br);box-shadow:0 -6px 16px rgba(0,0,0,.6)}
+.nb{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:9.5px;font-weight:700;color:var(--mu)}
+.nb i{width:32px;height:32px;display:block;filter:grayscale(.5) brightness(.8)}
+.nb.on{color:var(--am)}.nb.on i{filter:drop-shadow(0 0 8px rgba(255,178,74,.7))}
+.nb.on::before{content:'';position:absolute;top:0;left:22%;right:22%;height:2px;background:var(--am);box-shadow:0 0 8px var(--am)}
+.nb em{position:absolute;right:18px;top:6px;width:7px;height:7px;border-radius:50%;background:var(--rd)}
+/* ===== màn chung ===== */
+.ph{display:flex;align-items:center;gap:8px;padding:8px 10px 6px;background:linear-gradient(rgba(34,38,90,.95),rgba(20,22,58,.9));border-bottom:1px solid rgba(184,130,58,.5)}
+.ph h2{flex:1;font:700 17px Spectral;min-width:0;line-height:1.05}.ph h2 small{display:block;font:500 9px Mulish;color:var(--mu)}
+.seg{display:flex;gap:4px;padding:6px 10px;overflow-x:auto;scrollbar-width:none;background:rgba(10,11,28,.6)}
+.seg button{flex:none;padding:3px 10px;font-weight:700;font-size:10px;color:var(--mu);border:1px solid rgba(184,130,58,.4);border-radius:3px}
+.seg button.on{color:#2a1204;background:linear-gradient(#ffd890,#c8761e);border-color:var(--am)}
+.body{position:absolute;inset:0;display:flex;flex-direction:column;background:radial-gradient(ellipse at 50% 0,#22265a,#0a0b1c 70%)}
+.pb{flex:1;overflow:auto;padding:8px 10px 12px}
+.h5{display:flex;align-items:center;gap:6px;font:700 12px Spectral;color:var(--am);margin:8px 0 5px}.h5::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(184,130,58,.7),transparent)}
+.h5 small{font:500 9px Mulish;color:var(--mu)}
+.kv{display:flex;justify-content:space-between;gap:8px;padding:3px 0;border-bottom:1px solid rgba(200,184,255,.1);font-size:10px}.kv span{color:var(--mu)}
+.row{display:flex;gap:7px;align-items:center;padding:5px 6px;margin-bottom:4px;border-radius:6px;background:rgba(34,38,90,.5);border:1px solid rgba(200,184,255,.12)}
+.row>img{width:34px;height:34px;flex:none}.row .tx{flex:1;min-width:0}.row b{font-size:11px}.row small{display:block;font-size:9px;color:var(--mu)}
+/* dược viên */
+.garden{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;padding:6px;border-radius:10px;background:url(assets/dd-nguyet-ho.webp) center/cover;box-shadow:inset 0 0 0 1.5px var(--br)}
+.plot{position:relative;aspect-ratio:1;border-radius:10px;background:radial-gradient(ellipse at 50% 70%,#5a3a22,#2e1c10 70%);box-shadow:inset 0 -6px 10px rgba(0,0,0,.5),0 0 0 1.5px #6a4a2a;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:4px;font-size:8.5px;font-weight:700}
+.plot img{width:62%;margin-bottom:auto;margin-top:6%;filter:drop-shadow(0 0 8px rgba(122,224,160,.45))}
+.plot .rg{position:absolute;right:4px;top:4px;width:18px;height:18px;border-radius:50%;background:conic-gradient(var(--gn) var(--p),rgba(255,255,255,.15) 0)}
+.plot.rd{box-shadow:inset 0 -6px 10px rgba(0,0,0,.5),0 0 0 2px var(--am),0 0 12px rgba(255,178,74,.5)}
+.plot.e{opacity:.65}.plot.e::before{content:'+';position:absolute;top:30%;font-size:22px;color:var(--am)}
+.plot.lk::before{content:'🔒';position:absolute;top:30%;font-size:16px}
+/* hái thuốc */
+.zone{display:flex;gap:5px;overflow-x:auto;padding:2px 0 6px;scrollbar-width:none}
+.zone button{flex:none;width:110px;height:56px;border-radius:6px;background-size:cover;background-position:center;position:relative;box-shadow:inset 0 0 0 1.5px rgba(184,130,58,.5);text-align:left}
+.zone button.on{box-shadow:inset 0 0 0 2px var(--am),0 0 10px rgba(255,178,74,.4)}
+.zone button span{position:absolute;left:0;right:0;bottom:0;padding:2px 5px;background:linear-gradient(transparent,rgba(10,11,28,.9));font-size:9px;font-weight:700}
+.zone button.lk{filter:grayscale(1) brightness(.6)}
+.hex{position:relative;display:grid;grid-template-columns:repeat(6,1fr);gap:3px;padding:6px;border-radius:10px;background:url(assets/map-thu-dem.webp) 40% 50%/300%;box-shadow:inset 0 0 0 1.5px var(--br)}
+.tile{aspect-ratio:1;border-radius:6px;display:grid;place-items:center;padding:4px;background:rgba(10,11,28,.15);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+.tile.fog{background:radial-gradient(rgba(60,62,110,.9),rgba(20,22,58,.97));box-shadow:inset 0 0 0 1px rgba(200,184,255,.15)}
+.tile.fog::after{content:'';width:40%;height:40%;border-radius:50%;background:rgba(200,184,255,.08);filter:blur(3px)}
+.tile.me{box-shadow:inset 0 0 0 2px var(--am),0 0 10px var(--am);background:rgba(255,178,74,.15) url(assets/nv-nu-dem.webp) center/110% no-repeat}
+.tile.adj{box-shadow:inset 0 0 0 1.5px rgba(255,178,74,.6)}
+.tile img{filter:drop-shadow(0 0 6px rgba(255,255,255,.4))}
+.stam{display:flex;align-items:center;gap:6px;margin:6px 0;font-size:9.5px}.stam .t{flex:1;height:6px;border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden}.stam i{display:block;height:100%;width:70%;background:linear-gradient(90deg,#3a8a5a,var(--gn))}
+/* thương hội */
+.mk{display:flex;gap:6px;align-items:center;padding:5px;margin-bottom:4px;border-radius:6px;background:rgba(34,38,90,.5);border:1px solid rgba(200,184,255,.12)}
+.mk>img{width:32px;height:32px;flex:none}.mk .tx{flex:1;min-width:0}.mk b{font-size:10.5px}.mk small{display:block;font-size:8.5px;color:var(--mu)}
+.spark{display:flex;align-items:flex-end;gap:1px;height:22px;width:54px;flex:none}.spark i{flex:1;background:var(--c,var(--gn));border-radius:1px 1px 0 0;opacity:.85}
+.pr{text-align:right;width:58px;flex:none}.pr b{display:block;font:700 12px Spectral;color:var(--am)}.pr small{font-weight:800}
+.up{color:var(--gn)}.dn{color:var(--rd)}
+.order{display:flex;gap:7px;padding:6px;margin-bottom:5px;border-radius:8px;background:linear-gradient(90deg,rgba(255,178,74,.12),rgba(34,38,90,.5));border:1px solid rgba(184,130,58,.5)}
+.order>img{width:46px;height:46px;flex:none;border-radius:50%;object-fit:cover;object-position:50% 14%;background:var(--n1);box-shadow:0 0 0 1.5px var(--br)}
+.order .tx{flex:1;min-width:0}.order b{font:700 11.5px Spectral}.order p{font-size:9px;color:var(--mu);margin:1px 0 3px}
+.need{display:flex;gap:4px;align-items:center;font-size:9px}.need img{width:20px;height:20px}
+/* bản thân */
+.cab{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:6px;border-radius:6px;background:linear-gradient(#4a2c16,#2e1a0c);box-shadow:inset 0 0 0 2px #6a4424,0 4px 10px rgba(0,0,0,.5)}
+.dw{position:relative;aspect-ratio:1/1.05;border-radius:3px;background:linear-gradient(#8a5a30,#5a3618);box-shadow:inset 0 0 0 1px #a8743e,inset 0 -3px 4px rgba(0,0,0,.35),0 1px 0 #2a1608;padding:4px 4px 12px;display:flex;flex-direction:column;align-items:center}
+.dw img{width:74%;flex:1;object-fit:contain;filter:drop-shadow(0 2px 2px rgba(0,0,0,.5))}
+.dw .lb{position:absolute;left:12%;right:12%;bottom:3px;height:10px;border-radius:2px;background:#f0e0b8;color:#3a2010;font-size:7px;font-weight:800;line-height:10px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 2px}
+.dw::after{content:'';position:absolute;left:50%;top:44%;width:10px;height:4px;margin-left:-5px;border-radius:2px;background:linear-gradient(#ffe0a0,#a8742a);box-shadow:0 1px 1px rgba(0,0,0,.5);opacity:.0}
+.dw em{position:absolute;right:3px;top:2px;font-style:normal;font-size:8.5px;font-weight:800;color:#fff;text-shadow:0 0 2px #000,0 0 2px #000}
+.dw b.r{position:absolute;left:3px;top:3px;width:6px;height:6px;border-radius:50%;background:var(--rc);box-shadow:0 0 4px var(--rc)}
+.dw.e{background:linear-gradient(#6a4424,#4a2c14);opacity:.6}.dw.e .lb{opacity:.4}
+.arc{position:relative;height:300px}
+.arc .hero{position:absolute;left:18%;right:18%;top:20px;bottom:30px;width:64%;height:calc(100% - 50px);object-fit:contain;filter:drop-shadow(0 0 14px rgba(106,184,255,.5))}
+.arc .es{position:absolute;width:48px;transform:translate(-50%,-50%);text-align:center;font-size:8px;color:var(--mu)}
+.orb{display:block;width:46px;height:46px;border-radius:50%;padding:7px;background:radial-gradient(circle at 40% 35%,color-mix(in srgb,var(--rc,#556) 40%,#2a2e6a),#0e0f26);box-shadow:0 0 0 1.5px var(--rc,#4a4a7a),0 0 10px color-mix(in srgb,var(--rc,#556) 50%,transparent);position:relative}
+.orb.e{opacity:.5}
+.orb em{position:absolute;right:-3px;bottom:-2px;font-style:normal;font-size:8px;font-weight:800;background:var(--n1);border:1px solid var(--rc);border-radius:6px;padding:0 3px}
+.arc .pw{position:absolute;left:50%;bottom:4px;transform:translateX(-50%);font:700 14px Spectral;color:var(--am);white-space:nowrap}
+.five{position:relative;width:240px;height:230px;margin:0 auto}
+.el{position:absolute;width:62px;transform:translate(-50%,-50%);text-align:center;font-size:9px;font-weight:700}
+.el i{display:block;width:56px;height:56px;margin:0 auto 1px;border-radius:50%;box-shadow:0 0 0 2px var(--c),0 0 14px var(--c);overflow:hidden}
+.el i img{width:100%;height:100%}
+.el small{display:block;font-weight:500;color:var(--mu);font-size:8px}
+.five .mid{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);width:70px;text-align:center;font-size:8.5px;color:var(--mu)}
+.five .mid b{font:700 13px Spectral;color:var(--am);display:block}
+.mcard{position:relative;height:180px;border-radius:10px;overflow:hidden;background:radial-gradient(ellipse at 50% 85%,rgba(255,178,74,.35),transparent 60%),url(assets/dd-nguyet-ho.webp) center/cover;box-shadow:inset 0 0 0 1.5px var(--br)}
+.mcard img{position:absolute;left:10%;right:10%;bottom:10px;width:80%;height:80%;object-fit:contain;animation:hov 3s ease-in-out infinite}
+@keyframes hov{50%{transform:translateY(-6px)}}
+.mcard b{position:absolute;left:8px;top:6px;font:700 17px Spectral;text-shadow:0 0 8px #000}
+.mlist{display:flex;gap:5px;margin:6px 0}.mlist button{flex:1;aspect-ratio:4/3;border-radius:6px;background:rgba(34,38,90,.6);box-shadow:inset 0 0 0 1px rgba(184,130,58,.4);padding:3px}
+.mlist button.on{box-shadow:inset 0 0 0 2px var(--am)}.mlist button.lk img{filter:grayscale(1) brightness(.5)}
+/* ===== LUYỆN ĐAN mini-game ===== */
+.craft{position:absolute;inset:0;z-index:50;display:none;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 45%,rgba(255,120,30,.35),rgba(10,11,28,.96) 60%)}
+.craft.on{display:flex}
+.craft .lo2{width:220px;animation:shake .5s infinite}
+@keyframes shake{25%{transform:translate(-1px,1px) rotate(-.5deg)}75%{transform:translate(1px,-1px) rotate(.5deg)}}
+.phase{display:flex;gap:4px;margin:8px 0}.phase span{padding:2px 8px;border-radius:10px;font-size:9.5px;font-weight:700;border:1px solid rgba(184,130,58,.5);color:var(--mu)}.phase span.on{background:var(--am);color:#2a1204;border-color:var(--am)}.phase span.ok{color:var(--gn);border-color:var(--gn)}
+.gauge{position:relative;width:250px;height:18px;border-radius:9px;background:linear-gradient(90deg,#3a3e7a,#3a3e7a 40%,#ffb24a 40%,#ffb24a 58%,#3a3e7a 58%);box-shadow:0 0 0 1.5px var(--br)}
+.gauge i{position:absolute;top:-4px;width:4px;height:26px;border-radius:2px;background:#fff;box-shadow:0 0 8px #fff;animation:sweep 1.4s ease-in-out infinite alternate}
+@keyframes sweep{from{left:0}to{left:246px}}
+.craft p{margin:8px 20px;text-align:center;color:var(--mu);font-size:10px}
+/* ===== CHIẾN ĐẤU NGŨ HÀNH ===== */
+.fight{position:absolute;inset:0;z-index:45;display:none;flex-direction:column;background:url(assets/dd-hoa-diem.webp) center/cover}
+.fight.on{display:flex}
+.fight::before{content:'';position:absolute;inset:0;background:linear-gradient(rgba(10,11,28,.7),rgba(10,11,28,.35) 30%,rgba(10,11,28,.9) 62%)}
+.order2{position:relative;z-index:2;display:flex;gap:4px;align-items:center;padding:6px 8px;font-size:8.5px;color:var(--mu)}
+.order2 img{width:26px;height:26px;border-radius:50%;object-fit:cover;object-position:50% 14%;background:var(--n1);box-shadow:0 0 0 1.5px var(--c,var(--br))}
+.order2 img.now{width:32px;height:32px;box-shadow:0 0 0 2px var(--am),0 0 10px var(--am)}
+.foe{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center}
+.foe img{width:190px;transition:.15s}.foe.hit img{filter:brightness(2) saturate(0);transform:scale(.96)}
+.foe .nm{font:700 13px Spectral;display:flex;gap:5px;align-items:center}.foe .nm em{font:800 8.5px Mulish;font-style:normal;padding:0 5px;border-radius:6px;background:#3a8a5a}
+.hpb{width:220px;height:8px;border-radius:4px;background:rgba(0,0,0,.5);margin-top:3px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.2)}.hpb i{display:block;height:100%;background:linear-gradient(90deg,#c0201a,#ff7a5a);transition:width .3s}
+.inten{font-size:9px;color:var(--rd);margin-top:2px}
+.dmg{position:absolute;left:50%;top:90px;z-index:6;font:800 28px Spectral;color:#ffe0a0;text-shadow:0 0 10px var(--am),0 2px 0 #000;animation:up .9s forwards;pointer-events:none;white-space:nowrap;transform:translateX(-50%)}
+.dmg small{display:block;font-size:12px;text-align:center;color:var(--gn)}
+@keyframes up{to{transform:translate(-50%,-50px);opacity:0}}
+.fb{position:relative;z-index:2;margin-top:auto;padding:0 8px 8px}
+.pme{display:flex;gap:6px;align-items:center;margin-bottom:4px}
+.pme .ava{width:38px;height:38px}
+.pme .tx{flex:1;min-width:0}.pme .hpb{width:100%}.pme .mpb i{background:linear-gradient(90deg,#2a5ab0,var(--bl))}
+.pills{display:flex;gap:4px}.pills button{position:relative;width:34px;height:34px;border-radius:8px;background:linear-gradient(#2a2e6a,#14163a);box-shadow:0 0 0 1.5px var(--br);padding:3px}.pills em{position:absolute;right:1px;bottom:-1px;font-style:normal;font-size:8px;font-weight:800;text-shadow:0 0 2px #000}
+.fwheel{position:relative;width:250px;height:178px;margin:0 auto}
+.fwheel .el i{width:52px;height:52px}
+.fwheel .el.k i{animation:pulse 1s infinite}@keyframes pulse{50%{box-shadow:0 0 0 2px var(--c),0 0 24px var(--c)}}
+.fwheel .hint{position:absolute;left:50%;top:56%;transform:translate(-50%,-50%);text-align:center;font-size:8.5px;color:var(--mu);width:90px}
+.fwheel .hint b{display:block;font:700 12px Spectral;color:var(--am)}
+.flog{height:44px;overflow:hidden;font-size:9px;line-height:1.4;color:var(--mu);border-top:1px solid rgba(184,130,58,.4);padding-top:3px;margin-top:4px}
+.flog b{color:var(--am)}.flog u{color:var(--gn);text-decoration:none}
+/* dialog */
+.dlg{position:absolute;inset:0;z-index:70;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(5,5,14,.7)}
+.dlg.on{display:flex}
+.dbx{width:100%;max-height:86%;display:flex;flex-direction:column;padding:0;animation:pop .18s}@keyframes pop{from{transform:scale(.94);opacity:0}}
+.dbx .bf{display:flex;flex-direction:column;min-height:0;max-height:100%;padding:0}
+.dbx h3{font:700 16px Spectral;color:var(--am);text-align:center;padding:2px 26px 5px;position:relative;border-bottom:1px solid rgba(184,130,58,.4)}
+.x{position:absolute;right:-4px;top:-4px;width:22px;height:22px;border-radius:50%;background:#3a2a5a;box-shadow:0 0 0 1px var(--br);font-size:11px;color:var(--tx)}
+.dbx .c{overflow:auto;padding:8px 2px;font-size:10.5px}
+.dbx .a{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;padding-top:6px;border-top:1px solid rgba(184,130,58,.4)}
+.ih{display:flex;gap:10px;align-items:center;margin-bottom:6px}.ih .orb{width:58px;height:58px;flex:none;padding:9px}.ih b{font:700 15px Spectral;display:block}
+.qual{display:flex;gap:3px;margin:4px 0}.qual span{flex:1;text-align:center;padding:3px 0;border-radius:4px;font-size:9px;font-weight:800;background:rgba(255,255,255,.06);color:var(--mu)}.qual span.on{background:var(--am);color:#2a1204}
+.toast{position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);z-index:99;padding:6px 14px;border-radius:4px;background:rgba(20,22,58,.95);box-shadow:0 0 0 1px var(--br),0 0 16px rgba(255,178,74,.3);color:var(--am);font-weight:800;font-size:10.5px;opacity:0;transition:.25s;pointer-events:none;white-space:nowrap}
+.toast.on{opacity:1}
+</style></head><body>
+<div class="app">
+ <!-- ĐAN PHÒNG -->
+ <div class="scr on" id="s-dp">
+  <div id="ffs"></div>
+  <div class="top"><div class="ava" onclick="go('bt')"></div><div class="who"><b class="one">Bạch Nguyệt Thường</b><small>Đan sư Tam phẩm · Trúc Cơ 6</small><div class="xp"><i style="width:58%"></i></div></div><div class="cur" id="cur"></div></div>
+  <button class="recipe" onclick="D('phuong')"><img id="ri"><span><b>Trúc Cơ Đan</b><small>Đan phương Tinh phẩm · Thành công 68% ▾</small></span></button>
+  <div class="lo"><img id="lo"></div>
+  <div id="slots"></div>
+  <div class="heat"><img id="hi" style="width:22px;margin:0 auto">Hỏa hầu<div class="t" id="ht"><span class="k" id="hk" style="top:44%"><img class="ic" id="hki"></span></div><b id="hv">640°</b><small style="color:var(--gn)">Văn hỏa</small></div>
+  <div class="pred"><div class="bf"><div class="ringp"><div>68%</div></div><p><span>Dự kiến</span><b>Tinh phẩm</b></p><p><span>Số đan</span><b>3–5 viên</b></p><p><span>Đan độc</span><b style="color:var(--am)">Thấp</b></p><p><span>Thời gian</span><b>2 canh</b></p></div></div>
+  <div class="side" id="side"></div>
+  <img class="mec" id="me">
+  <button class="kai" onclick="craft()">Khai Lò</button>
+  <div class="log"><b>[Giờ Tý]</b> Lò Càn Khôn đã nóng. Thêm <u>Huyết Sâm</u> để tăng tỉ lệ thành đan.<br><b>[Giờ Hợi]</b> Luyện thành <u>Tụ Khí Đan x4 · Lương phẩm</u>.<br><b>[Giờ Tuất]</b> Thương hội đặt mua 10 viên Hồi Xuân Đan.</div>
+ </div>
+ <div class="scr" id="s-x"><div class="body"><div class="ph"><h2 id="pt"></h2><div class="cur" id="pcur" style="flex-direction:row"></div></div><div class="seg" id="ps"></div><div class="pb" id="pb"></div></div></div>
+ <div class="nav" id="nav"></div>
+ <div class="craft" id="craft"></div>
+ <div class="fight" id="fight"></div>
+ <div class="dlg" id="dlg" onclick="if(event.target===this)closeD()"><div class="dbx"><div class="bf"><h3><span id="dt"></span><button class="x" onclick="closeD()">✕</button></h3><div class="c" id="dc"></div><div class="a" id="da"></div></div></div></div>
+ <div class="toast" id="toast"></div>
+</div>
+<script>
+const I=n=>(window.IMG&&IMG[n])||'assets/'+n+'.webp';
+const $=id=>document.getElementById(id);
+const toast=t=>{const e=$('toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),1400)};
+const fmt=n=>String(n).replace(/\B(?=(\d{3})+(?!\d))/g,'.');
+const RC=['#8a8aa8','#5ac07a','#4a9aff','#b070ff','#ffa040','#ff5050'],RN=['Phàm','Lương','Tinh','Huyền','Địa','Thiên'];
+$('lo').src=I('lo-dan-lon');$('ri').src=I('it-dan-vang');$('me').src=I('nv-nu-dem');$('hi').src=I('it-hoa-chung');$('hki').src=I('it-hoa-chung');
+$('ffs').innerHTML=Array.from({length:16},(_,i)=>`<i class="ff" style="left:${(i*29)%96}%;top:${40+(i*17)%50}%;animation-duration:${4+i%4}s;animation-delay:${i*.45}s"></i>`).join('');
+const CUR=`<span><img src="${I('it-linh-thach')}">8.420</span><span><img src="${I('it-nguyen-bao')}">36.800</span>`;$('cur').innerHTML=CUR;
+// ---------- DỮ LIỆU ----------
+const IT=[['Huyết Sâm','it-nhan-sam',2,'Dược',14,'Mộc'],['Linh Chi Tử','it-linh-chi',2,'Dược',22,'Mộc'],['Băng Tâm Thảo','it-thao-lam',1,'Dược',40,'Thủy'],['Xích Diễm Hoa','it-thao-do',2,'Dược',18,'Hỏa'],['Tuyết Liên','it-sen',3,'Dược',6,'Thủy'],['Ngọc Tủy Hạt','it-hat-giong',1,'Dược',30,'Thổ'],
+ ['Kim Tinh Sa','it-quang-do',2,'Khoáng',12,'Kim'],['Hàn Ngọc Khoáng','it-quang-lam',2,'Khoáng',9,'Thủy'],['Linh Thạch','it-linh-thach',1,'Khoáng',8420,'—'],['Yêu Đan Mộc Lang','it-yeu-dan',3,'Khoáng',3,'Mộc'],['Thú Hỏa Chủng','it-hoa-chung',4,'Khoáng',1,'Hỏa'],
+ ['Trúc Cơ Đan','it-dan-vang',2,'Đan',7,'—'],['Hồi Xuân Đan','it-dan-luc',1,'Đan',24,'—'],['Tụ Khí Đan','it-dan-lam',1,'Đan',31,'—'],['Phá Chướng Đan','it-dan-tim',3,'Đan',2,'—'],['Huyết Tinh Đan','it-dan-do',3,'Đan',4,'—'],['Ngọc Lộ','it-binh-lam',2,'Đan',5,'—'],['Giải Độc Thủy','it-binh-do',1,'Đan',9,'—'],
+ ['Nguyệt Ảnh Bào','it-ao-tim',3,'Khí',1,'—'],['Bích Lạc Quan','it-mu',2,'Khí',1,'—'],['Lưu Vân Hài','it-giay',2,'Khí',1,'—'],['Tử Kim Linh','it-chuong',3,'Khí',1,'—'],['Hàn Nguyệt Giới','it-nhan',3,'Khí',1,'—'],['Dược Hồ Lô','it-ho-lo',2,'Khí',1,'—'],['Ngọc Bội Tĩnh Tâm','it-ngoc-boi',4,'Khí',1,'—'],
+ ['Bách Thảo Kinh','it-bi-kip',3,'Thư',1,'—'],['Đan Phương Tàn Quyển','it-truc-thu',2,'Thư',3,'—'],['Hỏa Linh Phù','it-bua',1,'Thư',8,'—'],['Trứng Nguyệt Hạc','it-trung',4,'Thư',1,'—']
+].map(a=>({n:a[0],i:a[1],r:a[2],t:a[3],q:a[4],e:a[5]}));
+const it=n=>IT.find(x=>x.n===n);
+const EL=[['Kim','sk-sword','#e8d070','Khắc Mộc'],['Mộc','sk-heal','#5ac07a','Khắc Thổ'],['Thủy','sk-water','#4a9aff','Khắc Hỏa'],['Hỏa','sk-fire','#ff7040','Khắc Kim'],['Thổ','sk-earth','#c89a5a','Khắc Thủy']];
+// ---------- ĐAN PHÒNG ----------
+const SL=[['Huyết Sâm',30,30,'Chủ dược'],['Linh Chi Tử',50,22,'Phụ dược'],['Ngọc Tủy Hạt',70,30,'Phụ dược'],[null,50,70,'Dẫn dược']];
+$('slots').innerHTML=SL.map((s,i)=>{const x=s[0]&&it(s[0]);return `<button class="slot" style="left:${s[1]}%;top:${s[2]}%" onclick="${x?`itD('${x.n}')`:"D('chondan')"}">${x?`<i><img class="ic" src="${I(x.i)}"></i><em>x${i?1:2}</em>`:'<i class="e">+</i>'}<span>${s[3]}</span></button>`}).join('');
+$('side').innerHTML=[['it-truc-thu','Đan phương',"D('phuong')",1],['it-ho-lo','Dược tủ',"go('bt','Dược tủ')"],['it-bua','Tin tức',"D('thu')",1],['it-bua-ren','Cài đặt',"D('caidat')"]].map(b=>`<button class="sb" onclick="${b[2]}"><i class="${b[3]?'n':''}"><img class="ic" src="${I(b[0])}"></i>${b[1]}</button>`).join('');
+(()=>{const t=$('ht'),k=$('hk');let on=0;const mv=e=>{if(!on)return;const r=t.getBoundingClientRect(),p=e.touches?e.touches[0]:e;let y=Math.max(0,Math.min(1,(p.clientY-r.top)/r.height));k.style.top=`calc(${y*100}% - 13px)`;const v=Math.round(1200-y*900);$('hv').textContent=v+'°';k.nextSibling};
+ k.addEventListener('pointerdown',e=>{on=1;e.preventDefault()});addEventListener('pointermove',mv);addEventListener('pointerup',()=>on=0)})();
+// ---------- ĐIỀU HƯỚNG ----------
+const NAV=[['dp','lo-dan-lon','Đan phòng'],['dv','it-linh-chi','Dược viên',1],['ht','it-ban-do','Hái thuốc'],['th','it-nguyen-bao','Thương hội',1],['bt','it-ao-tim','Bản thân']];
+function nav(k){$('nav').innerHTML=NAV.map(n=>`<button class="nb ${n[0]===k?'on':''}" onclick="go('${n[0]}')"><i><img class="ic" src="${I(n[1])}"></i>${n[2]}${n[3]?'<em></em>':''}</button>`).join('')}
+let zSel=0,mSel=0,bagT='Dược tủ';
+const dw=(x,q=1)=>x?`<button class="dw" style="--rc:${RC[x.r]}" onclick="itD('${x.n}')"><b class="r"></b><img src="${I(x.i)}">${q&&x.q>1?`<em>${x.q>999?(x.q/1000).toFixed(1)+'K':x.q}</em>`:''}<span class="lb">${x.n}</span></button>`:`<div class="dw e"><span class="lb">Trống</span></div>`;
+const orb=(x,q)=>x?`<button class="orb" style="--rc:${RC[x.r]}" onclick="itD('${x.n}')"><img class="ic" src="${I(x.i)}">${q?`<em>${q}</em>`:''}</button>`:`<button class="orb e" onclick="toast('Ô trống')"></button>`;
+const PG={
+ dv:{t:'Dược Viên',s:'Động phủ Nguyệt Hồ · Cấp 4',tabs:['Ruộng thuốc','Công trình','Linh thú'],r(tab){
+  if(tab==='Ruộng thuốc')return `<div class="garden">${[['it-nhan-sam','Huyết Sâm',100],['it-linh-chi','Linh Chi',72],['it-thao-lam','Băng Tâm',40],['it-thao-do','Xích Diễm',100],['it-sen','Tuyết Liên',18],['','Trống',0],['it-hat-giong','Ngọc Tủy',86],['','Trống',0],['','Khóa',-1]].map(p=>p[2]<0?`<button class="plot lk" onclick="toast('Dược viên cấp 5 mở ô này')">Khóa</button>`:!p[0]?`<button class="plot e" onclick="D('gieo')">Gieo hạt</button>`:`<button class="plot ${p[2]>=100?'rd':''}" onclick="${p[2]>=100?`toast('Thu ${p[1]} x6')`:`D('cay','${p[1]}')`}"><img src="${I(p[0])}"><span class="rg" style="--p:${p[2]}%"></span>${p[2]>=100?'<span style="color:var(--am)">Thu hoạch</span>':p[1]+' · '+p[2]+'%'}</button>`).join('')}</div>
+   <div style="display:flex;gap:6px;justify-content:center;margin-top:8px"><button class="btn n" onclick="toast('Tưới linh tuyền: +10% tốc độ')">Tưới linh tuyền</button><button class="btn" onclick="toast('Thu hoạch: Huyết Sâm x6, Xích Diễm Hoa x4')">Thu tất cả</button></div>
+   <div class="h5">Linh khí dược viên</div><div class="kv"><span>Tụ Linh Trận</span><b>Cấp 3 · +18% tốc lớn</b></div><div class="kv"><span>Đêm trăng tròn</span><b style="color:var(--am)">Còn 2 ngày · +50%</b></div>`;
+  if(tab==='Công trình')return [['bd-dong-thien','Nguyệt Hồ Động','Cấp 4 · Nơi bế quan'],['bd-tu-linh','Tụ Linh Trận','Cấp 3 · Thuốc lớn nhanh'],['bd-dan-phong','Đan Lâu','Cấp 3 · Mở lò thứ 2'],['bd-linh-thu','Hạc Viên','Cấp 2 · Nuôi tọa kỵ']].map((b,i)=>`<div class="row"><img src="${I(b[0])}" style="width:46px;height:46px"><div class="tx"><b>${b[1]}</b><small>${b[2]}</small></div><button class="btn s ${i?'n':''}" onclick="toast('Nâng ${b[1]}: ${fmt((i+2)*4000)} linh thạch')">Nâng</button></div>`).join('');
+  return `<div class="row"><img src="${I('it-trung')}" style="width:46px;height:46px"><div class="tx"><b>Trứng Nguyệt Hạc</b><small>Còn 18:20:00 · cần ánh trăng</small></div><button class="btn s" onclick="toast('Đặt dưới trăng: nhanh x2')">Ấp</button></div><div class="row"><img src="${I('mt-crane')}" style="width:46px;height:46px"><div class="tx"><b>Dược Hạc</b><small>Tự hái thuốc mỗi 2 canh</small></div><button class="btn s n" onclick="toast('Dược Hạc mang về Băng Tâm Thảo x3')">Gọi về</button></div>`}},
+ ht:{t:'Hái Thuốc',s:'Thể lực 42/60 · hồi 1 mỗi 5 phút',tabs:['Thám hiểm','Bí cảnh'],r(tab){
+  const Z=[['Thanh Sơn Cốc','dd-thanh-son',0],['Hỏa Diệm Nhai','dd-hoa-diem',0],['U Minh Đầm','dd-u-coc',0],['Hàn Nguyệt Uyên','dd-bang-uyen',1]];
+  if(tab==='Thám hiểm'){const G='ffffhfffhfmffffeaffpfffcfaffffffbfff';const ic={h:'it-thao-lam',m:'',e:'mo-doc-nhan',p:'it-linh-chi',c:'it-ruong',b:'mo-tam-ma',a:'adj'};
+   return `<div class="zone">${Z.map((z,i)=>`<button class="${i===zSel?'on':''} ${z[2]?'lk':''}" style="background-image:url(${I(z[1])})" onclick="${z[2]?"toast('Cần Trúc Cơ 9')":`zSel=${i};go('ht')`}"><span>${z[0]}${z[2]?' 🔒':''}</span></button>`).join('')}</div>
+   <div class="stam"><img src="${I('it-binh-lam')}" style="width:18px"><span>Thể lực</span><div class="t"><i></i></div><b>42/60</b></div>
+   <div class="hex">${G.split('').map((c,i)=>c==='m'?'<div class="tile me"></div>':c==='f'?`<button class="tile fog ${[3,8,11,15].includes(i)?'adj':''}" onclick="toast('Thám hiểm ô này: −3 thể lực')"></button>`:c==='a'?`<button class="tile fog adj" onclick="toast('Thám hiểm: −3 thể lực')"></button>`:c==='e'||c==='b'?`<button class="tile" onclick="fight()"><img class="ic" src="${I(ic[c])}" style="border-radius:50%;object-fit:cover;object-position:50% 14%"></button>`:`<button class="tile" onclick="toast('Hái được ${c==='c'?'rương: Đan phương tàn quyển':'dược liệu'}!')"><img class="ic" src="${I(ic[c])}"></button>`).join('')}</div>
+   <div class="kv" style="margin-top:6px"><span>Đã khám phá</span><b>28%</b></div><div class="kv"><span>Dược liệu có thể gặp</span><b>Băng Tâm Thảo, Linh Chi, Tuyết Liên</b></div><div class="kv"><span>Nguy hiểm</span><b style="color:var(--rd)">Độc Nhân Lv 3 · Tâm Ma (trùm)</b></div>`}
+  return [['Vạn Dược Cốc','dd-thanh-son','Mở mỗi 3 ngày · rơi Thiên phẩm dược liệu',0],['Hỏa Linh Quật','dd-hoa-diem','Cần Hỏa Linh Phù · Thú Hỏa Chủng',0],['Nguyệt Hồ Thủy Cung','dd-nguyet-ho','Chỉ mở đêm trăng tròn',1]].map(b=>`<div style="border-radius:8px;overflow:hidden;margin-bottom:6px;box-shadow:0 0 0 1px rgba(184,130,58,.5)"><div style="height:70px;background:url(${I(b[1])}) center/cover"></div><div class="row" style="margin:0;border-radius:0"><div class="tx"><b>${b[0]}</b><small>${b[2]}</small></div><button class="btn s ${b[3]?'n':''}" onclick="${b[3]?"toast('Còn 2 ngày')":'fight()'}">${b[3]?'Chờ':'Vào'}</button></div></div>`).join('')}},
+ th:{t:'Thương Hội',s:'Lạc Hà Thương Hội · uy tín 72',tabs:['Đơn đặt hàng','Chợ đan','Thu mua'],r(tab){
+  if(tab==='Đơn đặt hàng')return [['de-tu-0','Trương Thiếu Hiệp','Sắp vào bí cảnh, cần đan hồi máu gấp!',[['it-dan-luc',10]],'1.200 linh thạch','02:40:00'],['de-tu-5','Hồng Liên Tiên Tử','Muốn đan dưỡng nhan, phẩm càng cao thưởng càng lớn.',[['it-dan-trang',1]],'Bích Lạc Quan','Hôm nay'],['de-tu-6','Mạc Lão Trưởng Quầy','Thu mua số lượng lớn Tụ Khí Đan.',[['it-dan-lam',30]],'3.000 linh thạch · uy tín +5','3 ngày']].map((o,i)=>`<div class="order"><img src="${I(o[0])}"><div class="tx"><b>${o[1]}</b><p>${o[2]}</p><div class="need">Cần: ${o[3].map(n=>`<img src="${I(n[0])}">x${n[1]}`).join('')} <span style="margin-left:auto;color:var(--mu)">⏳ ${o[5]}</span></div><div class="need" style="margin-top:2px">Thưởng: <b style="color:var(--am)">${o[4]}</b></div></div><button class="btn s ${i==1?'n':''}" style="align-self:center" onclick="toast('${i==1?'Chưa có Dưỡng Nhan Đan':'Đã giao hàng!'}')">Giao</button></div>`).join('');
+  if(tab==='Chợ đan')return IT.filter(x=>x.t==='Đan').map((x,i)=>{const h=Array.from({length:10},(_,j)=>30+((i*7+j*13)%60));const up=i%3!==1;return `<div class="mk"><img src="${I(x.i)}"><div class="tx"><b style="color:${RC[x.r]}">${x.n}</b><small>Có ${x.q} · bán được ${Math.round(x.q*.6)}</small></div><div class="spark" style="--c:${up?'var(--gn)':'var(--rd)'}">${h.map(v=>`<i style="height:${v}%"></i>`).join('')}</div><div class="pr"><b>${fmt((x.r+1)*(x.r+1)*38)}</b><small class="${up?'up':'dn'}">${up?'▲ +':'▼ −'}${4+i*3}%</small></div><button class="btn s" onclick="D('ban','${x.n}')">Bán</button></div>`}).join('');
+  return IT.filter(x=>x.t==='Dược'||x.t==='Khoáng').slice(0,8).map(x=>`<div class="mk"><img src="${I(x.i)}"><div class="tx"><b>${x.n}</b><small>Hệ ${x.e} · ${RN[x.r]} phẩm</small></div><div class="pr"><b>${fmt((x.r+1)*25)}</b><small style="color:var(--mu)">mỗi cây</small></div><button class="btn s n" onclick="toast('Đã mua 1 ${x.n}')">Mua</button></div>`).join('')}},
+ bt:{t:'Bản Thân',s:'Bạch Nguyệt Thường · Dược Tông',tabs:['Trang bị','Dược tủ','Hỏa quyết','Ngũ hành','Tọa kỵ'],r(tab){
+  if(tab==='Trang bị'){const E=[['Pháp y','Nguyệt Ảnh Bào',14,18],['Mũ','Bích Lạc Quan',8,46],['Giày','Lưu Vân Hài',14,74],['Nhẫn','Hàn Nguyệt Giới',86,18],['Ngọc bội','Ngọc Bội Tĩnh Tâm',92,46],['Pháp khí','Tử Kim Linh',86,74],['Dược hồ','Dược Hồ Lô',50,6]];
+   return `<div class="arc"><img class="hero" src="${I('nv-nu-dem')}">${E.map(e=>`<div class="es" style="left:${e[2]}%;top:${e[3]}%">${orb(it(e[1]),'+'+(it(e[1]).r*2))}<span class="one" style="display:block;margin-top:1px">${e[0]}</span></div>`).join('')}<div class="pw">Lực chiến 24.860</div></div>
+   <div class="h5">Thuộc tính</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:0 10px">${[['Pháp lực','3.420'],['Thần thức','680'],['Khí huyết','12.400'],['Hỏa khống','92'],['Kháng độc','46%'],['Dược tính','+18%']].map(k=>`<div class="kv"><span>${k[0]}</span><b>${k[1]}</b></div>`).join('')}</div>`}
+  if(tab==='Dược tủ'){const cats=['Dược','Khoáng','Đan','Khí','Thư'];return cats.map(c=>{const l=IT.filter(x=>x.t===c);return `<div class="h5">${{Dược:'Ngăn dược liệu',Khoáng:'Ngăn khoáng vật',Đan:'Bình đan dược',Khí:'Rương pháp khí',Thư:'Kệ sách & phù'}[c]} <small>${l.length}/${l.length+3}</small></div><div class="cab">${l.map(x=>dw(x)).join('')}${Array(Math.max(0,(4-l.length%4)%4||0)).fill(dw()).join('')}</div>`}).join('')}
+  if(tab==='Hỏa quyết')return `<div class="row" style="background:linear-gradient(90deg,rgba(255,120,40,.2),rgba(34,38,90,.5))"><img src="${I('it-hoa-chung')}" style="width:46px;height:46px"><div class="tx"><b class="sp" style="font-size:13px">Cửu Chuyển Ly Hỏa Quyết</b><small>Chủ tu · Tầng 4/9 · Hỏa hầu ổn định +22%</small><div class="xp"><i style="width:44%"></i></div></div></div>
+   ${['Dẫn hỏa nhập lô','Văn vũ luân chuyển','Hỏa ngưng đan văn','Tam muội chân hỏa','Cửu chuyển hoàn đan'].map((n,i)=>`<div class="kv"><span>${i<4?'✦':'◇'} Tầng ${[1,2,3,4,6][i]}: ${n}</span><b style="color:${i<3?'var(--gn)':i==3?'var(--am)':'var(--mu)'}">${['Đã thành','Đã thành','Đã thành','Đang tu 44%','Chưa mở'][i]}</b></div>`).join('')}
+   <div class="h5">Công pháp phụ</div>${[['it-bi-kip','Bách Thảo Kinh','Nhận biết dược tính · +1 dược liệu khi hái'],['it-truc-thu','Thanh Mộc Dưỡng Sinh Công','Tu luyện · Trúc Cơ 6/9'],['it-bua','Hỏa Linh Phù Lục','Chế phù hỏa hệ']].map(m=>`<div class="row"><img src="${I(m[0])}"><div class="tx"><b>${m[1]}</b><small>${m[2]}</small></div><button class="btn s n" onclick="toast('Tu luyện ${m[1]}')">Tu</button></div>`).join('')}`;
+  if(tab==='Ngũ hành')return `<div class="five">${EL.map((e,i)=>{const a=i/5*Math.PI*2-Math.PI/2;return `<button class="el" style="left:${50+40*Math.cos(a)}%;top:${52+40*Math.sin(a)}%;--c:${e[2]}" onclick="D('el',${i})"><i><img src="${I(e[1])}"></i>${e[0]} · Lv${[6,8,5,9,3][i]}<small>${e[3]}</small></button>`}).join('')}<div class="mid"><b>Ngũ Hành</b>Mộc · Hỏa song linh căn</div></div>
+   <div class="h5">Pháp thuật đang trang bị</div>${[['sk-fire','Liệt Hỏa Chưởng','Hỏa · 140% pháp lực'],['sk-heal','Thanh Mộc Hồi Xuân','Mộc · hồi 20% máu'],['sk-poison','Bách Độc Vụ','Mộc · độc 3 hiệp']].map(s=>`<div class="row"><img src="${I(s[0])}" style="border-radius:50%"><div class="tx"><b>${s[1]}</b><small>${s[2]}</small></div><button class="btn s" onclick="toast('Nâng ${s[1]}')">Nâng</button></div>`).join('')}`;
+  const M=[['Dược Hạc','mt-crane',3,'Tự hái thuốc · Tốc +20%',1],['Huyền Quy','mt-turtle',2,'Chở thêm 30 dược liệu',1],['Hỏa Loan','mt-phoenix',5,'Lửa thuần: +10% thành đan',0]];const m=M[mSel];
+  return `<div class="mcard"><img src="${I(m[1])}"><b>${m[0]}</b></div><div class="mlist">${M.map((x,i)=>`<button class="${i===mSel?'on':''} ${x[4]?'':'lk'}" onclick="mSel=${i};go('bt','Tọa kỵ')"><img class="ic" src="${I(x[1])}"></button>`).join('')}</div><div class="kv"><span>Phẩm</span><b style="color:${RC[m[2]]}">${RN[m[2]]}</b></div><div class="kv"><span>Hiệu quả</span><b>${m[3]}</b></div><div style="display:flex;gap:6px;justify-content:center;margin-top:8px">${m[4]?`<button class="btn n" onclick="toast('Cho ăn: Linh Chi x2')">Cho ăn</button><button class="btn" onclick="toast('Đang cưỡi ${m[0]}')">Cưỡi</button>`:`<button class="btn" onclick="D('loan')">Cách có</button>`}</div>`}}
+};
+function go(k,tab){closeD();nav(k);document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));if(k==='dp'){$('s-dp').classList.add('on');return}
+ const p=PG[k];tab=tab||p.tabs[0];$('pt').innerHTML=`${p.t}<small>${p.s}</small>`;$('pcur').innerHTML=CUR;$('ps').innerHTML=p.tabs.map(t=>`<button class="${t===tab?'on':''}" onclick="go('${k}','${t}')">${t}</button>`).join('');$('pb').innerHTML=p.r(tab);$('pb').scrollTop=0;$('s-x').classList.add('on')}
+// ---------- HỘP THOẠI ----------
+function dlg(t,c,a){$('dt').textContent=t;$('dc').innerHTML=c;$('da').innerHTML=a??`<button class="btn n" onclick="closeD()">Đóng</button>`;$('dlg').classList.add('on')}
+function closeD(){$('dlg').classList.remove('on')}
+const ok=(m,l='Đồng ý')=>`<button class="btn n" onclick="closeD()">Thôi</button><button class="btn" onclick="closeD();toast('${m}')">${l}</button>`;
+function itD(n){const x=it(n);dlg(x.n,`<div class="ih">${orb(x).replace('class="orb"','class="orb" style="--rc:'+RC[x.r]+'"')}<div><b style="color:${RC[x.r]}">${x.n}</b>${RN[x.r]} phẩm · ${x.t}${x.e!=='—'?' · hệ '+x.e:''}<br><small style="color:var(--mu)">Có ${fmt(x.q)}</small></div></div>
+ <p>${x.t==='Dược'?'Dược liệu. Bỏ vào lò làm chủ dược hoặc phụ dược. Dược tính càng hợp hệ, đan càng tốt.':x.t==='Đan'?'Đan dược. Có thể dùng, bán ở thương hội hoặc giao cho đơn đặt hàng.':x.t==='Khí'?'Pháp khí đeo trên người.':x.t==='Khoáng'?'Khoáng vật dùng làm dẫn dược hoặc luyện khí.':'Sách, phù lục, vật đặc biệt.'}</p>
+ <div class="kv"><span>Giá thương hội</span><b>${fmt((x.r+1)*(x.r+1)*38)} linh thạch</b></div>${x.t==='Đan'?'<div class="kv"><span>Đan độc</span><b>+2</b></div>':''}`,
+ x.t==='Dược'||x.t==='Khoáng'?`<button class="btn n" onclick="closeD();go('th','Chợ đan')">Bán</button><button class="btn" onclick="closeD();go('dp');toast('Đã bỏ ${x.n} vào lò')">Bỏ vào lò</button>`:x.t==='Đan'?`<button class="btn n" onclick="closeD();D('ban','${x.n}')">Bán</button><button class="btn" onclick="closeD();toast('Đã dùng ${x.n}')">Dùng</button>`:x.t==='Khí'?`<button class="btn n" onclick="closeD();toast('Tinh luyện cần Kim Tinh Sa x3')">Tinh luyện</button><button class="btn" onclick="closeD();toast('Đã đeo')">Đeo</button>`:`<button class="btn" onclick="closeD();toast('Đã dùng ${x.n}')">Dùng</button>`)}
+const DD={
+ phuong:()=>dlg('Đan Phương',[['it-dan-vang','Trúc Cơ Đan',2,'Huyết Sâm x2 · Linh Chi x1 · Ngọc Tủy x1',68],['it-dan-luc','Hồi Xuân Đan',1,'Linh Chi x2 · Băng Tâm x1',92],['it-dan-tim','Phá Chướng Đan',3,'Tuyết Liên x1 · Băng Tâm x3 · Hàn Ngọc',41],['it-dan-trang','Dưỡng Nhan Đan',4,'Cần học đan phương',0]].map(r=>`<div class="row"><img src="${I(r[0])}"><div class="tx"><b style="color:${RC[r[2]]}">${r[1]}</b><small>${r[3]}</small></div>${r[4]?`<button class="btn s" onclick="closeD();toast('Đã chọn ${r[1]} · ${r[4]}%')">${r[4]}%</button>`:'<span style="color:var(--mu)">🔒</span>'}</div>`).join('')),
+ chondan:()=>dlg('Chọn dẫn dược',`<div class="cab">${IT.filter(x=>x.t==='Khoáng').map(x=>dw(x)).join('')}</div><p style="margin-top:6px;color:var(--mu)">Dẫn dược giúp điều hòa dược tính. Hệ Thổ hợp với Trúc Cơ Đan.</p>`),
+ thu:()=>dlg('Tin Tức',[['Thương hội','Giá Trúc Cơ Đan tăng 12% do mùa bí cảnh.'],['Dược Tông','Đại hội đấu đan sau 5 ngày. Hạng nhất nhận Thú Hỏa Chủng.'],['Hệ thống','Đêm trăng tròn còn 2 ngày.']].map(m=>`<div class="kv"><span>${m[0]}</span><b style="text-align:right">${m[1]}</b></div>`).join('')),
+ caidat:()=>dlg('Cài Đặt',['Nhạc đêm','Tiếng lửa','Nhắc thu hoạch','Tự bán đan Phàm phẩm'].map(s=>`<div class="kv"><span>${s}</span><button class="btn s n" onclick="this.textContent=this.textContent==='Bật'?'Tắt':'Bật'">Bật</button></div>`).join('')),
+ gieo:()=>dlg('Gieo hạt',`<div class="cab">${IT.filter(x=>x.t==='Dược').map(x=>dw(x)).join('')}</div>`,ok('Đã gieo hạt','Gieo')),
+ cay:n=>dlg(n,`<p style="text-align:center">${n} đang lớn. Tưới linh tuyền hoặc đợi đêm trăng để lớn nhanh hơn.</p>`,ok('Đã tưới','Tưới')),
+ ban:n=>{const x=it(n);dlg('Bán '+n,`<div class="kv"><span>Giá hiện tại</span><b>${fmt((x.r+1)*(x.r+1)*38)}</b></div><div class="kv"><span>Số lượng</span><b>${Math.round(x.q*.6)} / ${x.q}</b></div><div class="kv"><span>Thu về</span><b style="color:var(--am)">${fmt((x.r+1)*(x.r+1)*38*Math.round(x.q*.6))} linh thạch</b></div>`,ok('Đã bán '+n,'Bán'))},
+ el:i=>dlg('Hệ '+EL[i][0],`<div style="width:90px;margin:0 auto 6px"><img src="${I(EL[i][1])}" style="border-radius:50%;box-shadow:0 0 0 2px ${EL[i][2]},0 0 18px ${EL[i][2]}"></div><p style="text-align:center">${EL[i][3]}. Đánh vào địch bị khắc gây x1,5 sát thương.</p>`,ok('Nâng hệ '+EL[i][0],'Nâng cấp')),
+ loan:()=>dlg('Hỏa Loan',`<p>Thắng <b>Đại hội đấu đan</b> để nhận Thú Hỏa Chủng, rồi ấp ở Hạc Viên 3 ngày.</p>`)
+};
+function D(k,a){DD[k](a)}
+// ---------- LUYỆN ĐAN ----------
+let ph=0;
+function craft(){ph=0;drawC();$('craft').classList.add('on')}
+function drawC(){const P=['Dung dược','Ngưng đan','Thu đan'];$('craft').innerHTML=`<b class="sp" style="font-size:18px;color:var(--am)">Trúc Cơ Đan</b><div class="phase">${P.map((p,i)=>`<span class="${i<ph?'ok':i===ph?'on':''}">${i<ph?'✓ ':''}${p}</span>`).join('')}</div><img class="lo2" src="${I('lo-dan-lon')}"><div class="gauge"><i></i></div><p>Bấm <b style="color:var(--am)">Đả pháp quyết</b> khi vạch trắng nằm trong vùng vàng. Trúng cả 3 lần sẽ ra đan Huyền phẩm.</p><div style="display:flex;gap:8px"><button class="btn n" onclick="$('craft').classList.remove('on')">Tắt lò</button><button class="btn" style="height:36px;font-size:13px" onclick="strike()">Đả pháp quyết</button></div>`}
+function strike(){const g=$('craft').querySelector('.gauge i'),x=g.offsetLeft/246,hit=x>.4&&x<.58;toast(hit?'Hoàn mỹ!':'Lệch hỏa hầu…');ph++;if(ph<3)return drawC();
+ $('craft').classList.remove('on');dlg('Thành Đan!',`<div style="width:110px;margin:0 auto"><img src="${I('it-dan-vang')}" style="filter:drop-shadow(0 0 16px #ffb24a)"></div><p style="text-align:center;font:700 14px Spectral">Trúc Cơ Đan x4</p><div class="qual">${RN.slice(1,5).map((r,i)=>`<span class="${i===(hit?2:1)?'on':''}">${r}</span>`).join('')}</div><div class="kv"><span>Đan văn</span><b>${hit?'3 đạo':'2 đạo'}</b></div><div class="kv"><span>Kinh nghiệm đan đạo</span><b style="color:var(--gn)">+240</b></div>`,`<button class="btn n" onclick="closeD();go('th','Đơn đặt hàng')">Mang đi bán</button><button class="btn" onclick="closeD();craft()">Luyện tiếp</button>`)}
+// ---------- CHIẾN ĐẤU NGŨ HÀNH ----------
+let fh,fe=1;
+function fight(){closeD();fh=100;
+ $('fight').innerHTML=`<div class="order2">Lượt: <img class="now" src="${I('nv-nu-dem')}" style="--c:var(--am)"><img src="${I('mo-doc-nhan')}" style="--c:var(--rd)"><img src="${I('de-tu-3')}"><img src="${I('mo-doc-nhan')}" style="--c:var(--rd)"><span style="margin-left:auto">Hiệp 1</span><button class="btn s n" onclick="$('fight').classList.remove('on')">Chạy</button></div>
+ <div class="foe" id="foe"><img src="${I('mo-doc-nhan')}"><div class="nm">Vạn Độc Nhân <em>Hệ Mộc</em></div><div class="hpb"><i id="fh" style="width:100%"></i></div><div class="inten">Ý đồ: tung Độc Vụ (độc 3 hiệp)</div></div>
+ <div class="fb"><div class="fwheel">${EL.map((e,i)=>{const a=i/5*Math.PI*2-Math.PI/2;return `<button class="el ${i===0?'k':''}" style="left:${50+36*Math.cos(a)}%;top:${52+38*Math.sin(a)}%;--c:${e[2]}" onclick="hitE(${i})"><i><img src="${I(e[1])}"></i>${e[0]}</button>`}).join('')}<div class="hint"><b>Kim khắc Mộc</b>Chọn hệ khắc địch để x1,5</div></div>
+  <div class="pme"><div class="ava"></div><div class="tx"><b class="sp">Bạch Nguyệt Thường</b><div class="hpb"><i style="width:82%;background:linear-gradient(90deg,#3a8a5a,#7ae0a0)"></i></div><div class="hpb mpb"><i style="width:60%"></i></div></div><div class="pills">${[['it-dan-luc',24],['it-binh-do',9],['it-dan-do',4]].map(p=>`<button onclick="toast('Dùng đan')"><img class="ic" src="${I(p[0])}"><em>${p[1]}</em></button>`).join('')}</div></div>
+  <div class="flog" id="flog">Vạn Độc Nhân xông ra từ đầm lầy! Địch hệ <b>Mộc</b>, dùng <u>Kim</u> để khắc chế.</div></div>`;$('fight').classList.add('on')}
+function hitE(i){if(fh<=0)return;const k=i===0,d=k?36:i===3?22:14;fh=Math.max(0,fh-d);$('fh').style.width=fh+'%';const f=$('foe');f.classList.add('hit');setTimeout(()=>f.classList.remove('hit'),150);
+ $('fight').insertAdjacentHTML('beforeend',`<div class="dmg">-${fmt(d*420)}${k?'<small>Khắc chế x1,5</small>':i===1?'<small style="color:var(--rd)">Bị kháng</small>':''}</div>`);setTimeout(()=>$('fight').querySelector('.dmg')?.remove(),900);
+ $('flog').innerHTML=`Ngươi dùng pháp thuật hệ <b>${EL[i][0]}</b>, gây ${fmt(d*420)} sát thương.${k?' <u>Khắc chế!</u>':''} Vạn Độc Nhân phun độc vụ…`;
+ if(fh<=0)setTimeout(()=>dlg('Đắc Thắng',`<p style="text-align:center">Vạn Độc Nhân tan thành khói độc.</p><div class="cab" style="margin-top:6px">${[it('Yêu Đan Mộc Lang'),it('Huyết Sâm'),it('Linh Chi Tử'),it('Đan Phương Tàn Quyển')].map(x=>dw(x)).join('')}</div>`,`<button class="btn" onclick="closeD();$('fight').classList.remove('on')">Tiếp tục hái thuốc</button>`),400)}
+nav('dp');
+</script></body></html>

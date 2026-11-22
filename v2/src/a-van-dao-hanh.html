@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Vấn Đạo Hành</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@500;700;800&family=Alegreya+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#2a1c10;--ink2:#5a432c;--paper:#efe0bd;--paper2:#e2cd9f;--sep:#8a5a2a;--red:#a8241a;--gold:#b8883a;--grn:#3f6a32;--blu:#2e5a86}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:#1b130c;font:11px/1.35 'Alegreya Sans',sans-serif;color:var(--ink);display:flex;justify-content:center;min-height:100vh}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+img{display:block;max-width:100%;-webkit-user-drag:none;user-select:none}
+.one{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.cl2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.hd{font-family:Alegreya,serif;font-weight:800}
+.app{position:relative;width:100%;max-width:430px;height:100vh;height:100dvh;overflow:hidden;background:#3a2a18}
+@media(min-width:520px){.app{height:min(932px,100vh);margin:auto 0;border-radius:22px;box-shadow:0 0 0 8px #0c0806,0 30px 80px #000}}
+/* paper frame via raster border */
+.pf{border:12px solid transparent;border-image:url(assets/ui-a-khung.webp) 60 fill / 12px stretch}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:4px;height:28px;padding:0 12px;border:8px solid transparent;border-image:url(assets/ui-a-nut.webp) 24 26 fill / 8px 10px stretch;color:#fff3dc;font-weight:800;font-size:11px;text-shadow:0 1px 0 #4a0804;white-space:nowrap}
+.btn.p{border-image-source:url(assets/ui-a-nut2.webp);color:var(--ink);text-shadow:0 1px 0 #fff4d8}
+.btn.sm{height:22px;padding:0 6px;font-size:10px}
+.btn:active{filter:brightness(.9);transform:translateY(1px)}
+.ic{width:100%;height:100%;object-fit:contain}
+/* ======= MAP ======= */
+.mapv{position:absolute;inset:0;overflow:auto hidden;scrollbar-width:none}
+.mapv::-webkit-scrollbar{display:none}
+.map{position:relative;height:100%;width:1180px;background:url(assets/map-co.webp) center/cover}
+.map::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 55%,transparent 45%,rgba(40,22,6,.45));pointer-events:none}
+#route{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.nd{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;z-index:2}
+.nd .s{width:30px;height:30px;border-radius:50%;padding:5px;background:radial-gradient(circle at 40% 35%,#fff6dc,#dcc38c 70%,#a8834a);box-shadow:0 0 0 1.5px var(--ink),0 3px 6px rgba(40,20,0,.5)}
+.nd.big .s{width:38px;height:38px;padding:0;background:url(assets/ui-a-dau.webp) center/100%;box-shadow:none;display:grid;place-items:center}
+.nd.big .s img{width:60%;height:60%;filter:brightness(0) invert(1) drop-shadow(0 0 2px #fff)}
+.nd .t{margin-top:2px;font-size:9px;font-weight:800;padding:0 5px;background:#f3e6c4e6;border:1px solid var(--sep);border-radius:2px;white-space:nowrap}
+.nd.done{opacity:.55;filter:sepia(.6)}.nd.lock .s{filter:grayscale(1) brightness(.8)}
+.nd.cur .s{animation:pulse 1.6s infinite}@keyframes pulse{50%{box-shadow:0 0 0 1.5px var(--ink),0 0 0 7px rgba(168,36,26,.25)}}
+.me{position:absolute;width:46px;height:46px;transform:translate(-50%,-92%);z-index:3;pointer-events:none;animation:bob 2.2s ease-in-out infinite;filter:drop-shadow(0 4px 3px rgba(40,20,0,.6))}
+@keyframes bob{50%{transform:translate(-50%,-100%)}}
+/* HUD */
+.hud{position:absolute;left:6px;right:6px;top:6px;z-index:10;display:flex;gap:6px;align-items:stretch;padding:0}
+.hud .pf{padding:0}
+.who{flex:1;min-width:0;display:flex;gap:6px;align-items:center}
+.ava{width:42px;height:42px;flex:none;border-radius:50%;overflow:hidden;background:#d8c090 url(assets/nv-nam.webp) 50% 12%/180%;box-shadow:0 0 0 2px var(--ink),0 0 0 3px var(--gold)}
+.who .tx{flex:1;min-width:0}
+.who b{font-family:Alegreya;font-size:13px;display:block;line-height:1.1}
+.who small{font-size:9px;color:var(--ink2);display:block}
+.bars{display:grid;gap:2px;margin-top:2px}
+.bar{position:relative;height:9px;background:#3a2a18;border:1px solid var(--ink);border-radius:1px;overflow:hidden}
+.bar i{position:absolute;inset:0 auto 0 0;background:linear-gradient(#e0605a,#8a1a12)}
+.bar.l i{background:linear-gradient(#7ac0f0,#1e4e8a)}.bar.t i{background:linear-gradient(#e8d070,#8a6a10)}
+.bar span{position:absolute;inset:0;font-size:7.5px;font-weight:800;color:#fff;line-height:8px;padding-left:3px;text-shadow:0 0 2px #000;white-space:nowrap}
+.day{width:96px;flex:none;text-align:center;line-height:1.15}
+.day b{font-family:Alegreya;font-size:14px;color:var(--red);display:block}
+.day small{display:block;font-size:9px;color:var(--ink2)}
+.cur{display:flex;justify-content:center;gap:5px;margin-top:2px;font-size:9.5px;font-weight:800}
+.cur span{display:flex;align-items:center;gap:1px}.cur img{width:13px;height:13px}
+.quest{position:absolute;left:6px;top:76px;z-index:9;width:168px;padding:0;font-size:9.5px}
+.quest .pf{padding:0}
+.quest b{font-family:Alegreya;font-size:11px;color:var(--red);display:flex;justify-content:space-between}
+.quest li{list-style:none;display:flex;gap:4px;margin-top:2px}.quest li::before{content:'◇';color:var(--sep)}
+.quest li.ok{color:#6a5a40;text-decoration:line-through}
+.rcol{position:absolute;right:6px;top:96px;z-index:9;display:grid;gap:6px}
+.rb{width:38px;text-align:center;font-size:8.5px;font-weight:800;color:#f7ead0;text-shadow:0 1px 2px #000}
+.rb i{display:block;width:34px;height:34px;margin:0 auto;border-radius:50%;padding:5px;background:radial-gradient(circle at 40% 35%,#fbefd0,#cfb37a 75%,#8a6a3a);box-shadow:0 0 0 1.5px var(--ink),0 2px 4px #000a;position:relative}
+.rb i.n::after{content:'';position:absolute;right:0;top:0;width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 0 1px #fff}
+.legend{position:absolute;left:6px;bottom:112px;z-index:9;font-size:9px;padding:0}
+.legend .pf{padding:0;display:grid;grid-template-columns:auto auto;gap:1px 8px}
+.legend span{display:flex;align-items:center;gap:3px}.legend img{width:14px;height:14px}
+/* bottom */
+.dock{position:absolute;left:0;right:0;bottom:0;z-index:10;padding:0 6px 8px;background:linear-gradient(transparent,rgba(30,18,6,.85) 40%)}
+.tip{display:flex;align-items:center;gap:6px;margin:0 0 6px;padding:0}
+.tip .pf{flex:1;min-width:0;padding:0;font-size:10px;display:flex;align-items:center;gap:6px}
+.tip .pf img{width:26px;height:26px;flex:none}
+.tip .go{height:44px;font-size:13px;padding:0 14px;flex:none}
+.tabs6{display:grid;grid-template-columns:repeat(6,1fr);gap:4px}
+.tb{position:relative;display:flex;flex-direction:column;align-items:center;font-size:9.5px;font-weight:800;color:#f5e4c0;text-shadow:0 1px 2px #000}
+.tb i{display:block;width:46px;height:46px;padding:7px;background:url(assets/ui-a-khung.webp) center/100% 100%;margin-bottom:1px}
+.tb.n::after{content:'';position:absolute;top:1px;right:8px;width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 0 1px #fff}
+/* ======= BOOK (menu) ======= */
+.book{position:absolute;inset:0;z-index:30;background:rgba(20,12,4,.6);display:none;padding:8px 26px 8px 6px}
+.book.on{display:block;animation:fade .2s}@keyframes fade{from{opacity:0}}
+.pg{position:relative;height:100%;background:url(assets/giay-doc.webp) center/cover;box-shadow:inset 0 0 40px rgba(90,50,10,.45),0 0 0 1px #5a3a18,4px 6px 0 #3a2410,0 12px 30px #000;border-radius:2px 6px 6px 2px;display:flex;flex-direction:column;overflow:hidden}
+.pg::before{content:'';position:absolute;left:0;top:0;bottom:0;width:14px;background:linear-gradient(90deg,rgba(60,30,6,.45),transparent);pointer-events:none}
+.ph{display:flex;align-items:center;gap:8px;padding:10px 12px 6px 18px;border-bottom:1px solid rgba(90,60,20,.4)}
+.ph h2{flex:1;font-family:Alegreya;font-size:20px;font-weight:800;min-width:0;line-height:1}
+.ph h2 small{display:block;font:500 9.5px 'Alegreya Sans';color:var(--ink2);margin-top:2px}
+.x{width:26px;height:26px;border-radius:50%;background:var(--red);color:#fff;font-weight:800;box-shadow:0 0 0 1.5px var(--ink);flex:none}
+.sub{display:flex;gap:2px;padding:6px 10px 0 18px;overflow-x:auto;scrollbar-width:none;flex:none}
+.sub button{flex:none;padding:4px 10px;font-size:10.5px;font-weight:800;border:1px solid var(--sep);border-bottom:0;border-radius:4px 4px 0 0;background:rgba(160,120,60,.18);color:var(--ink2)}
+.sub button.on{background:#f5ead0;color:var(--red)}
+.pb{flex:1;overflow:auto;padding:10px 12px 14px 18px;border-top:1px solid var(--sep);scrollbar-width:thin}
+.bm{position:absolute;right:-24px;top:50px;display:grid;gap:4px}
+.bm button{width:24px;padding:8px 0;writing-mode:vertical-rl;font-family:Alegreya;font-weight:800;font-size:11px;color:#f7ead0;background:linear-gradient(90deg,#6a1a10,#a8241a);border-radius:0 4px 4px 0;box-shadow:2px 2px 0 #3a0a04;letter-spacing:1px}
+.bm button.on{background:linear-gradient(90deg,#8a5a20,#c8963a);color:var(--ink);transform:translateX(3px)}
+.sec{font-family:Alegreya;font-weight:800;font-size:12.5px;color:var(--red);margin:10px 0 5px;display:flex;align-items:center;gap:6px}
+.sec::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--sep),transparent)}
+.sec small{font:700 9px 'Alegreya Sans';color:var(--ink2)}
+/* item slot */
+.sl{position:relative;aspect-ratio:1;border-radius:3px;padding:4px;background:radial-gradient(circle at 50% 40%,#fbf1d6,#d8c08a);box-shadow:inset 0 0 0 1.5px var(--rc,#8a6a3a),inset 0 0 8px rgba(90,60,20,.35),0 1px 0 #fff8}
+.sl em{position:absolute;right:2px;bottom:0;font:800 8.5px 'Alegreya Sans';font-style:normal;color:#fff;text-shadow:0 0 2px #000,0 0 2px #000}
+.sl.e{background:rgba(160,120,60,.15);box-shadow:inset 0 0 0 1px rgba(90,60,20,.35)}
+.sl b.r{position:absolute;left:1px;top:1px;width:5px;height:5px;border-radius:50%;background:var(--rc)}
+.grid6{display:grid;grid-template-columns:repeat(6,1fr);gap:4px}
+/* character page */
+.chr{display:grid;grid-template-columns:46px 1fr 46px;gap:4px;align-items:center}
+.chr .col{display:grid;gap:6px}
+.chr .sl{width:44px}
+.chr .lb{font-size:8px;text-align:center;color:var(--ink2);margin-top:1px}
+.port{position:relative;height:200px;background:radial-gradient(circle at 50% 58%,rgba(255,250,230,.9),rgba(255,250,230,0) 62%)}
+.port img{position:absolute;inset:4px 0 0;width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;filter:sepia(.35) contrast(1.05)}
+.port .tag{position:absolute;left:50%;bottom:-2px;transform:translateX(-50%);font-family:Alegreya;font-weight:800;font-size:12px;padding:1px 10px;background:var(--ink);color:#f3e6c4;white-space:nowrap}
+.kv{display:grid;grid-template-columns:repeat(2,1fr);gap:0 12px}
+.kv div{display:flex;justify-content:space-between;gap:4px;padding:2px 0;border-bottom:1px dotted rgba(90,60,20,.45);font-size:10.5px}
+.kv b{font-weight:800}
+.karma{height:8px;border-radius:4px;background:linear-gradient(90deg,#2e5a86,#d8c8a0 50%,#a8241a);position:relative;margin:4px 0 2px}
+.karma i{position:absolute;top:-3px;width:3px;height:14px;background:var(--ink);left:36%}
+.mini{display:flex;justify-content:space-between;font-size:8.5px;color:var(--ink2)}
+.root{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;text-align:center;font-size:9px}
+.root i{display:block;height:34px;border:1px solid var(--sep);background:#f6ebce;position:relative;margin-bottom:1px}
+.root i span{position:absolute;left:0;right:0;bottom:0;background:var(--c)}
+/* weight */
+.wt{display:flex;align-items:center;gap:6px;font-size:10px;margin-bottom:6px}
+.wt .bar{flex:1;height:8px}.wt .bar i{background:linear-gradient(#c8a050,#7a5a20)}
+.chips{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:6px}
+.chip{padding:2px 8px;font-size:10px;font-weight:800;border:1px solid var(--sep);border-radius:10px;color:var(--ink2)}
+.chip.on{background:var(--ink);color:#f3e6c4}
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.card{position:relative;aspect-ratio:3/4;background:url(assets/ui-a-the.webp) center/100% 100%;padding:14px 9px 7px;display:flex;flex-direction:column;align-items:center;text-align:center;filter:drop-shadow(0 2px 2px rgba(40,20,0,.45))}
+.card .cost{position:absolute;left:2%;top:1%;width:22%;aspect-ratio:1;display:grid;place-items:center;font:800 11px Alegreya;color:#fff;text-shadow:0 1px 1px #000}
+.card .art{width:62%;aspect-ratio:1;border-radius:50%;box-shadow:0 0 0 1.5px var(--ink),0 0 0 3px #c8a050;margin:2px 0 3px}
+.card b{font-family:Alegreya;font-size:10px;line-height:1.05;display:block;width:100%}
+.card .ty{font-size:7.5px;font-weight:800;color:#fff;background:var(--c,#8a5a2a);padding:0 5px;border-radius:6px;margin:1px 0}
+.card p{font-size:8px;line-height:1.15;color:var(--ink2);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.card.off{filter:grayscale(.9) opacity(.6)}
+.card .q{position:absolute;right:6%;bottom:4%;font-size:8px;font-weight:800}
+/* tâm pháp layers */
+.layers{position:relative;padding-left:22px}
+.layers::before{content:'';position:absolute;left:10px;top:6px;bottom:6px;width:2px;background:repeating-linear-gradient(var(--sep) 0 4px,transparent 4px 7px)}
+.ly{position:relative;display:flex;gap:6px;align-items:center;padding:4px 6px;margin-bottom:4px;border:1px solid rgba(90,60,20,.35);background:rgba(255,250,235,.45)}
+.ly::before{content:attr(data-n);position:absolute;left:-22px;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;background:#e8d6a8;box-shadow:0 0 0 1.5px var(--ink);font:800 9px Alegreya}
+.ly.ok::before{background:var(--red);color:#fff}.ly.now{border-color:var(--red);background:rgba(255,240,210,.8)}.ly.lk{opacity:.5}
+.ly .tx{flex:1;min-width:0}.ly b{font-size:11px;display:block}.ly small{font-size:9px;color:var(--ink2)}
+.man{display:flex;gap:8px;align-items:center;padding:6px;border:1px solid rgba(90,60,20,.35);background:rgba(255,250,235,.5);margin-bottom:5px}
+.man img{width:38px;height:38px;flex:none}.man .tx{flex:1;min-width:0}.man b{font-size:11.5px;display:block}.man small{font-size:9px;color:var(--ink2)}
+/* mount */
+.mstage{position:relative;height:170px;border:1px solid var(--sep);background:url(assets/dd-thanh-son.webp) center/cover;filter:sepia(.25);overflow:hidden}
+.mstage::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 60%,transparent 30%,rgba(60,35,10,.5))}
+.mstage img{position:absolute;left:12%;right:12%;bottom:6px;width:76%;height:86%;object-fit:contain;z-index:1;animation:bob2 3s ease-in-out infinite}
+@keyframes bob2{50%{transform:translateY(-6px)}}
+.mstage .nm{position:absolute;right:8px;top:8px;z-index:2;writing-mode:vertical-rl;font-family:Alegreya;font-weight:800;font-size:16px;color:#f7ead0;background:rgba(42,28,16,.8);padding:6px 3px;letter-spacing:2px}
+.mrow{display:flex;gap:5px;margin:6px 0}
+.mrow button{flex:1;aspect-ratio:4/3;border:1.5px solid rgba(90,60,20,.4);background:rgba(255,250,235,.5);padding:3px;position:relative}
+.mrow button.on{border-color:var(--red);background:#fff3d8}
+.mrow button.lk img{filter:grayscale(1) opacity(.45)}
+.mrow button.lk::after{content:'🔒';position:absolute;right:2px;top:0;font-size:9px}
+/* dong phu */
+.cave{position:relative;height:150px;background:url(assets/dd-thac.webp) center/cover;filter:sepia(.45) saturate(.8);border:1px solid var(--sep)}
+.cave .stamp{position:absolute;left:8px;bottom:8px;font-family:Alegreya;font-weight:800;font-size:15px;color:#fff6dc;text-shadow:0 2px 4px #000}
+.fac{display:flex;gap:8px;align-items:center;padding:6px 0;border-bottom:1px dotted rgba(90,60,20,.45)}
+.fac img{width:38px;height:38px;flex:none}.fac .tx{flex:1;min-width:0}.fac b{font-size:11.5px}.fac small{display:block;font-size:9px;color:var(--ink2)}
+.days{display:flex;gap:4px;margin:6px 0}
+.days button{flex:1;padding:5px 0;border:1px solid var(--sep);font-weight:800;font-size:10px;background:rgba(255,250,235,.5)}
+.days button.on{background:var(--ink);color:#f3e6c4}
+.gain{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;font-size:9.5px;text-align:center}
+.gain div{border:1px dashed var(--sep);padding:4px 2px}.gain b{display:block;font-size:12px;color:var(--red)}
+.qrow{display:flex;gap:6px;padding:5px 0;border-bottom:1px dotted rgba(90,60,20,.45)}
+.qrow .k{flex:none;font-size:8.5px;font-weight:800;color:#fff;background:var(--c,var(--red));padding:1px 5px;height:15px;border-radius:2px}
+.qrow .tx{flex:1;min-width:0}.qrow b{font-size:11px;display:block}.qrow small{font-size:9px;color:var(--ink2)}
+/* ======= DIALOG (paper slip) ======= */
+.dlg{position:absolute;inset:0;z-index:60;background:rgba(20,12,4,.65);display:none;align-items:center;justify-content:center;padding:16px}
+.dlg.on{display:flex;animation:fade .15s}
+.slip{width:100%;max-height:88%;display:flex;flex-direction:column;padding:0;animation:pop .2s}
+@keyframes pop{from{transform:translateY(10px) scale(.96)}}
+.slip .pf{display:flex;flex-direction:column;max-height:100%;min-height:0;padding:0}
+.slip h3{font-family:Alegreya;font-size:17px;text-align:center;padding:2px 26px 4px;position:relative;border-bottom:1px solid rgba(90,60,20,.4)}
+.slip h3 .x{position:absolute;right:-4px;top:-4px;width:22px;height:22px;font-size:11px}
+.slip .c{overflow:auto;padding:8px 2px;font-size:11px}
+.slip .a{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;padding-top:6px;border-top:1px solid rgba(90,60,20,.4)}
+.ill{height:120px;background-size:cover;background-position:center;filter:sepia(.4);border:1px solid var(--sep);margin-bottom:6px;position:relative}
+.ill::after{content:'';position:absolute;inset:0;box-shadow:inset 0 0 24px rgba(60,30,6,.6)}
+.story{font-size:11.5px;line-height:1.5;text-indent:1em}
+.ch{display:flex;flex-direction:column;gap:5px;margin-top:8px}
+.ch button{display:flex;gap:6px;align-items:center;text-align:left;padding:6px 8px;border:1px solid var(--sep);background:rgba(255,250,235,.6);font-size:11px}
+.ch button::before{content:'❖';color:var(--red)}
+.ch button small{margin-left:auto;font-size:9px;color:var(--grn);font-weight:800;white-space:nowrap}
+.ch button small.no{color:var(--red)}
+.ihead{display:flex;gap:10px;align-items:center;margin-bottom:6px}
+.ihead .sl{width:64px;flex:none}
+.ihead b{font-family:Alegreya;font-size:15px;display:block}
+.ihead .rk{display:inline-block;font-size:9px;font-weight:800;color:#fff;background:var(--rc);padding:0 6px;border-radius:2px}
+.st{display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px dotted rgba(90,60,20,.45);font-size:10.5px}
+.st b{color:var(--grn)}
+.toast{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);z-index:99;padding:6px 14px;background:rgba(42,28,16,.92);color:#f7ead0;font-weight:800;border:1px solid var(--gold);opacity:0;transition:.25s;pointer-events:none;white-space:nowrap;font-size:11px}
+.toast.on{opacity:1}
+/* ======= COMBAT ======= */
+.cb{position:absolute;inset:0;z-index:40;display:none;flex-direction:column;background:#20160c}
+.cb.on{display:flex}
+.cbt{position:relative;flex:1;min-height:0;background:url(assets/dd-u-coc.webp) center/cover}
+.cbt::before{content:'';position:absolute;inset:0;background:linear-gradient(rgba(30,18,6,.35),rgba(30,18,6,.1) 40%,rgba(30,18,6,.85))}
+.ctop{position:absolute;left:6px;right:6px;top:6px;display:flex;justify-content:space-between;align-items:center;z-index:2;color:#f7ead0}
+.ctop b{font-family:Alegreya;font-size:13px}
+.foe{position:absolute;left:50%;top:40px;transform:translateX(-50%);width:62%;text-align:center;z-index:1}
+.foe img{width:100%;aspect-ratio:1;object-fit:contain;transition:.15s}
+.foe.hit img{filter:brightness(2) sepia(1) hue-rotate(-30deg);transform:translateX(6px)}
+.fbar{width:84%;margin:-8px auto 0;color:#fff;font-size:10px}
+.fbar .bar{height:11px;margin-top:2px}.fbar .bar span{font-size:8.5px;line-height:10px}
+.intent{position:absolute;right:6px;top:52px;z-index:2;width:112px;padding:0;font-size:9.5px}
+.intent .pf{padding:0;display:flex;gap:5px;align-items:center}.intent img{width:26px;height:26px;flex:none}
+.intent b{color:var(--red);font-size:10.5px;display:block}
+.dmg{position:absolute;left:50%;top:34%;z-index:5;font:800 30px Alegreya;color:#ffe3a0;text-shadow:0 0 6px #a8241a,0 2px 0 #3a0a04;animation:fly .8s forwards;pointer-events:none}
+@keyframes fly{to{transform:translate(-50%,-50px);opacity:0}}
+.mebar{position:absolute;left:6px;right:6px;bottom:6px;z-index:2;display:flex;gap:6px;align-items:flex-end}
+.mebar .pf{flex:1;padding:0;display:flex;gap:6px;align-items:center}
+.mebar .ava{width:36px;height:36px}
+.orbs{display:flex;gap:3px}.orbs i{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#7ac0f0 45%,#1e4e8a);box-shadow:0 0 5px #7ac0f0}
+.orbs i.u{background:#3a2a18;box-shadow:inset 0 0 0 1px #6a5a40}
+.buffs{display:flex;gap:2px}.buffs img{width:16px;height:16px;border-radius:50%}
+.pile{width:40px;text-align:center;color:#f7ead0;font-size:8.5px;font-weight:800;flex:none}
+.pile i{display:block;width:30px;height:40px;margin:0 auto 1px;background:url(assets/ui-a-the.webp) center/100% 100%;filter:brightness(.8);box-shadow:2px -2px 0 -1px #5a3a18,4px -4px 0 -2px #3a2410;line-height:40px;font-style:normal;color:var(--ink);font-size:12px}
+.hand{position:relative;height:150px;flex:none;background:linear-gradient(#20160c,#120c06)}
+.hand .card{position:absolute;bottom:8px;width:82px;padding:12px 6px 5px;transform-origin:50% 140%;transition:transform .2s}
+.hand .card:hover,.hand .card.sel{transform:translateY(-16px) rotate(0)!important;z-index:9}
+.cbb{display:flex;justify-content:space-between;align-items:center;padding:4px 8px 8px;background:#120c06;gap:6px}
+.cbb .btn{height:32px}
+.tl{flex:1;min-width:0;font-size:9.5px;color:#d8c8a0;height:30px;overflow:hidden;line-height:1.3}
+.tl b{color:#ffb090}
+/* ======= DUNGEON ======= */
+.dg{position:absolute;inset:0;z-index:35;display:none;flex-direction:column;background:url(assets/giay-vuong.webp) center/cover}
+.dg.on{display:flex}
+.dgh{display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(42,28,16,.9);color:#f7ead0}
+.dgh b{flex:1;font-family:Alegreya;font-size:16px}
+.floor{display:flex;gap:4px;padding:6px 10px;font-size:9.5px;font-weight:800;align-items:center}
+.floor span{padding:1px 6px;border:1px solid var(--sep)}.floor span.on{background:var(--red);color:#fff;border-color:var(--red)}
+.rooms{flex:1;display:grid;grid-template-columns:repeat(5,1fr);align-content:center;gap:6px;padding:8px 12px;position:relative}
+.rm{position:relative;aspect-ratio:1;border:1.5px solid var(--sep);background:rgba(255,248,226,.65);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:8.5px;font-weight:800;padding:3px}
+.rm img{width:58%;aspect-ratio:1;object-fit:contain}
+.rm.fog{background:rgba(70,50,30,.75);border-color:#3a2410;color:transparent}
+.rm.fog img{opacity:0}.rm.fog::after{content:'?';position:absolute;color:#c8a870;font:800 16px Alegreya}
+.rm.me{border-color:var(--red);box-shadow:0 0 0 2px rgba(168,36,26,.35)}
+.rm.me::before{content:'';position:absolute;inset:0;background:url(assets/nv-nam.webp) center/90% no-repeat;opacity:.95}
+.rm.cl{opacity:.45}
+.rm.x0{visibility:hidden}
+.dgf{padding:8px 10px;display:flex;gap:6px;align-items:center;background:rgba(42,28,16,.9);color:#f7ead0;font-size:10px}
+.dgf .tx{flex:1;min-width:0}
+</style></head><body>
+<div class="app" id="app">
+  <div class="mapv" id="mapv"><div class="map" id="map"><canvas id="route"></canvas></div></div>
+  <div class="hud">
+    <div class="pf who"><div class="ava" onclick="openBook('nv')"></div><div class="tx"><b class="one">Lâm Thanh Vân</b><small class="one">Tán tu · Luyện Khí tầng 7</small>
+      <div class="bars"><div class="bar"><i style="width:78%"></i><span>Khí huyết 312/400</span></div><div class="bar l"><i style="width:55%"></i><span>Linh lực 110/200</span></div><div class="bar t"><i style="width:52%"></i><span>Thọ nguyên 62/120 năm</span></div></div></div></div>
+    <div class="pf day"><b>Ngày 37</b><small>Giờ Thìn · Trời quang</small><div class="cur"><span><img id="c1">1.240</span><span><img id="c2">86</span></div></div>
+  </div>
+  <div class="quest"><div class="pf"><b>Chính tuyến <span onclick="openBook('nk')" style="cursor:pointer">›</span></b><ul><li class="ok">Rời Thanh Thủy Trấn</li><li>Vượt Hắc Phong Lĩnh</li><li>Đến Thanh Vân Sơn trước ngày 45</li></ul></div></div>
+  <div class="rcol" id="rcol"></div>
+  <div class="legend"><div class="pf" id="legend"></div></div>
+  <div class="dock">
+    <div class="tip"><div class="pf"><img id="tipi"><div class="one" style="flex:1"><b>Hắc Phong Lĩnh</b> · cách 1 chặng (0,5 ngày). Nghe nói có yêu lang chặn đường.</div></div><button class="btn go" onclick="nextNode()">Đi tiếp ›</button></div>
+    <div class="tabs6" id="tabs"></div>
+  </div>
+  <div class="book" id="book" onclick="if(event.target===this)closeBook()"><div class="pg"><div class="ph"><h2 id="bt"></h2><button class="x" onclick="closeBook()">✕</button></div><div class="sub" id="bs"></div><div class="pb" id="bb"></div><div class="bm" id="bm"></div></div></div>
+  <div class="cb" id="cb"></div>
+  <div class="dg" id="dg"></div>
+  <div class="dlg" id="dlg" onclick="if(event.target===this)closeD()"><div class="slip"><div class="pf"><h3><span id="dt"></span><button class="x" onclick="closeD()">✕</button></h3><div class="c" id="dc"></div><div class="a" id="da"></div></div></div></div>
+  <div class="toast" id="toast"></div>
+</div>
+<script>
+const I=n=>(window.IMG&&IMG[n])||'assets/'+n+'.webp';
+const $=id=>document.getElementById(id);
+const toast=t=>{const e=$('toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),1400)};
+const RC=['#8a8a80','#4a8a3a','#2e6aa8','#7a3aa8','#c0701a','#b8241a'],RN=['Phàm','Lương','Tinh','Huyền','Địa','Thiên'];
+const fmt=n=>String(n).replace(/\B(?=(\d{3})+(?!\d))/g,'.');
+$('c1').src=I('it-nguyen-bao');$('c2').src=I('it-linh-thach');$('tipi').src=I('it-ban-do');
+// ---------- DỮ LIỆU ----------
+const ITEMS=[
+ ['Tụ Khí Đan','it-dan-lam',1,'dan',12,.1,'Hồi 60 linh lực. Dùng trong hoặc ngoài trận.'],['Hồi Huyết Đan','it-dan-do',1,'dan',8,.1,'Hồi 120 khí huyết.'],['Trúc Cơ Đan','it-dan-vang',3,'dan',1,.1,'Tăng 25% tỉ lệ đột phá Trúc Cơ.'],
+ ['Duyên Thọ Đan','it-dan-trang',4,'dan',1,.1,'Tăng 10 năm thọ nguyên. Cực hiếm.'],['Giải Độc Hoàn','it-dan-luc',1,'dan',5,.1,'Giải trạng thái trúng độc.'],['Bình Linh Tuyền','it-binh-lam',2,'dan',3,.5,'Nước suối linh mạch, hồi đầy linh lực.'],
+ ['Linh Chi Trăm Năm','it-linh-chi',2,'duoc',4,.3,'Nguyên liệu luyện Hồi Huyết Đan.'],['Nhân Sâm Ngàn Năm','it-nhan-sam',4,'duoc',1,.5,'Bổ nguyên khí, dùng luyện Duyên Thọ Đan.'],['Băng Tâm Thảo','it-thao-lam',2,'duoc',6,.1,'Thanh tâm, giảm tâm ma.'],
+ ['Xích Viêm Hoa','it-thao-do',2,'duoc',3,.1,'Hoa mọc nơi địa hỏa.'],['Tuyết Liên','it-sen',3,'duoc',2,.2,'Hoa sen trên đỉnh tuyết sơn.'],['Hạt Giống Linh Mễ','it-hat-giong',0,'duoc',20,.05,'Gieo ở ruộng động phủ.'],
+ ['Huyền Thiết Khoáng','it-quang-lam',1,'liệu',9,1.2,'Quặng rèn pháp khí cấp thấp.'],['Hỏa Đồng Khoáng','it-quang-do',2,'liệu',4,1.2,'Quặng đồng chứa hỏa khí.'],['Yêu Đan Lang Vương','it-yeu-dan',3,'liệu',1,.2,'Yêu đan của Lang Vương Hắc Phong Lĩnh.'],
+ ['Nanh Vuốt Yêu Thú','it-vuot',1,'liệu',6,.3,'Bán cho tiệm rèn.'],['Linh Thạch','it-linh-thach',1,'liệu',86,.05,'Tiền tệ của tu sĩ.'],['Long Vũ','it-long-vu',4,'liệu',1,.05,'Lông vũ đỏ rực, tỏa nhiệt.'],
+ ['Thanh Phong Kiếm','it-kiem',2,'khi',1,2.5,'Công +38 · Bạo kích +3%. Đang đeo.'],['Liệt Diễm Kiếm','it-kiem-lua',4,'khi',1,3,'Công +96 · Hỏa ST +12%.'],['Bát Quái Kính','it-guong',3,'khi',1,1,'Phản 10% pháp thuật.'],
+ ['Hắc Phong Phù','it-bua',1,'phu',5,.05,'Tạo gió đen, bỏ chạy chắc chắn.'],['Truyền Âm Phù','it-bua',1,'phu',2,.05,'Gửi tin cho người quen.'],
+ ['Tàn Quyển Vô Danh','it-truc-thu',3,'thu',1,.3,'Một quyển kiếm phổ thiếu trang, chữ đã nhòe.'],['Ngự Phong Quyết','it-bi-kip',2,'thu',1,.4,'Học được lá bài Ảo Ảnh Bộ.'],
+ ['Bản Đồ Bí Cảnh','it-ban-do',3,'khac',1,.1,'Đánh dấu lối vào U Cốc Cổ Mộ.'],['Lệnh Bài Thanh Vân','it-lenh-ngoc',4,'khac',1,.2,'Tín vật để vào Thanh Vân Môn.'],['Hồ Lô Rượu','it-ho-lo',1,'khac',1,1,'Rượu ngon, uống vào tăng 5 tâm cảnh.'],
+ ['Rương Gỗ Cũ','it-ruong',2,'khac',1,4,'Nhặt được trong hang. Cần chìa để mở.'],['Nguyên Bảo','it-nguyen-bao',1,'khac',3,.5,'Đổi được 100 lượng bạc.']
+].map(a=>({n:a[0],i:a[1],r:a[2],t:a[3],q:a[4],w:a[5],d:a[6]}));
+const TN={dan:'Đan dược',duoc:'Dược liệu','liệu':'Nguyên liệu',khi:'Pháp khí',phu:'Phù lục',thu:'Bí tịch',khac:'Tạp vật'};
+const EQ=[['Vũ khí','it-kiem',2],['Y phục','it-ao-lam',2],['Mũ quan','it-mu',1],['Đai lưng','it-dai',1],['Giày','it-giay',1],['Nhẫn','',0],['Ngọc bội','it-ngoc-boi',3],['Pháp bảo','it-guong',3]];
+const CARDS=[
+ ['Thanh Phong Kiếm','sk-sword',1,'Công','#a8241a','Gây 6 sát thương.',3],['Hộ Thể Cương Khí','sk-shield',1,'Thủ','#2e5a86','Nhận 6 hộ thể.',3],['Liệt Hỏa Chưởng','sk-fire',2,'Công','#a8241a','Gây 12 sát thương, thiêu đốt 2 hiệp.',1],
+ ['Băng Phách Chỉ','sk-ice',1,'Công','#a8241a','Gây 4 sát thương, địch chậm 1 hiệp.',2],['Lôi Âm Kiếm','sk-thunder',2,'Công','#a8241a','Gây 7 sát thương hai lần.',1],['Hồi Xuân Thuật','sk-heal',1,'Thuật','#3f6a32','Hồi 8 khí huyết.',1],
+ ['Ảo Ảnh Bộ','sk-wind',0,'Thuật','#3f6a32','Rút 2 lá. Né đòn kế tiếp 50%.',1],['Kim Cang Chưởng','sk-palm',3,'Công','#a8241a','Gây 22 sát thương. Phá hộ thể.',1],['Độc Vụ','sk-poison',1,'Thuật','#3f6a32','Địch trúng độc 4 tầng.',1],
+ ['Mê Hồn Nhãn','sk-illusion',2,'Thuật','#3f6a32','Địch suy yếu 2 hiệp, giảm 25% sát thương.',0],['Tụ Khí Quyết','sk-qi',0,'Thuật','#3f6a32','Nhận thêm 1 linh lực.',1],['Lưu Tinh Kiếm Vũ','sk-meteor',3,'Công','#a8241a','Gây 5 sát thương 4 lần ngẫu nhiên.',0]
+].map(a=>({n:a[0],i:a[1],c:a[2],t:a[3],col:a[4],d:a[5],q:a[6]}));
+const MOUNTS=[['Tiên Hạc','mt-crane',3,'0,5 ngày/chặng','Có thể bay qua sông, vực.',1,72],['Huyền Quy','mt-turtle',2,'1,5 ngày/chặng','Chở được thêm 20 cân hành lý.',1,40],['Ngự Kiếm','mt-sword',3,'0,3 ngày/chặng','Tiêu hao 10 linh lực mỗi chặng.',1,15],['Xích Phượng','mt-phoenix',5,'0,1 ngày/chặng','Thần thú. Cần kết duyên tại Hỏa Vân Cốc.',0,0]];
+// nút trên bản đồ: [x%, y%, loại, tên, trạng thái]
+const NODES=[[6,62,'town','Thanh Thủy Trấn','done'],[15,44,'event','Miếu Hoang','done'],[24,66,'fight','Sơn Tặc','done'],[33,50,'event','Lão Tiều Phu','cur'],[42,30,'fight','Hắc Phong Lĩnh',''],[45,64,'cave','Hang Đá Bên Suối',''],[54,46,'dungeon','U Cốc Cổ Mộ',''],
+ [63,70,'town','Phường Thị Lạc Hà',''],[70,36,'event','Kỳ Ngộ ?',''],[80,56,'fight','Lang Vương',''],[92,30,'sect','Thanh Vân Sơn','lock']];
+const NT={town:['Phường thị','it-dong-tien'],event:['Kỳ ngộ','it-truc-thu'],fight:['Giao chiến','it-kiem'],cave:['Động phủ','it-lo-dan'],dungeon:['Bí cảnh','it-ruong'],sect:['Tông môn','it-lenh-ngoc']};
+// ---------- BẢN ĐỒ ----------
+function drawMap(){const m=$('map'),c=$('route');c.width=m.clientWidth*2;c.height=m.clientHeight*2;const x=c.getContext('2d');x.scale(2,2);const W=m.clientWidth,H=m.clientHeight;
+ x.setLineDash([5,5]);x.lineWidth=2.2;x.lineCap='round';NODES.forEach((n,i)=>{if(!i)return;const p=NODES[i-1];x.strokeStyle=n[4]==='done'||NODES[i-1][4]==='cur'&&i===4?'#a8241a':'rgba(60,35,10,.7)';x.beginPath();x.moveTo(p[0]/100*W,p[1]/100*H);x.quadraticCurveTo((p[0]+n[0])/200*W,Math.min(p[1],n[1])/100*H-20,n[0]/100*W,n[1]/100*H);x.stroke();});
+ m.querySelectorAll('.nd,.me').forEach(e=>e.remove());
+ NODES.forEach((n,i)=>{const big=['fight','dungeon','sect'].includes(n[2]);m.insertAdjacentHTML('beforeend',`<button class="nd ${big?'big':''} ${n[4]}" style="left:${n[0]}%;top:${n[1]}%" onclick="nodeA(${i})"><span class="s"><img class="ic" src="${I(NT[n[2]][1])}"></span><span class="t">${n[3]}</span></button>`);
+  if(n[4]==='cur')m.insertAdjacentHTML('beforeend',`<img class="me" src="${I('nv-nam')}" style="left:${n[0]}%;top:${n[1]}%">`)});
+ $('mapv').scrollLeft=NODES[3][0]/100*W-180}
+$('legend').innerHTML=Object.values(NT).map(t=>`<span><img src="${I(t[1])}">${t[0]}</span>`).join('');
+$('rcol').innerHTML=[['it-truc-thu','Nhật ký',"openBook('nk')",1],['it-bua','Truyền âm',"D('thu')",1],['it-hat-giong','Thời tiết',"D('troi')"],['it-bua-ren','Cài đặt',"D('caidat')"]].map(b=>`<button class="rb" onclick="${b[2]}"><i class="${b[3]?'n':''}"><img class="ic" src="${I(b[0])}"></i>${b[1]}</button>`).join('');
+$('tabs').innerHTML=[['it-ao-lam','Nhân vật','nv'],['it-ruong','Hành nang','hn',1],['sk-sword','Bài pháp','bp',1],['it-bi-kip','Tâm pháp','tp'],['mt-crane','Tọa kỵ','tk'],['it-lo-dan','Động phủ','dp']].map(t=>`<button class="tb ${t[3]?'n':''}" onclick="openBook('${t[2]}')"><i><img class="ic" src="${I(t[0])}"></i>${t[1]}</button>`).join('');
+// ---------- SÁCH (MENU) ----------
+const sl=(it,q=1,cls='')=>it?`<button class="sl ${cls}" style="--rc:${RC[it.r]}" onclick="itemD('${it.n}')"><b class="r"></b><img class="ic" src="${I(it.i)}">${q&&it.q>1?`<em>${it.q}</em>`:''}</button>`:`<div class="sl e"></div>`;
+const cardH=(c,i,cls='')=>`<button class="card ${cls}" style="--c:${c.col}" onclick="cardD(${i})"><span class="cost">${c.c}</span><img class="art" src="${I(c.i)}"><b class="one">${c.n}</b><span class="ty">${c.t}</span><p>${c.d}</p>${c.q?`<span class="q">x${c.q}</span>`:''}</button>`;
+let bag='Tất cả',mSel=0,bDays=7;
+const BOOK={
+ nv:{t:'Nhân Vật',s:'Lâm Thanh Vân · 23 tuổi · Tán tu',tabs:['Trang bị','Thuộc tính','Danh vọng'],r(tab){
+  if(tab==='Trang bị'){const s=i=>{const e=EQ[i];return `<div>${e[1]?`<button class="sl" style="--rc:${RC[e[2]]}" onclick="itemD('${ITEMS.find(x=>x.i===e[1])?.n||'Thanh Phong Kiếm'}')"><b class="r"></b><img class="ic" src="${I(e[1])}"></button>`:`<button class="sl e" onclick="D('trong','${e[0]}')"></button>`}<div class="lb">${e[0]}</div></div>`};
+   return `<div class="chr"><div class="col">${[0,1,2,3].map(s).join('')}</div><div class="port"><img src="${I('nv-nam')}"><span class="tag">Lực chiến 1.862</span></div><div class="col">${[4,5,6,7].map(s).join('')}</div></div>
+   <div class="sec">Bộ trang bị <small>Thanh Phong (2/4)</small></div><div class="kv"><div><span>2 món</span><b>Thân pháp +8</b></div><div><span>4 món</span><b style="color:#8a7a60">Chưa kích hoạt</b></div></div>
+   <div class="sec">Chỉ số chính</div><div class="kv">${[['Công','86'],['Thủ','52'],['Khí huyết','400'],['Linh lực','200'],['Tốc độ','34'],['Bạo kích','8%']].map(k=>`<div><span>${k[0]}</span><b>${k[1]}</b></div>`).join('')}</div>
+   <div style="display:flex;gap:6px;justify-content:center;margin-top:10px"><button class="btn p" onclick="D('ren')">Rèn khí</button><button class="btn" onclick="toast('Đã mặc đồ tốt nhất')">Mặc nhanh</button></div>`}
+  if(tab==='Thuộc tính')return `<div class="sec">Căn cơ</div><div class="kv">${[['Căn cốt','42'],['Ngộ tính','58'],['Thần thức','36'],['Thể phách','40'],['Cơ duyên','71'],['Tâm cảnh','Bình ổn'],['Tu vi','7.420/9.000'],['Tuổi','23 / 120']].map(k=>`<div><span>${k[0]}</span><b>${k[1]}</b></div>`).join('')}</div>
+   <div class="sec">Linh căn <small>Tam linh căn · Mộc Thủy Kim</small></div><div class="root">${[['Kim',62,'#c8a040'],['Mộc',85,'#4a8a3a'],['Thủy',74,'#2e6aa8'],['Hỏa',20,'#b8241a'],['Thổ',12,'#8a5a2a']].map(r=>`<div><i style="--c:${r[2]}"><span style="height:${r[1]}%"></span></i>${r[0]} ${r[1]}</div>`).join('')}</div>
+   <div class="sec">Thiện ác</div><div class="karma"><i></i></div><div class="mini"><span>Chính đạo</span><span>Trung lập (−14)</span><span>Ma đạo</span></div>`;
+  return `<div class="sec">Danh hiệu</div>${[['Kiếm Khách Lang Thang','Đang đeo · Tốc độ +2'],['Kẻ Diệt Sơn Tặc','Hạ 30 sơn tặc'],['Bạn Của Tiều Phu','Hoàn thành chuỗi Lão Tiều Phu']].map((d,i)=>`<div class="qrow"><span class="k" style="--c:${i?'#8a5a2a':'#a8241a'}">${i?'Có':'Đeo'}</span><div class="tx"><b>${d[0]}</b><small>${d[1]}</small></div></div>`).join('')}
+   <div class="sec">Quan hệ</div>${[['Tô Mộng Dao','Tri kỷ · 82'],['Lão Tiều Phu','Ân nhân · 60'],['Hắc Phong Trại','Thù địch · −45']].map(d=>`<div class="qrow"><div class="tx"><b>${d[0]}</b><small>${d[1]}</small></div><button class="btn sm p" onclick="D('npc','${d[0]}')">Xem</button></div>`).join('')}`}},
+ hn:{t:'Hành Nang',s:'Túi vải mang theo người',tabs:['Đồ vật','Rèn & ghép'],r(tab){
+  if(tab==='Rèn & ghép')return `<div class="sec">Ghép vật phẩm</div><div style="display:flex;gap:8px;align-items:center;justify-content:center">${sl(ITEMS[6],0)}<b style="font-size:18px">+</b>${sl(ITEMS[9],0)}<b style="font-size:18px">=</b>${sl(ITEMS[1],0)}</div><p style="text-align:center;margin:6px 0">Linh Chi + Xích Viêm Hoa → Hồi Huyết Đan x3 (cần lò đan)</p><div style="text-align:center"><button class="btn" onclick="toast('Cần ở động phủ có lò đan')">Ghép</button></div>
+   <div class="sec">Công thức đã biết</div>${[['Hồi Huyết Đan','Linh Chi x1 · Xích Viêm Hoa x1'],['Tụ Khí Đan','Băng Tâm Thảo x2'],['Hắc Phong Phù','Giấy phù x1 · Nanh vuốt x1']].map(d=>`<div class="qrow"><div class="tx"><b>${d[0]}</b><small>${d[1]}</small></div></div>`).join('')}`;
+  const cats=['Tất cả',...Object.values(TN)];const k=Object.keys(TN).find(k=>TN[k]===bag);const l=ITEMS.filter(x=>!k||x.t===k);const w=ITEMS.reduce((a,x)=>a+x.w*x.q,0);
+  return `<div class="wt"><img src="${I('mt-turtle')}" style="width:22px"><span>Tải trọng</span><div class="bar"><i style="width:${Math.min(100,w/40*100)}%"></i></div><b>${w.toFixed(1)}/40 cân</b></div>
+   <div class="chips">${cats.map(c=>`<button class="chip ${c===bag?'on':''}" onclick="bag='${c}';openBook('hn')">${c}</button>`).join('')}</div>
+   <div class="grid6">${l.map(x=>sl(x)).join('')}${Array(Math.max(0,36-l.length)).fill('<div class="sl e"></div>').join('')}</div>
+   <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px"><span>${ITEMS.length}/36 ô · Bạc 1.240 lượng</span><span style="display:flex;gap:4px"><button class="btn sm p" onclick="toast('Đã sắp xếp')">Sắp xếp</button><button class="btn sm" onclick="D('vut')">Vứt bớt</button></span></div>`}},
+ bp:{t:'Bài Pháp',s:'Mỗi trận rút 5 lá từ bộ bài',tabs:['Bộ bài (14/20)','Kho bài','Lĩnh ngộ'],r(tab){
+  if(tab.startsWith('Bộ'))return `<div class="mini" style="margin-bottom:6px"><span>Công 8 · Thủ 3 · Thuật 3</span><span>Linh lực mỗi hiệp: 3</span></div><div class="cards">${CARDS.map((c,i)=>c.q?cardH(c,i):'').join('')}</div>`;
+  if(tab==='Kho bài')return `<div class="cards">${CARDS.map((c,i)=>cardH(c,i,c.q?'':'off')).join('')}</div><p style="text-align:center;margin-top:6px;color:#6a5a40">Lá mờ: chưa sở hữu. Học bí tịch hoặc thắng trận để nhận.</p>`;
+  return `<div class="sec">Lĩnh ngộ lá bài</div><p>Tiêu hao <b>ngộ đạo điểm</b> để nâng cấp lá bài: tăng sát thương hoặc giảm linh lực tiêu hao.</p><div style="display:flex;gap:12px;align-items:center;justify-content:center;margin:10px 0"><div style="width:90px">${cardH(CARDS[2],2)}</div><b style="font-size:20px">›</b><div style="width:90px">${cardH({...CARDS[2],n:'Liệt Hỏa Chưởng+',d:'Gây 16 sát thương, thiêu đốt 3 hiệp.'},2)}</div></div><div style="text-align:center"><button class="btn" onclick="toast('Lĩnh ngộ thành công!')">Lĩnh ngộ (12 điểm)</button></div>`}},
+ tp:{t:'Tâm Pháp',s:'Công pháp tu luyện nội tức',tabs:['Chủ tu','Phụ tu','Đột phá'],r(tab){
+  if(tab==='Chủ tu')return `<div class="man"><img src="${I('it-bi-kip')}"><div class="tx"><b>Thái Thanh Dưỡng Khí Quyết</b><small>Huyền phẩm · Mộc/Thủy · 9 tầng · Tốc độ tu luyện +18%</small></div></div>
+   <div class="layers">${['Dẫn khí nhập thể','Khí hành tiểu chu thiên','Khí tụ đan điền','Linh lực hóa dịch','Thần thức sơ khai','Dịch hóa chân nguyên','Chân nguyên hộ thể','Ngưng đan','Đan thành'].map((n,i)=>`<button class="ly ${i<3?'ok':i==3?'now':'lk'}" data-n="${i+1}" style="width:100%;text-align:left" onclick="D('tang',${i})"><div class="tx"><b>${n}</b><small>${['Linh lực +20','Hồi linh lực +1/chặng','Khí huyết +40','Mở khóa lá bài Tụ Khí','Thần thức +10','Linh lực +60','Hộ thể đầu trận +6','Yêu cầu Trúc Cơ','Yêu cầu Kết Đan'][i]}</small></div>${i==3?'<b style="color:#a8241a">62%</b>':''}</button>`).join('')}</div>`;
+  if(tab==='Phụ tu')return [['Ngự Phong Quyết','it-bi-kip','Thân pháp · tầng 2/5 · Né +4%'],['Bách Thảo Kinh','it-truc-thu','Dược lý · tầng 3/5 · Hái thuốc +1'],['Luyện Thể Thuật','it-bi-kip-do','Thể tu · tầng 1/7 · Khí huyết +30']].map(m=>`<div class="man"><img src="${I(m[1])}"><div class="tx"><b>${m[0]}</b><small>${m[2]}</small></div><button class="btn sm" onclick="toast('Đã chuyển sang tu ${m[0]}')">Tu</button></div>`).join('');
+  return `<div class="sec">Luyện Khí 7 → Luyện Khí 8</div><div class="kv"><div><span>Tu vi</span><b>7.420/9.000</b></div><div><span>Tỉ lệ</span><b>84%</b></div><div><span>Thọ nguyên tiêu hao</span><b>0,5 năm</b></div><div><span>Địa điểm</span><b>Động phủ</b></div></div><p style="margin:8px 0;color:#6a5a40">Đột phá phải bế quan trong động phủ. Bị quấy rầy giữa chừng sẽ tẩu hỏa nhập ma.</p><div style="text-align:center"><button class="btn" onclick="openBook('dp')">Đến động phủ</button></div>`}},
+ tk:{t:'Tọa Kỵ',s:'Bạn đồng hành trên đường xa',tabs:['Chuồng','Bồi dưỡng'],r(tab){const m=MOUNTS[mSel];
+  if(tab==='Chuồng')return `<div class="mstage"><img src="${I(m[1])}"><span class="nm">${m[0]}</span></div><div class="mrow">${MOUNTS.map((x,i)=>`<button class="${i===mSel?'on':''} ${x[5]?'':'lk'}" onclick="mSel=${i};openBook('tk')"><img class="ic" src="${I(x[1])}"></button>`).join('')}</div>
+   <div class="kv"><div><span>Phẩm</span><b style="color:${RC[m[2]]}">${RN[m[2]]} phẩm</b></div><div><span>Tốc độ</span><b>${m[3]}</b></div><div><span>Thân thiết</span><b>${m[6]}/100</b></div><div><span>Trạng thái</span><b>${m[5]?(mSel?'Nghỉ':'Đang cưỡi'):'Chưa có'}</b></div></div><p style="margin:6px 0">${m[4]}</p>
+   <div style="display:flex;gap:6px;justify-content:center">${m[5]?`<button class="btn" onclick="toast('Đang cưỡi ${m[0]}')">Cưỡi</button><button class="btn p" onclick="openBook('tk','Bồi dưỡng')">Cho ăn</button>`:`<button class="btn p" onclick="D('ketduyen')">Cách kết duyên</button>`}</div>`;
+  return `<div class="sec">Cho ${m[0]} ăn</div><div class="grid6">${[ITEMS[6],ITEMS[8],ITEMS[11],ITEMS[17]].map(x=>sl(x)).join('')}</div><div class="sec">Thân thiết</div><div class="bar t" style="height:10px"><i style="width:${m[6]}%"></i><span>${m[6]}/100 · Mốc 80: mở kỹ năng "Hạc Minh Cửu Tiêu"</span></div>`}},
+ dp:{t:'Động Phủ',s:'Hang Đá Bên Suối · thuê 30 ngày',tabs:['Cơ sở','Bế quan','Ruộng thuốc'],r(tab){
+  if(tab==='Cơ sở')return `<div class="cave"><span class="stamp">Hang Đá Bên Suối</span></div>${[['bd-tu-linh','Bồ đoàn tụ linh','Cấp 2 · Tốc độ tu luyện +10%'],['it-lo-dan','Lò đan đá','Cấp 1 · Luyện đan Lương phẩm'],['bd-linh-dien','Ruộng thuốc','3 ô · 2 đang trồng'],['it-bua','Trận pháp phòng hộ','Cấp 1 · Ngăn yêu thú quấy rầy 70%']].map((f,i)=>`<div class="fac"><img src="${I(f[0])}"><div class="tx"><b>${f[1]}</b><small>${f[2]}</small></div><button class="btn sm ${i?'p':''}" onclick="${i==2?"openBook('dp','Ruộng thuốc')":i==1?"D('luyendan')":"toast('Nâng cấp cần 300 linh thạch')"}">${i==1?'Luyện':i==2?'Xem':'Nâng'}</button></div>`).join('')}`;
+  if(tab==='Bế quan')return `<div class="sec">Bế quan tu luyện</div><p>Chọn số ngày. Mỗi ngày trôi qua đều trừ thọ nguyên và có thể bỏ lỡ sự kiện trên bản đồ.</p><div class="days">${[1,7,30,90].map(d=>`<button class="${d===bDays?'on':''}" onclick="bDays=${d};openBook('dp','Bế quan')">${d} ngày</button>`).join('')}</div>
+   <div class="gain"><div>Tu vi<b>+${fmt(bDays*240)}</b></div><div>Thọ nguyên<b>−${(bDays/365).toFixed(2)} năm</b></div><div>Tâm ma<b>+${Math.round(bDays/7)}</b></div></div><div style="text-align:center;margin-top:10px"><button class="btn" onclick="toast('Bế quan ${bDays} ngày… xuất quan!')">Bắt đầu bế quan</button></div>`;
+  return `<div class="grid6" style="grid-template-columns:repeat(3,1fr);gap:8px">${[['it-linh-chi','Linh Chi','Còn 3 ngày'],['it-thao-lam','Băng Tâm Thảo','Thu hoạch được'],['','Ô trống','Gieo hạt']].map((p,i)=>`<button class="fac" style="flex-direction:column;border:1px solid rgba(90,60,20,.35);padding:6px;text-align:center" onclick="${i==1?"toast('Thu được Băng Tâm Thảo x3')":i==2?"D('gieo')":"toast('Chưa chín')"}">${p[0]?`<img src="${I(p[0])}">`:`<div style="width:38px;height:38px;border:1px dashed #8a5a2a"></div>`}<b style="font-size:10.5px">${p[1]}</b><small>${p[2]}</small></button>`).join('')}</div>`}},
+ nk:{t:'Nhật Ký',s:'Những gì đã thấy trên đường',tabs:['Nhiệm vụ','Ký sự'],r(tab){
+  if(tab==='Nhiệm vụ')return [['Chính','#a8241a','Đến Thanh Vân Sơn','Trước ngày 45 · còn 8 ngày'],['Phụ','#2e5a86','Rượu cho lão tiều phu','Mua Hồ Lô Rượu ở Phường Thị Lạc Hà'],['Phụ','#2e5a86','Bí mật U Cốc','Theo bản đồ tìm cổ mộ'],['Thường','#8a5a2a','Diệt 5 yêu lang','3/5']].map(q=>`<div class="qrow"><span class="k" style="--c:${q[1]}">${q[0]}</span><div class="tx"><b>${q[2]}</b><small>${q[3]}</small></div></div>`).join('');
+  return ['Ngày 37 — Gặp lão tiều phu bên đường, được chỉ lối tắt qua Hắc Phong Lĩnh.','Ngày 35 — Đánh lui 4 tên sơn tặc, nhặt được Tàn Quyển Vô Danh.','Ngày 31 — Ngủ đêm trong miếu hoang. Nằm mơ thấy một kiếm khách áo trắng.','Ngày 30 — Rời Thanh Thủy Trấn, mang theo 1.500 lượng bạc.'].map(t=>`<p style="padding:4px 0;border-bottom:1px dotted rgba(90,60,20,.45)">${t}</p>`).join('')}}
+};
+const BMK=[['nv','Nhân vật'],['hn','Hành nang'],['bp','Bài pháp'],['tp','Tâm pháp'],['tk','Tọa kỵ'],['dp','Động phủ'],['nk','Nhật ký']];
+function openBook(k,tab){closeD();const b=BOOK[k];tab=tab||b.tabs[0];$('bt').innerHTML=`${b.t}<small>${b.s}</small>`;
+ $('bs').innerHTML=b.tabs.map(t=>`<button class="${t===tab?'on':''}" onclick="openBook('${k}','${t}')">${t}</button>`).join('');
+ $('bb').innerHTML=b.r(tab);$('bb').scrollTop=0;$('bm').innerHTML=BMK.map(m=>`<button class="${m[0]===k?'on':''}" onclick="openBook('${m[0]}')">${m[1]}</button>`).join('');$('book').classList.add('on')}
+function closeBook(){$('book').classList.remove('on')}
+// ---------- HỘP THOẠI ----------
+function dlg(t,c,a){$('dt').textContent=t;$('dc').innerHTML=c;$('da').innerHTML=a??`<button class="btn p" onclick="closeD()">Đóng</button>`;$('dlg').classList.add('on')}
+function closeD(){$('dlg').classList.remove('on')}
+const ok=(m,l='Đồng ý')=>`<button class="btn p" onclick="closeD()">Thôi</button><button class="btn" onclick="closeD();toast('${m}')">${l}</button>`;
+function itemD(n){const x=ITEMS.find(i=>i.n===n);dlg(x.n,`<div class="ihead"><div class="sl" style="--rc:${RC[x.r]}"><img class="ic" src="${I(x.i)}"></div><div><b>${x.n}</b><span class="rk" style="--rc:${RC[x.r]}">${RN[x.r]} phẩm</span> · ${TN[x.t]}<br><small>Số lượng ${x.q} · Nặng ${x.w} cân</small></div></div><p class="story" style="text-indent:0">${x.d}</p>
+ <div class="st"><span>Giá bán ở phường thị</span><b>${fmt((x.r+1)*(x.r+1)*12)} lượng</b></div><div class="st"><span>Có thể giao dịch</span><b>${x.r>3?'Không':'Có'}</b></div>`,
+ x.t==='khi'?`<button class="btn p" onclick="closeD();D('ren')">Rèn</button><button class="btn" onclick="closeD();toast('Đã đeo ${x.n}')">Đeo</button>`:x.t==='dan'?`<button class="btn p" onclick="closeD();toast('Đã vứt')">Vứt</button><button class="btn" onclick="closeD();toast('Đã dùng ${x.n}')">Dùng</button>`:x.t==='thu'?`<button class="btn" onclick="closeD();toast('Lĩnh ngộ được 1 lá bài mới!')">Đọc</button>`:`<button class="btn p" onclick="closeD();toast('Đã vứt')">Vứt</button><button class="btn" onclick="closeD()">Giữ</button>`)}
+function cardD(i){const c=CARDS[i];dlg(c.n,`<div style="width:150px;margin:0 auto 6px">${cardH(c,i).replace('onclick','data-x')}</div><div class="st"><span>Loại</span><b>${c.t}</b></div><div class="st"><span>Linh lực</span><b>${c.c}</b></div><div class="st"><span>Trong bộ bài</span><b>${c.q} lá</b></div>`,c.q?`<button class="btn p" onclick="closeD();toast('Bỏ 1 lá khỏi bộ')">Bỏ khỏi bộ</button><button class="btn" onclick="closeD();openBook('bp','Lĩnh ngộ')">Lĩnh ngộ</button>`:`<button class="btn p" onclick="closeD()">Đóng</button>`)}
+function nodeA(i){const n=NODES[i];if(n[4]==='lock')return dlg(n[3],`<div class="ill" style="background-image:url(${I('dd-tuyet')})"></div><p class="story">Sơn môn ẩn trong mây. Cần <b>Lệnh Bài Thanh Vân</b> và tu vi Luyện Khí 9 mới được vào.</p>`);
+ if(n[4]==='done')return toast('Đã đi qua '+n[3]);
+ ({town:()=>D('cho',n[3]),event:()=>D('event',i),fight:()=>D('dichxuat',n[3]),cave:()=>openBook('dp'),dungeon:()=>D('bicanh'),sect:()=>{}})[n[2]]()}
+function nextNode(){D('dichxuat','Hắc Phong Lĩnh')}
+const DD={
+ event:i=>dlg('Lão Tiều Phu',`<div class="ill" style="background-image:url(${I('dd-thanh-son')})"></div><p class="story">Bên gốc tùng già, một lão tiều phu đang nghỉ chân. Thấy ngươi đeo kiếm, lão cười khà khà: "Tiểu tử, muốn qua Hắc Phong Lĩnh à? Có một lối tắt… nhưng ta khát rượu lắm."</p>
+  <div class="ch"><button onclick="closeD();toast('Lão chỉ lối tắt: rút ngắn 1 ngày')">Mời lão rượu trong hồ lô <small>Cần Hồ Lô Rượu ✓</small></button><button onclick="closeD();toast('Lão kể chuyện xưa: ngộ tính +2')">Ngồi nghe lão kể chuyện <small>Mất 0,5 ngày</small></button><button onclick="closeD();toast('Ngộ ra lão là cao nhân ẩn thế!')">Dùng thần thức dò xét <small class="no">Thần thức ≥ 50 ✗</small></button><button onclick="closeD()">Chào rồi đi tiếp</button></div>`,''),
+ dichxuat:n=>dlg(n,`<div class="ill" style="background-image:url(${I('dd-u-coc')})"></div><p class="story">Gió đen cuộn lên. Từ trong bụi rậm, một bóng người mặc huyết bào bước ra, sát khí ngùn ngụt.</p><div class="st"><span>Địch</span><b style="color:#a8241a">Huyết Ma Tán Tu · Luyện Khí 8</b></div><div class="st"><span>Thắng nhận</span><b>Yêu đan, bạc, 1 lá bài</b></div>`,`<button class="btn p" onclick="closeD();toast('Dùng Hắc Phong Phù, đã chạy thoát')">Bỏ chạy</button><button class="btn" onclick="closeD();combat()">Giao chiến</button>`),
+ cho:n=>dlg(n,`<div class="ill" style="background-image:url(${I('dd-ha-lam')})"></div><div class="grid6" style="grid-template-columns:repeat(4,1fr)">${[ITEMS[0],ITEMS[1],ITEMS[21],ITEMS[27],ITEMS[24],ITEMS[12],ITEMS[5],ITEMS[2]].map(x=>`<div style="text-align:center;font-size:9px">${sl(x,0)}<b>${fmt((x.r+1)*(x.r+1)*20)}</b> lượng</div>`).join('')}</div>`,`<button class="btn p" onclick="closeD();openBook('hn')">Bán đồ</button><button class="btn" onclick="closeD();toast('Nghỉ trọ 1 đêm: hồi đầy khí huyết')">Nghỉ trọ (30 lượng)</button>`),
+ bicanh:()=>dlg('U Cốc Cổ Mộ',`<div class="ill" style="background-image:url(${I('dd-bang-uyen')})"></div><p class="story">Cửa mộ đá phủ rêu, khắc chữ cổ: "Kẻ vào không ra". Bên trong có 3 tầng, mỗi tầng 12 gian.</p><div class="st"><span>Tu vi gợi ý</span><b>Luyện Khí 7+</b></div><div class="st"><span>Mỗi gian tốn</span><b>1 canh giờ</b></div><div class="st"><span>Phần thưởng</span><b>Pháp khí Huyền phẩm, bí tịch</b></div>`,`<button class="btn p" onclick="closeD()">Để sau</button><button class="btn" onclick="closeD();dungeon()">Tiến vào</button>`),
+ thu:()=>dlg('Truyền Âm Phù',[['Tô Mộng Dao','Thanh Vân Môn sắp mở cửa thu đồ đệ, nhanh lên!'],['Vô danh','Trong U Cốc có thứ ngươi cần… hãy cẩn thận.']].map(m=>`<div class="qrow"><div class="tx"><b>${m[0]}</b><small>${m[1]}</small></div></div>`).join(''),`<button class="btn" onclick="closeD();toast('Đã gửi hồi âm')">Hồi âm</button>`),
+ troi:()=>dlg('Thời Tiết & Thời Gian',`<div class="st"><span>Hôm nay</span><b>Trời quang · Linh khí bình thường</b></div><div class="st"><span>Ngày mai</span><b>Mưa · Yêu thú hoạt động mạnh</b></div><div class="st"><span>Ngày 40</span><b>Trăng tròn · Linh khí +30%</b></div>`),
+ caidat:()=>dlg('Cài Đặt',['Âm nhạc','Tiếng động','Tự lưu hành trình','Hiện gợi ý lựa chọn'].map(s=>`<div class="st"><span>${s}</span><button class="btn sm p" onclick="this.textContent=this.textContent==='Bật'?'Tắt':'Bật'">Bật</button></div>`).join('')),
+ trong:s=>dlg(s,`<p style="text-align:center">Ô ${s} đang trống. Mua ở phường thị hoặc nhặt được khi hành tẩu.</p>`),
+ ren:()=>dlg('Rèn Khí',`<div class="ihead"><div class="sl" style="--rc:${RC[2]}"><img class="ic" src="${I('it-kiem')}"></div><div><b>Thanh Phong Kiếm +2 → +3</b>Công 38 → 44</div></div><div class="st"><span>Cần</span><b>Huyền Thiết Khoáng x2 · 80 lượng</b></div><div class="st"><span>Tỉ lệ</span><b>80%</b></div>`,ok('Rèn thành công! +3','Rèn')),
+ vut:()=>dlg('Vứt bớt',`<p>Vứt các vật Phàm phẩm nặng nhất để giảm 6,2 cân?</p>`,ok('Đã vứt 4 món','Vứt')),
+ npc:n=>dlg(n,`<div style="width:110px;margin:0 auto"><img src="${I(n.includes('Dao')?'de-tu-1':n.includes('Tiều')?'de-tu-6':'mo-huyet-ma')}"></div><p style="text-align:center">${n.includes('Trại')?'Bọn cướp chiếm cứ Hắc Phong Lĩnh.':'Hảo cảm càng cao càng được giúp đỡ.'}</p>`),
+ tang:i=>dlg('Tầng '+(i+1),`<p>${i<3?'Đã tu thành.':i==3?'Đang tu luyện: 62%. Cần thêm 3.400 tu vi.':'Chưa thể tu: cần hoàn thành tầng trước.'}</p>`),
+ ketduyen:()=>dlg('Xích Phượng',`<p>Đến <b>Hỏa Vân Cốc</b> vào ngày trăng tròn, mang theo <b>Long Vũ</b> và vượt qua thử thách lửa.</p>`),
+ luyendan:()=>dlg('Luyện đan',`<div style="display:flex;gap:8px;justify-content:center">${sl(ITEMS[6],0)}${sl(ITEMS[9],0)}<span style="font-size:20px">→</span>${sl(ITEMS[1],0)}</div><p style="text-align:center;margin-top:6px">Mất 1 ngày · Tỉ lệ thành đan 70%</p>`,ok('Thành đan! Hồi Huyết Đan x3','Khai lò')),
+ gieo:()=>dlg('Gieo hạt',`<div class="grid6" style="grid-template-columns:repeat(4,1fr)">${[ITEMS[11],ITEMS[6],ITEMS[8],ITEMS[10]].map(x=>sl(x)).join('')}</div>`,ok('Đã gieo hạt','Gieo'))
+};
+function D(k,a){DD[k](a)}
+// ---------- TRẬN ĐẤU (BÀI) ----------
+let fHp,ll,hand,rd;
+function combat(){closeBook();fHp=86;ll=3;rd=1;hand=[0,2,1,4,6];
+ $('cb').innerHTML=`<div class="cbt"><div class="ctop"><b>Hiệp <span id="rd">1</span></b><button class="btn sm p" onclick="dlg('Bỏ chạy?','<p>Bỏ chạy mất 20 lượng bạc.</p>',ok('Đã chạy thoát','Chạy'));">Chạy</button></div>
+  <div class="intent"><div class="pf"><img src="${I('sk-blood')}"><div><b>Huyết Trảo</b>Sắp gây 14 sát thương</div></div></div>
+  <div class="foe" id="foe"><img src="${I('mo-huyet-ma')}"><div class="fbar"><b>Huyết Ma Tán Tu</b> · Luyện Khí 8<div class="bar"><i id="fh" style="width:100%"></i><span id="fhv">86/86 · Hộ thể 4</span></div></div></div>
+  <div class="mebar"><div class="pile"><i>9</i>Rút</div><div class="pf"><div class="ava" style="width:34px;height:34px"></div><div style="flex:1;min-width:0"><div class="bar"><i id="mh" style="width:78%"></i><span>Khí huyết 312/400 · Hộ thể 0</span></div><div style="display:flex;justify-content:space-between;align-items:center;margin-top:3px"><div class="orbs" id="orbs"></div><div class="buffs"><img src="${I('sk-qi')}"><img src="${I('sk-wind')}"></div></div></div></div><div class="pile"><i>0</i>Bỏ</div></div></div>
+  <div class="hand" id="hand"></div>
+  <div class="cbb"><div class="tl" id="tl"><b>Huyết Ma Tán Tu</b> lườm ngươi, tay rỉ máu… Chọn lá bài để ra chiêu.</div><button class="btn" onclick="endTurn()">Kết thúc lượt</button></div>`;
+ renderHand();$('cb').classList.add('on')}
+function renderHand(){const n=hand.length;$('hand').innerHTML=hand.map((ci,k)=>{const c=CARDS[ci],a=(k-(n-1)/2)*7,l=50+(k-(n-1)/2)*17;return cardH(c,ci,c.c>ll?'off':'').replace('class="card','style="left:calc('+l+'% - 41px);transform:rotate('+a+'deg) translateY('+Math.abs(a)*.9+'px)" class="card').replace(`onclick="cardD(${ci})"`,`onclick="play(${k})"`)}).join('');
+ $('orbs').innerHTML=[0,1,2].map(i=>`<i class="${i<ll?'':'u'}"></i>`).join('')}
+function play(k){const c=CARDS[hand[k]];if(c.c>ll)return toast('Không đủ linh lực');ll-=c.c;hand.splice(k,1);
+ if(c.t==='Công'){const d=parseInt(c.d.match(/\d+/))*(c.d.includes('hai lần')?2:c.d.includes('4 lần')?4:1);fHp=Math.max(0,fHp-d);const f=$('foe');f.classList.add('hit');setTimeout(()=>f.classList.remove('hit'),180);
+  $('cb').querySelector('.cbt').insertAdjacentHTML('beforeend',`<div class="dmg">-${d}</div>`);setTimeout(()=>$('cb').querySelector('.dmg')?.remove(),800);$('fh').style.width=fHp/86*100+'%';$('fhv').textContent=fHp+'/86';}
+ $('tl').innerHTML=`Ngươi dùng <b>${c.n}</b>: ${c.d}`;renderHand();
+ if(fHp<=0)setTimeout(()=>dlg('Đắc thắng',`<p style="text-align:center">Huyết Ma Tán Tu ngã xuống. Chọn 1 lá bài làm phần thưởng:</p><div class="cards" style="margin-top:6px">${[7,9,11].map(i=>cardH(CARDS[i],i).replace(`onclick="cardD(${i})"`,`onclick="closeD();$('cb').classList.remove('on');toast('Nhận lá ${CARDS[i].n}')"`)).join('')}</div><div class="sec">Chiến lợi phẩm</div><div class="grid6">${[ITEMS[14],ITEMS[15],ITEMS[16],ITEMS[29]].map(x=>sl(x)).join('')}</div>`,`<button class="btn p" onclick="closeD();$('cb').classList.remove('on')">Bỏ qua lá bài</button>`),450)}
+function endTurn(){rd++;ll=3;hand=[[3,5,0,10,8],[1,7,2,6,0],[4,11,1,0,9]][rd%3];$('rd').textContent=rd;$('tl').innerHTML=`<b>Huyết Ma Tán Tu</b> dùng Huyết Trảo, ngươi mất 14 khí huyết. Lượt mới: rút 5 lá.`;renderHand()}
+// ---------- BÍ CẢNH ----------
+function dungeon(){const R=['','it-ruong','fight','fog','fog','fight','me','fog','it-dan-vang','fog','fog','fog','x','fog','fog','fog','it-yeu-dan','fog','fog','boss'];
+ $('dg').innerHTML=`<div class="dgh"><b>U Cốc Cổ Mộ</b><span style="font-size:10px">Khí huyết 312 · Đuốc 6/10</span><button class="x" onclick="$('dg').classList.remove('on')">✕</button></div>
+ <div class="floor">Tầng: <span class="on">1 · Mộ đạo</span><span>2 · Điện thờ</span><span>3 · Quan tài</span></div>
+ <div class="rooms">${R.map((r,i)=>r==='x'||r===''?'<div class="rm x0"></div>':r==='fog'?`<button class="rm fog" onclick="toast('Dùng 1 đuốc để soi gian này')"></button>`:r==='me'?'<div class="rm me">Đang ở</div>':r==='fight'?`<button class="rm" onclick="combat()"><img src="${I('mo-u-co')}">Âm hồn</button>`:r==='boss'?`<button class="rm" style="border-color:#a8241a" onclick="combat()"><img src="${I('mo-tam-ma')}">Mộ chủ</button>`:`<button class="rm" onclick="toast('Nhặt được vật phẩm!')"><img src="${I(r)}">Bảo vật</button>`).join('')}</div>
+ <div class="dgf"><img src="${I('it-ban-do')}" style="width:28px"><div class="tx">Bấm gian liền kề để đi. Gian sương mù cần đuốc. Hạ <b>Mộ chủ</b> để xuống tầng 2.</div><button class="btn sm" onclick="D('bicanh')">Thông tin</button></div>`;
+ $('dg').classList.add('on')}
+drawMap();addEventListener('resize',drawMap);
+</script></body></html>
