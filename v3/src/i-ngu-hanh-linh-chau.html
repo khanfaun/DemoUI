@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Ngũ Hành Linh Châu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0e1030;--gold:#ffd060;--gold2:#fff2b0;--cy:#6ae0ff;--dim:#9aa6d0;--kim:#f0c030;--moc:#4ac83a;--thuy:#2a8ae8;--hoa:#f0401a;--tho:#b87a3a;--tam:#f05aa8}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;background:#05061a;font-family:Nunito,sans-serif;color:#eef2ff;font-size:11px;overflow:hidden}
+#app{position:relative;width:100%;max-width:430px;height:100dvh;margin:auto;overflow:hidden;background:#0e1030}
+.B{font-family:'Baloo 2',cursive;font-weight:800;letter-spacing:.2px;line-height:1.1}
+img{display:block;user-select:none;-webkit-user-drag:none}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+.g{color:var(--gold2);text-shadow:0 1px 0 #7a4a00,0 0 8px #ffb02066}
+.box{border:14px solid transparent;border-image:url(assets/i-khung.webp) 40 fill / 14px stretch}
+.bt{height:36px;padding:0 16px;background:url(assets/i-nut.webp) center/100% 100%;font-family:'Baloo 2';font-weight:800;font-size:14px;color:#5a2a00;text-shadow:0 1px 0 #fff6c0;white-space:nowrap}
+.bt.b2{background-image:url(assets/i-nut2.webp);color:#fff;text-shadow:0 1px 2px #06205a}.bt.b3{background-image:url(assets/i-nut3.webp);color:#fff;text-shadow:0 1px 2px #2a0640}
+.bt.sm{height:28px;font-size:11.5px;padding:0 11px}.bt:active{transform:scale(.95)}
+/* home */
+#home{position:absolute;inset:0;background:url(assets/bg-dien.webp) center/cover}
+#home .hero{position:absolute;left:50%;top:18%;height:56%;transform:translateX(-50%);filter:drop-shadow(0 0 18px #ffd06055) drop-shadow(0 10px 10px #000);animation:br 4s ease-in-out infinite;pointer-events:none}
+@keyframes br{50%{transform:translateX(-50%) translateY(-6px)}}
+#home .aur{position:absolute;left:50%;top:60%;width:280px;height:60px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(#ffd06088,#0000 70%)}
+.topb{position:absolute;left:0;right:0;top:0;display:flex;align-items:center;gap:6px;padding:6px 7px;background:linear-gradient(#06061aee,#06061a00)}
+.lv{width:46px;height:46px;border-radius:50%;border:2px solid var(--gold);position:relative;flex:none;overflow:hidden;background:#1a1a40;box-shadow:0 0 10px #ffd06066}
+.lv b{position:absolute;bottom:0;left:0;right:0;background:#000b;font-size:8.5px;text-align:center}
+.pn{flex:1;min-width:0}.pn .n{font-size:13.5px}.pn small{display:block;font-size:9px;color:var(--dim);white-space:nowrap}
+.cur{display:flex;align-items:center;gap:3px;background:#0009;border:1px solid #3a4a8a;border-radius:10px;height:20px;padding:0 6px 0 2px;font-size:9.5px;font-weight:800;white-space:nowrap}
+.cur img{width:16px;height:16px}.cur i{font-style:normal;width:13px;height:13px;border-radius:50%;background:linear-gradient(#ffe080,#c88a10);color:#5a2a00;font-size:11px;line-height:12px;text-align:center;margin-left:2px}
+.evs{position:absolute;left:6px;top:62px;display:flex;flex-direction:column;gap:6px;width:84px}
+.ev{height:56px;border-radius:9px;overflow:hidden;position:relative;border:1.5px solid #ffd06099;box-shadow:0 2px 6px #000a}
+.ev div{position:absolute;inset:0;background-size:cover;background-position:center}
+.ev span{position:absolute;left:0;right:0;bottom:0;padding:2px 4px;background:linear-gradient(#0000,#000d);font-size:9px;font-weight:800;line-height:1.1}
+.ev small{display:block;font-size:7.5px;color:#ffd060;font-weight:700}
+.rgt{position:absolute;right:6px;top:62px;display:flex;flex-direction:column;gap:7px}
+.ri{width:46px;display:flex;flex-direction:column;align-items:center;position:relative}
+.ri .o{width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 40% 30%,#3a4aa0,#10123a);border:2px solid #c8902a;display:grid;place-items:center;box-shadow:0 2px 6px #000a}
+.ri .o img{width:26px}.ri span{font-size:8.5px;font-weight:800;text-shadow:0 1px 2px #000;white-space:nowrap}
+.red{position:absolute;top:0;right:3px;width:9px;height:9px;border-radius:50%;background:#ff2a4a;border:1.5px solid #fff}
+.plate{position:absolute;left:50%;top:70%;transform:translateX(-50%);display:flex;align-items:center;gap:8px}
+.plate .nm{text-align:center;background:linear-gradient(90deg,#0000,#0a0c30e0 20%,#0a0c30e0 80%,#0000);padding:3px 26px}
+.plate .nm b{font-size:17px;display:block}.plate .nm small{font-size:9.5px;color:var(--dim)}
+.arr{width:28px;height:28px;border-radius:50%;background:#0009;border:1.5px solid var(--gold);color:var(--gold);font-weight:800;font-size:14px}
+.stars{color:#ffd060;font-size:10px;letter-spacing:-1px;text-shadow:0 0 4px #ff9a00}
+.el{display:inline-block;width:14px;height:14px;vertical-align:-3px}
+.acts1{position:absolute;left:8px;right:8px;bottom:142px;display:flex;gap:6px;justify-content:center}
+.go{position:absolute;left:50%;bottom:86px;transform:translateX(-50%);width:250px;height:50px;background:url(assets/i-nut.webp) center/100% 100%;text-align:center;color:#5a2a00}
+.go b{font-size:19px;display:block;margin-top:5px}.go small{font-size:9px;font-weight:800;display:block;margin-top:-1px}
+.team{position:absolute;left:0;right:0;bottom:62px;display:none}
+.dock{position:absolute;left:0;right:0;bottom:0;height:62px;display:flex;background:linear-gradient(#1a1e5a,#0a0c2a);border-top:2px solid #c8902a;box-shadow:0 -4px 14px #000a}
+.dk{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;position:relative;font-size:9.5px;font-weight:800;color:var(--dim)}
+.dk img{width:30px;height:30px;transition:transform .15s}
+.dk.on{color:var(--gold2);background:linear-gradient(#ffd06033,#0000)}.dk.on img{transform:translateY(-6px) scale(1.2);filter:drop-shadow(0 0 6px #ffd060)}
+.dk.on:before{content:'';position:absolute;top:0;left:20%;right:20%;height:3px;border-radius:2px;background:var(--gold)}
+/* trang */
+.pg{position:absolute;inset:0 0 62px 0;z-index:10;display:none;flex-direction:column;background:radial-gradient(ellipse at top,#2a2468,#0e1030 60%)}
+.pg.on{display:flex;animation:fi .2s}@keyframes fi{from{opacity:0}}
+.hd{height:44px;flex:none;display:flex;align-items:center;gap:8px;padding:0 10px;background:linear-gradient(#1a1e5a,#10123a);border-bottom:1.5px solid #c8902a99}
+.hd h2{font-size:18px;flex:1}.hd .bk{width:30px;height:30px;border-radius:50%;background:#0008;border:1.5px solid var(--gold);color:var(--gold);font-size:16px;font-weight:800}
+.tabs{display:flex;gap:5px;padding:7px 8px 3px;overflow-x:auto;flex:none;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;height:26px;padding:0 12px;border-radius:13px;background:#ffffff12;border:1px solid #3a4a8a;font-weight:800;font-size:10.5px;color:var(--dim);white-space:nowrap}
+.tab.on{background:linear-gradient(#ffe080,#d89a20);color:#5a2a00;border-color:#fff0b0}
+.body{flex:1;overflow-y:auto;padding:6px 8px 14px;scrollbar-width:none}.body::-webkit-scrollbar{display:none}
+.sec{font-family:'Baloo 2';font-weight:800;font-size:13px;color:var(--gold2);margin:8px 2px 5px;display:flex;align-items:center;gap:6px}.sec:after{content:'';flex:1;height:1px;background:linear-gradient(90deg,#ffd06088,#0000)}
+.roster{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.hc{aspect-ratio:2/3;position:relative;border-radius:10px;overflow:hidden;background:#1a1a40}
+.hc .pt{position:absolute;inset:4%;overflow:hidden;border-radius:6px;background:radial-gradient(circle at 50% 30%,#4a3a8a,#14102e)}
+.hc .pt img{position:absolute;width:210%;left:-55%;top:-6%}
+.hc .fr{position:absolute;inset:0;width:100%;height:100%}
+.hc .info{position:absolute;left:7%;right:7%;bottom:6%;text-align:center}
+.hc .info b{font-size:11px;display:block;text-shadow:0 1px 2px #000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hc .lvl{position:absolute;top:6%;left:7%;font-size:9px;font-weight:800;background:#000a;border-radius:6px;padding:0 4px}
+.hc .eg{position:absolute;top:5%;right:6%;width:20px}
+.hc .rr{position:absolute;top:16%;left:6%;font-family:'Baloo 2';font-weight:800;font-size:11px;text-shadow:0 0 4px #000,0 1px 0 #000}
+.hc.lock{filter:grayscale(.9) brightness(.6)}
+.chip{display:flex;gap:5px;margin:2px 0 7px}.chip button{flex:1;height:26px;border-radius:8px;background:#ffffff10;border:1px solid #3a4a8a;display:grid;place-items:center}.chip button.on{border-color:var(--gold);background:#ffd06022}.chip img{width:20px}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.it{aspect-ratio:1;border-radius:9px;position:relative;display:grid;place-items:center;border:1.5px solid}
+.it img{width:76%}.it b{position:absolute;right:4px;bottom:1px;font-size:9px;text-shadow:0 1px 2px #000}
+.r1{background:radial-gradient(#5a6a7a,#1e262e);border-color:#8a9aaa}.r2{background:radial-gradient(#2a6ab0,#0a1e40);border-color:#5ab0ff}.r3{background:radial-gradient(#7a3ab8,#24083e);border-color:#c080ff}.r4{background:radial-gradient(#c88a1a,#4a2400);border-color:#ffd060;box-shadow:0 0 8px #ffb02066}
+.row{display:flex;align-items:center;gap:8px;padding:8px;margin-bottom:6px;border-radius:11px;background:linear-gradient(90deg,#24286a,#14163e);border:1px solid #3a4a8a}
+.row>img,.row>.it{width:44px;height:44px;flex:none}
+.row .t{flex:1;min-width:0}.row .t b{font-size:12px;display:block}.row .t small{display:block;color:var(--dim);font-size:9.5px;line-height:1.35}
+.pbar{height:6px;border-radius:3px;background:#0008;overflow:hidden;margin-top:3px}.pbar i{display:block;height:100%;background:linear-gradient(90deg,#3ad0ff,#b8f4ff)}
+/* chi tiết tiên hữu */
+#hero{position:absolute;inset:0;z-index:20;display:none;flex-direction:column;background:url(assets/bg-dien.webp) center/cover}
+#hero.on{display:flex}
+#hero .art{position:relative;height:300px;flex:none;overflow:hidden}
+#hero .art img.a{position:absolute;left:50%;top:6px;height:420px;transform:translateX(-50%);filter:drop-shadow(0 0 14px #ffd06066)}
+#hero .art .ov{position:absolute;inset:0;background:linear-gradient(#0000 60%,#0e1030)}
+#hero .art .nm{position:absolute;left:10px;bottom:8px}
+#hero .art .nm b{font-size:22px}
+#hero .art .pw{position:absolute;right:10px;bottom:10px;text-align:right}
+#hero .back{position:absolute;left:8px;top:8px;width:32px;height:32px;border-radius:50%;background:#000a;border:1.5px solid var(--gold);color:var(--gold);font-size:17px;font-weight:800;z-index:2}
+#hero .panel{flex:1;overflow-y:auto;background:#0e1030f2;padding:0 8px 12px;scrollbar-width:none}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;font-size:10.5px}.kv div{display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #2a3470}.kv span{color:var(--dim)}
+.eq{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.eq>div{text-align:center;font-size:9px;color:var(--dim)}.eq .it{margin-bottom:2px}
+.sk{display:flex;gap:8px;padding:8px;margin-bottom:6px;border-radius:11px;background:linear-gradient(90deg,#2a2468,#14163e);border:1px solid #4a4a9a}
+.sk img{width:46px;height:46px;flex:none}.sk b{font-size:12px}.sk .tg{font-size:8.5px;padding:0 5px;border-radius:6px;margin-left:4px;vertical-align:1px}
+.sk p{font-size:9.5px;color:#c8d0f0;line-height:1.4}
+.star{display:flex;justify-content:center;gap:4px;font-size:24px;color:#ffd060;margin:6px 0}.star .off{color:#3a3a6a}
+.mnt{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+.mnt>div{flex:none;width:92px;text-align:center;border-radius:10px;padding:5px;background:#ffffff0c;border:1px solid #3a4a8a;font-size:9.5px}
+.mnt>div.on{border-color:var(--gold);background:#ffd06018}.mnt img{width:72px;margin:auto}
+/* triệu hồi */
+#sum{background:url(assets/bg-trieu-hoi.webp) center/cover}
+.ban{position:relative;height:360px}
+.ban .sr{position:absolute;right:-30px;top:20px;height:350px;filter:drop-shadow(0 0 16px #ff9a4a)}
+.ban .tx{position:absolute;left:10px;top:20px;width:190px}
+.ban .tx b{font-size:24px;display:block}.ban .tx p{font-size:10px;color:#dce0ff;line-height:1.45;margin-top:4px}
+.ban .tag{display:inline-block;background:linear-gradient(#ff6a4a,#a8100a);border-radius:6px;padding:1px 7px;font-size:9px;font-weight:800;margin-bottom:4px}
+.pity{margin:6px 0;font-size:10px;color:var(--dim)}
+.sbtn{display:flex;gap:8px;justify-content:center;padding:6px}
+.sbtn button{display:flex;flex-direction:column;align-items:center;justify-content:center;width:150px;height:54px}
+.sbtn small{display:flex;align-items:center;gap:2px;font-size:9.5px;font-family:Nunito}.sbtn small img{width:13px}
+.res10{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
+.res10 .hc{animation:flip .5s backwards}@keyframes flip{from{transform:rotateY(90deg) scale(.6);opacity:0}}
+/* chương */
+.chap{position:relative;border-radius:12px;overflow:hidden;margin-bottom:8px;border:1.5px solid #c8902a88}
+.chap .bgc{position:absolute;inset:0;background-size:cover;background-position:center}
+.chap .ov{position:absolute;inset:0;background:linear-gradient(90deg,#0a0c2ae8,#0a0c2a66)}
+.chap .in{position:relative;padding:9px}
+.chap .in b{font-size:15px}.chap .in small{display:block;color:var(--dim);font-size:9.5px}
+.nodes{display:flex;gap:4px;margin-top:7px}
+.nd{flex:1;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:10px;background:#000a;border:1.5px solid #4a5a9a;position:relative}
+.nd.done{background:radial-gradient(#3ad0ff,#0a4a8a);border-color:#b8f4ff}.nd.cur{background:radial-gradient(#ffe080,#c88a10);border-color:#fff;color:#5a2a00;box-shadow:0 0 10px #ffd060;animation:pul 1.2s infinite}
+.nd.boss{border-radius:8px}@keyframes pul{50%{box-shadow:0 0 18px #ffd060}}
+.nd i{position:absolute;bottom:-10px;font-style:normal;font-size:7px;color:#ffd060;letter-spacing:-1px}
+.dg{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.dgc{height:96px;border-radius:12px;overflow:hidden;position:relative;border:1.5px solid}
+.dgc div{position:absolute;inset:0;background-size:cover;background-position:center}
+.dgc img{position:absolute;right:6px;top:6px;width:36px}
+.dgc span{position:absolute;left:7px;bottom:6px;right:6px;font-size:9px;color:#e0e6ff;text-shadow:0 1px 2px #000}.dgc span b{display:block;font-size:14px;font-family:'Baloo 2'}
+.dgc.off{filter:grayscale(.8) brightness(.6)}
+/* chiến đấu */
+#bat{position:absolute;inset:0;z-index:30;display:none;flex-direction:column;background:#0a0c22}
+#bat.on{display:flex}
+.field{position:relative;flex:1;min-height:200px;background-size:cover;background-position:center bottom;overflow:hidden}
+.field .ov{position:absolute;inset:0;background:linear-gradient(#0006,#0000 30%,#0000 70%,#0a0c22)}
+.bh{position:absolute;top:6px;left:8px;right:8px;display:flex;justify-content:space-between;align-items:center;z-index:3}
+.bh .wv{font-size:13px}.bh button{height:26px;padding:0 10px;border-radius:13px;background:#000a;border:1px solid var(--gold);font-weight:800;font-size:10px;color:var(--gold2)}
+.foes{position:absolute;left:0;right:0;bottom:18px;display:flex;justify-content:center;align-items:flex-end;gap:2px}
+.foe{width:31%;position:relative;text-align:center}
+.foe .fm{width:100%;max-height:min(30vh,240px);object-fit:contain;filter:drop-shadow(0 6px 6px #000);transition:transform .15s}
+.foe.hit .fm{animation:hit .3s}@keyframes hit{30%{transform:translateX(6px);filter:brightness(2.4) drop-shadow(0 0 8px #fff)}}
+.foe.dead{opacity:0;transform:scale(.6);transition:all .5s}
+.fhp{height:7px;border-radius:4px;background:#000a;border:1px solid #fff4;overflow:hidden;margin:0 8%}.fhp i{display:block;height:100%;background:linear-gradient(#ff8a6a,#c8101a);transition:width .3s}
+.fcd{position:absolute;top:-4px;left:4%;width:26px;height:26px;border-radius:50%;background:#000c;border:2px solid #ff6a4a;font-weight:800;font-size:12px;line-height:22px;text-align:center}
+.fel{position:absolute;top:-4px;right:6%;width:22px}
+.fnm{font-size:9px;font-weight:800;text-shadow:0 1px 2px #000;margin-bottom:2px;white-space:nowrap}
+.dmg{position:absolute;font-family:'Baloo 2';font-weight:800;font-size:24px;pointer-events:none;z-index:9;animation:up 1s forwards;text-shadow:0 2px 0 #000,0 0 8px currentColor}
+@keyframes up{to{transform:translateY(-46px) scale(1.2);opacity:0}}
+.combo{position:absolute;left:50%;top:38%;transform:translateX(-50%);font-family:'Baloo 2';font-weight:800;font-size:30px;color:#fff2a0;text-shadow:0 3px 0 #a84a00,0 0 16px #ffb020;z-index:8;pointer-events:none;opacity:0}
+.combo.on{animation:cb .7s}@keyframes cb{0%{opacity:0;transform:translateX(-50%) scale(.5)}30%{opacity:1;transform:translateX(-50%) scale(1.2)}100%{opacity:0;transform:translateX(-50%) scale(1)}}
+.tm{display:flex;gap:4px;padding:5px 6px 4px;background:linear-gradient(#14164a,#0a0c22);border-top:1px solid #3a4a8a;flex:none}
+.tmc{flex:1;position:relative;aspect-ratio:1;border-radius:10px;overflow:visible}
+.tmc .ring{position:absolute;inset:0;border-radius:10px;padding:3px;background:conic-gradient(var(--c) calc(var(--p)*1%),#ffffff18 0)}
+.tmc .ring div{width:100%;height:100%;border-radius:8px;overflow:hidden;position:relative;background:#1a1a40}
+.tmc.full{animation:pul 1s infinite}.tmc.full .ring{background:var(--c)}
+.tmc .egm{position:absolute;right:-3px;bottom:-3px;width:18px;z-index:2}
+.tmc .at{position:absolute;left:3px;bottom:2px;font-size:8px;font-weight:800;text-shadow:0 1px 2px #000;z-index:2}
+.thp{height:9px;margin:0 6px 4px;border-radius:5px;background:#000a;border:1px solid #3a4a8a;overflow:hidden;position:relative;flex:none}
+.thp i{display:block;height:100%;background:linear-gradient(90deg,#3ae08a,#b8ffd0);transition:width .3s}.thp span{position:absolute;inset:0;font-size:7.5px;font-weight:800;text-align:center;line-height:8px}
+.brd{position:relative;margin:0 6px 6px;flex:none;border-radius:10px;background:radial-gradient(#1a2060,#0a0c2a);border:1.5px solid #c8902a88;overflow:hidden}
+.brd .cl{position:absolute}
+.brd .cl:nth-child(odd){background:#ffffff06}
+.orb{position:absolute;transition:top .22s ease-in,left .15s,transform .15s,opacity .2s;padding:3px}
+.orb img{width:100%;height:100%;pointer-events:none}
+.orb.sel{transform:scale(1.18);filter:drop-shadow(0 0 6px #fff);z-index:2}
+.orb.pop{transform:scale(1.4);opacity:0}
+.bfoot{display:flex;justify-content:space-between;align-items:center;padding:0 8px 6px;font-size:9.5px;color:var(--dim);flex:none}
+/* hộp thoại */
+#mk{position:absolute;inset:0;z-index:60;background:#000b;display:none;align-items:center;justify-content:center;padding:14px}#mk.on{display:flex}
+.dl{width:100%;max-height:92%;overflow-y:auto;animation:pp .2s;scrollbar-width:none}@keyframes pp{from{transform:scale(.85);opacity:0}}
+.dl h3{text-align:center;font-size:18px;margin-bottom:6px}.dl p{font-size:11px;line-height:1.5;color:#dce0ff;text-align:center}
+.ac{display:flex;gap:6px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+#ts{position:absolute;left:50%;top:70px;transform:translateX(-50%);z-index:90;background:#14164af0;border:1px solid var(--gold);border-radius:14px;padding:6px 14px;font-size:11px;font-weight:700;display:none;white-space:nowrap}
+.rw{display:flex;gap:6px;justify-content:center;margin:8px 0}.rw .it{width:54px}
+.vs{display:flex;justify-content:center;gap:4px;margin:6px 0}.vs img{width:80px}
+</style></head><body><div id="app">
+
+<div id="home">
+  <div class="aur"></div><img class="hero" id="hhero">
+  <div class="topb">
+    <div class="lv" onclick="openHero(0)" id="hav"></div>
+    <div class="pn"><div class="n B g">Thiên Diệp</div><small>Lv 52 · Lực chiến 286.400</small></div>
+    <div class="cur" onclick="toast('Linh thạch dùng nâng cấp tiên hữu')"><img id="c1">1,2M<i>+</i></div>
+    <div class="cur" onclick="openTab('sum')"><img id="c2">6.480<i>+</i></div>
+    <div class="cur" onclick="toast('Thể lực hồi 1 điểm / 5 phút')"><img id="c3">86/120</div>
+  </div>
+  <div class="evs" id="evs"></div>
+  <div class="rgt" id="rgt"></div>
+  <div class="plate"><button class="arr" onclick="lead(-1)">‹</button><div class="nm"><b class="B g" id="lnm"></b><small id="lsub"></small></div><button class="arr" onclick="lead(1)">›</button></div>
+  <div class="acts1"><button class="bt b2 sm" onclick="openTab('dg')">Bí cảnh</button><button class="bt b3 sm" onclick="openTab('dg',2)">Linh Châu Tháp</button><button class="bt b2 sm" onclick="openTab('ros',0,1)">Đội hình</button></div>
+  <button class="go B" onclick="prep(4,7)"><b>XUẤT CHINH</b><small>Chương 4 · Ải 7 · Huyết Lâm Cốc</small></button>
+</div>
+
+<div class="pg" id="pg"><div class="hd"><button class="bk" onclick="openTab('home')">‹</button><h2 class="B g" id="ptl"></h2><div id="phd"></div></div><div class="tabs" id="ptb"></div><div class="body" id="pbd"></div></div>
+
+<div id="hero"><div class="art"><button class="back" onclick="$('hero').classList.remove('on')">‹</button><img class="a" id="ha"><div class="ov"></div><div class="nm"><b class="B g" id="hn"></b><div id="hs"></div></div><div class="pw"><small style="color:var(--dim)">Lực chiến</small><div class="B g" style="font-size:20px" id="hp"></div></div></div>
+  <div class="tabs" id="htb" style="background:#0e1030f2"></div><div class="panel" id="hpn"></div></div>
+
+<div id="bat">
+  <div class="field" id="fld"><div class="ov"></div><div class="bh"><div class="wv B g" id="wv"></div><div style="display:flex;gap:5px"><button onclick="auto()">Tự động</button><button onclick="pause()">❚❚</button></div></div><div class="foes" id="foes"></div><div class="combo" id="cmb"></div></div>
+  <div class="tm" id="tm"></div>
+  <div class="thp"><i id="thp"></i><span id="tht"></span></div>
+  <div class="brd" id="brd"></div>
+  <div class="bfoot"><span id="bhint">Chạm 2 viên kề nhau để đổi chỗ · nối 3 viên cùng hệ để tấn công</span><span id="bturn">Lượt 1</span></div>
+</div>
+
+<div class="dock" id="dock"></div>
+<div id="mk" onclick="if(event.target===this)cm()"><div class="dl box" id="dl"></div></div>
+<div id="ts"></div>
+</div>
+<script>
+const $=i=>document.getElementById(i);
+const I=n=>(window.IMG&&IMG[n])||('assets/'+n+'.webp');
+const im=(n,s='')=>`<img src="${I(n)}" style="${s}">`;
+const face=(n,s,r='50%')=>`<div style="width:${s}px;height:${s}px;overflow:hidden;border-radius:${r};position:relative;flex:none"><img src="${I(n)}" style="position:absolute;width:${s*3}px;left:${-s}px;top:${-s*.5}px"></div>`;
+function toast(t){const e=$('ts');e.textContent=t;e.style.display='block';clearTimeout(e._t);e._t=setTimeout(()=>e.style.display='none',1700)}
+function md(h){$('dl').innerHTML=h;$('mk').classList.add('on')}function cm(){$('mk').classList.remove('on')}
+const rnd=(a,b)=>a+Math.floor(Math.random()*(b-a+1));const sleep=t=>new Promise(r=>setTimeout(r,t));
+const EL={kim:'Kim',moc:'Mộc',thuy:'Thủy',hoa:'Hỏa',tho:'Thổ',tam:'Tâm'};
+const ELC={kim:'#f0c030',moc:'#4ac83a',thuy:'#2a8ae8',hoa:'#f0401a',tho:'#b87a3a',tam:'#f05aa8'};
+const eg=e=>I('i-chau-'+e);
+// tiên hữu: ảnh, tên, phẩm, hệ, cấp, sao, công, máu, kỹ năng chủ động, đội trưởng
+const HER=[
+ ['nv-kiem-tu','Lăng Thiên','ssr','kim',60,5,4820,18600,['kn-kiem','Vạn Kiếm Triều Tông','Gây 12 lần công lên toàn bộ địch',8],['Kiếm Tâm','Tiên hữu hệ Kim công x2,5']],
+ ['nv-ho-ly','Hồ Cửu Nương','ssr','hoa',58,4,5120,15400,['kn-hoa','Cửu Vĩ Hồ Hỏa','Đổi toàn bộ Thủy thành Hỏa, Hỏa sát thương x1,5 trong 2 lượt',9],['Mị Hoặc','Địch hồi chiêu chậm thêm 1 lượt']],
+ ['nv-bang-co','Hàn Sương','sr','thuy',55,4,3980,16200,['kn-bang','Băng Phong Vạn Lý','Đóng băng toàn bộ địch 2 lượt',7],['Băng Tâm','Hệ Thủy máu x1,5']],
+ ['nv-moc-linh','Mộc Thanh Y','sr','moc',54,3,3620,17800,['kn-moc','Vạn Mộc Hồi Xuân','Hồi 50% máu đội, đổi Thổ thành Tâm',6],['Sinh Cơ','Mỗi lượt hồi 5% máu']],
+ ['nv-su-phu','Huyền Cơ Chân Nhân','ssr','tho',60,5,4400,22400,['kn-tho','Địa Mạch Trấn Hồn','Gây 30 lần công lên 1 địch, phá giáp',10],['Trấn Sơn','Giảm 35% sát thương nhận vào']],
+ ['nv-loi-tuong','Lôi Chấn','sr','kim',50,3,4100,14200,['kn-loi','Ngũ Lôi Oanh Đỉnh','Gây 8 lần công, choáng 1 lượt',8],['Lôi Uy','Combo ≥5: công x2']],
+ ['nv-tien-nu','Tô Dao','sr','tam',48,3,2600,15000,['kn-hoi','Thiên Nữ Tán Hoa','Hồi đầy máu, tạo 6 viên Tâm',7],['Từ Bi','Viên Tâm hồi gấp đôi']],
+ ['nv-de-tu','Vân Phong','r','tho',40,2,2200,12000,['kn-thuan','Kim Cang Thuẫn','Giảm 50% sát thương 2 lượt',5],['Kiên Thủ','Máu đội +10%']],
+ ['nv-ma-tu','Huyết Ma Lão Tổ','ssr','hoa',1,0,6200,16800,['kn-huyet','Huyết Hải Phệ Thiên','Hút 20% máu tất cả địch',12],['Ma Uy','Hệ Hỏa công x3, mất 1% máu mỗi lượt'],1],
+];
+let LEAD=0,TEAM=[0,1,2,3,4];
+const ITEMS=[['vp-kiem','Trảm Tiên Kiếm',4,1,'Vũ khí'],['vp-ao','Lưu Vân Bào',3,1,'Giáp'],['vp-mao','Kim Ô Quan',4,1,'Mũ'],['vp-hai','Đạp Vân Hài',2,1,'Giày'],['vp-nhan','Huyền Băng Giới',3,1,'Nhẫn'],['vp-boi','Thanh Long Bội',3,1,'Bội'],['vp-giap','Kim Lân Giáp',4,1,'Giáp'],['vp-quat','Phong Hỏa Phiến',3,1,'Vũ khí'],['vp-truong','Thanh Mộc Trượng',2,1,'Vũ khí'],
+ ['vp-linh-thach','Linh Thạch',2,999,'Vật liệu'],['vp-tinh-kim','Tinh Kim',3,46,'Vật liệu'],['vp-huyen-thiet','Huyền Thiết',2,88,'Vật liệu'],['vp-long-lan','Long Lân',4,6,'Vật liệu'],['vp-phuong-vu','Phượng Vũ',4,3,'Vật liệu'],['vp-yeu-dan','Yêu Đan',3,21,'Vật liệu'],['vp-ngoc-tim','Tử Tinh',3,14,'Vật liệu'],
+ ['vp-dan-hong','Kinh Nghiệm Đan',1,240,'Đan dược'],['vp-dan-vang','Đột Phá Đan',4,8,'Đan dược'],['vp-dan-lam','Thể Lực Đan',2,12,'Đan dược'],['vp-dan-tim','Thức Tỉnh Đan',4,2,'Đan dược'],['vp-dan-luc','Hồi Sinh Đan',3,5,'Đan dược'],
+ ['nv-ma-tu','Mảnh Huyết Ma',4,62,'Mảnh'],['nv-loi-tuong','Mảnh Lôi Chấn',3,34,'Mảnh'],['nv-tien-nu','Mảnh Tô Dao',3,12,'Mảnh']];
+// ============ HOME ============
+function drawHome(){const h=HER[LEAD];$('hhero').src=I(h[0]);$('lnm').textContent=h[1];$('lsub').innerHTML=`<span class="stars">${'★'.repeat(h[5])}</span> · ${h[2].toUpperCase()} · <img class="el" src="${eg(h[3])}"> ${EL[h[3]]} · Lv ${h[4]}`}
+function lead(d){LEAD=(LEAD+d+7)%7;drawHome()}
+// ============ TRANG ============
+const P={ros:['Tiên Hữu',['Tất cả','Đội hình','Mảnh ghép']],bag:['Hành Trang',['Trang bị','Vật liệu','Đan dược','Mảnh']],sum:['Tầm Tiên Các',['Thần tuyển · Hồ Ly','Thường','Pháp bảo']],chap:['Chinh Chiến',['Chủ tuyến','Tinh anh']],dp:['Động Phủ',['Công trình','Thú viên','Linh mạch']],dg:['Bí Cảnh',['Ngũ hành','Thế giới boss','Linh Châu Tháp']],mail:['Thư',['Hệ thống','Bạn bè']],task:['Nhiệm Vụ',['Hằng ngày','Hằng tuần','Thành tựu']]};
+let curT='home';
+function openTab(k,t=0,x){curT=k;document.querySelectorAll('.dk').forEach(d=>d.classList.toggle('on',d.dataset.k===k));if(k==='home'){$('pg').classList.remove('on');return}
+ $('ptl').textContent=P[k][0];$('ptb').innerHTML=P[k][1].map((n,i)=>`<button class="tab ${i===t?'on':''}" onclick="openTab('${k}',${i})">${n}</button>`).join('');$('pbd').innerHTML=RD[k](t,x);$('pbd').scrollTop=0;$('pg').id='pg';$('pg').classList.add('on');$('pg').style.background=k==='sum'?`url(${I('bg-trieu-hoi')}) center/cover`:'';$('phd').innerHTML=k==='sum'?`<div class="cur"><img src="${I('vp-ngoc-tim')}">6.480</div>`:''}
+function hcard(i,x){const h=HER[i];return `<div class="hc ${h[10]?'lock':''}" onclick="${h[10]?`toast('Cần 80 mảnh Huyết Ma để triệu hồi')`:`openHero(${i})`}"><div class="pt">${im(h[0])}</div><img class="fr" src="${I('i-the-'+h[2])}"><span class="lvl">Lv ${h[4]}</span><img class="eg" src="${eg(h[3])}"><span class="rr" style="color:${{ssr:'#ffd060',sr:'#e0a0ff',r:'#8ad0ff',n:'#ccc'}[h[2]]}">${h[2].toUpperCase()}</span><div class="info"><b>${h[1]}</b><span class="stars">${'★'.repeat(h[5])||'—'}</span></div>${x?`<span style="position:absolute;top:30%;left:0;right:0;text-align:center;font-size:20px;font-weight:800">${TEAM.includes(i)?'✓':''}</span>`:''}</div>`}
+const RD={
+ ros(t,x){if(t===1||x)return `<p style="color:var(--dim);font-size:10px;margin-bottom:6px">Chọn 5 tiên hữu. Đội trưởng (ô đầu) cho kỹ năng đội trưởng.</p><div style="display:flex;gap:5px;margin-bottom:8px">${TEAM.map((i,k)=>`<div style="flex:1;position:relative">${face(HER[i][0],66,'12px')}<img src="${eg(HER[i][3])}" style="position:absolute;right:-2px;bottom:-2px;width:18px">${k===0?'<span style="position:absolute;top:-6px;left:-2px;background:#ffd060;color:#5a2a00;border-radius:6px;font-size:8px;font-weight:800;padding:0 4px">Đội trưởng</span>':''}</div>`).join('')}</div>
+  <div class="row"><img src="${I('kn-kiem')}"><div class="t"><b>Đội trưởng: ${HER[TEAM[0]][9][0]}</b><small>${HER[TEAM[0]][9][1]}</small></div></div><div class="row"><img src="${I('kn-tinh')}"><div class="t"><b>Ngũ hành tề tựu</b><small>Đủ 5 hệ: toàn đội công +25%, máu +15%</small></div></div><div class="sec">Chọn tiên hữu</div><div class="roster">${HER.map((_,i)=>hcard(i,1)).join('')}</div>`;
+  if(t===2)return ITEMS.filter(i=>i[4]==='Mảnh').map(i=>`<div class="row"><div class="it r${i[2]}">${im(i[0],'width:100%;border-radius:8px;object-fit:cover;object-position:50% 12%;height:100%')}</div><div class="t"><b>${i[1]}</b><small>${i[3]}/80 mảnh</small><div class="pbar"><i style="width:${i[3]/.8}%"></i></div></div><button class="bt sm ${i[3]>=80?'':'b2'}" onclick="toast('Còn thiếu ${80-i[3]} mảnh')">Ghép</button></div>`).join('');
+  return `<div class="chip">${Object.keys(EL).map((e,i)=>`<button class="${i===0?'on':''}" onclick="this.parentNode.querySelectorAll('button').forEach(b=>b.classList.remove('on'));this.classList.add('on');toast('Lọc hệ ${EL[e]}')"><img src="${eg(e)}"></button>`).join('')}</div><div class="roster">${HER.map((_,i)=>hcard(i)).join('')}</div><p style="text-align:center;color:var(--dim);margin-top:8px">Đã thu thập 8/64 tiên hữu</p>`},
+ bag(t){const c=['Trang bị','Vật liệu','Đan dược','Mảnh'][t];const L=ITEMS.filter(i=>c==='Trang bị'?['Vũ khí','Giáp','Mũ','Giày','Nhẫn','Bội'].includes(i[4]):i[4]===c);
+  return `<div style="display:flex;justify-content:space-between;color:var(--dim);font-size:10px;margin-bottom:6px"><span>Ô chứa 128/200</span><span onclick="toast('Đã phân giải trang bị dư')">♻ Phân giải nhanh</span></div><div class="grid">${L.map(i=>`<div class="it r${i[2]}" onclick="itD('${i[0]}')">${im(i[0],i[4]==='Mảnh'?'width:100%;height:100%;object-fit:cover;object-position:50% 12%;border-radius:7px':'')}${i[3]>1?`<b>${i[3]}</b>`:''}</div>`).join('')}</div>`},
+ sum(t){const h=t===0?HER[1]:t===1?HER[2]:HER[4];return `<div class="ban">${im(h[0],'').replace('<img','<img class="sr"')}<div class="tx"><span class="tag">${t===0?'TĂNG TỈ LỆ · còn 3 ngày':t===1?'THƯỜNG TRỰC':'PHÁP BẢO'}</span><b class="B g">${t===2?'Pháp Bảo Các':h[1]}</b><span class="stars">★★★★★</span> <img class="el" src="${eg(h[3])}"><p>${t===0?'Hồ Cửu Nương xuất hiện với tỉ lệ SSR x3. Kỹ năng: Cửu Vĩ Hồ Hỏa đổi Thủy thành Hỏa.':t===1?'Tất cả tiên hữu thường trực. 90 lần chắc chắn có SSR.':'Rút pháp bảo: Đông Hoàng Chung, Chiếu Yêu Kính, Linh Lung Tháp...'}</p><p style="color:#ffd060;font-weight:700">SSR 2% · SR 12% · R 86%</p></div></div>
+  <div class="box" style="margin-top:-10px"><div class="pity">Bảo hiểm: <b style="color:#ffd060">62/90</b> · còn 28 lần chắc chắn có SSR</div><div class="pbar"><i style="width:69%;background:linear-gradient(90deg,#ffb020,#fff0a0)"></i></div>
+  <div class="sbtn"><button class="bt b2" onclick="pull(1)"><span class="B">Tầm 1 lần</span><small><img src="${I('vp-ngoc-tim')}">160</small></button><button class="bt" onclick="pull(10)"><span class="B">Tầm 10 lần</span><small><img src="${I('vp-ngoc-tim')}">1.600</small></button></div>
+  <p style="text-align:center;font-size:9.5px;color:var(--dim)">Mỗi lần triệu hồi tặng 10 điểm Tiên duyên · <span style="color:var(--cy)" onclick="toast('Đổi tiên hữu tự chọn bằng điểm Tiên duyên')">Đổi thưởng ›</span></p></div>`},
+ chap(t){const C=[['bg-rung','Chương 4 · Huyết Lâm Cốc',7,'q-moc-yeu'],['bg-nham','Chương 5 · Xích Diễm Sơn',0,'q-hoa-linh'],['bg-bang','Chương 6 · Hàn Băng Cốc',0,'q-bang-tinh'],['bg-hang','Chương 3 · U Minh Động',10,'q-quy-dang'],['bg-son-thuy','Chương 2 · Vân Mộng Trạch',10,'q-xa-yeu']];
+  return C.map((c,k)=>`<div class="chap" ${!c[2]&&k?'style="opacity:.6"':''}><div class="bgc" style="background-image:url(${I(c[0])})"></div><div class="ov"></div><div class="in"><div style="display:flex;justify-content:space-between"><div><b class="B g">${c[1]}</b><small>${c[2]===10?'Hoàn thành · 28/30 sao':c[2]?'Đang chinh phạt · 16/30 sao':'Mở ở Lv 55'}</small></div>${im(c[3],'width:44px;height:44px')}</div>
+   <div class="nodes">${Array.from({length:10},(_,i)=>`<div class="nd ${i===9?'boss':''} ${i<c[2]-1||c[2]===10?'done':i===c[2]-1?'cur':''}" onclick="${c[2]?`prep(${4-k+ (k>2?k-2:0)},${i+1})`:"toast('Chưa mở')"}">${i===9?'👹':i+1}${i<c[2]-1||c[2]===10?'<i>★★★</i>':''}</div>`).join('')}</div></div></div>`).join('')+`<div class="row"><img src="${I('vp-ruong')}"><div class="t"><b>Rương sao Chương 4</b><small>16/30 sao · mở ở 20 sao</small><div class="pbar"><i style="width:53%"></i></div></div><button class="bt b2 sm" onclick="toast('Chưa đủ sao')">Nhận</button></div>`},
+ dp(t){if(t===1)return `<p style="color:var(--dim);font-size:10px;margin-bottom:6px">Tọa kỵ nuôi ở Thú viên tăng chỉ số cho tiên hữu cưỡi chúng.</p>`+MOUNT.map((m,i)=>`<div class="row"><img src="${I(m[0])}" style="width:56px;height:56px"><div class="t"><b>${m[1]} <span class="stars">${'★'.repeat(m[3])}</span></b><small>${m[2]}</small><small style="color:#7aff9a">${m[4]?'Đang được '+m[4]+' cưỡi':'Chưa ai cưỡi'}</small></div><button class="bt sm b2" onclick="toast('Cho ${m[1]} ăn')">Cho ăn</button></div>`).join('');
+  if(t===2)return `<div style="text-align:center">${im('vp-linh-thach','width:110px;margin:6px auto;filter:drop-shadow(0 0 16px #3ac8ff)')}<b class="B g" style="font-size:17px">Linh Mạch cấp 9</b><p style="color:var(--dim);font-size:10px">Sản lượng 12.400 linh thạch / giờ · đầy sau 3 giờ 12 phút</p><div class="pbar" style="margin:8px 20px"><i style="width:36%"></i></div><button class="bt" onclick="toast('Thu 44.640 linh thạch')">Thu hoạch</button></div>`;
+  return [['vp-lo','Đan Phòng',6,'Luyện Kinh Nghiệm Đan · 12/20','02:14'],['vp-tinh-kim','Luyện Khí Lư',5,'Rèn Trảm Tiên Kiếm +6','00:46'],['vp-thap','Tàng Bảo Các',4,'Cất giữ pháp bảo · 18/30',''],['vp-sach','Tàng Kinh Các',5,'Nghiên cứu: Kim hệ công +2%','05:30'],['vp-co','Diễn Võ Trường',3,'Luyện tập: tiên hữu nhàn rỗi nhận kinh nghiệm','']].map(b=>`<div class="row"><img src="${I(b[0])}"><div class="t"><b>${b[1]} · Cấp ${b[2]}</b><small>${b[3]}</small>${b[4]?`<div class="pbar"><i style="width:60%"></i></div>`:''}</div>${b[4]?`<span style="font-size:10px;color:var(--cy);font-weight:800">${b[4]}</span>`:''}<button class="bt sm" onclick="toast('Nâng ${b[1]} lên cấp ${b[2]+1}')">Nâng</button></div>`).join('')},
+ dg(t){if(t===1)return `<div class="chap"><div class="bgc" style="background-image:url(${I('bg-nham')})"></div><div class="ov"></div><div class="in" style="text-align:center">${im('nv-ma-tu','height:200px;margin:auto;filter:drop-shadow(0 0 14px #ff3a3a)')}<b class="B g" style="font-size:18px">Huyết Ma Lão Tổ</b><small>Boss thế giới · máu 82% · 1.240 đạo hữu đang đánh</small><div class="pbar" style="margin:6px 0"><i style="width:82%;background:linear-gradient(90deg,#ff3a3a,#ffb0a0)"></i></div><button class="bt" onclick="prep(0,0,'boss')">Khiêu chiến (2/3)</button></div></div><div class="sec">Xếp hạng sát thương</div>${[['Mạc Vấn','12,4M'],['Tiểu Long Nữ','10,8M'],['Thiên Diệp (bạn)','3,2M']].map((r,i)=>`<div class="row"><b class="B g" style="width:22px;font-size:16px">${i===2?86:i+1}</b><div class="t"><b>${r[0]}</b></div><b>${r[1]}</b></div>`).join('')}`;
+  if(t===2)return [30,29,28,27,26].map((f,i)=>`<div class="row" style="${i===0?'border-color:#ffd060':'opacity:'+(i?1:1)}">${im(['q-thach-quai','q-xa-yeu','q-bang-tinh','q-doi-ma','q-quy-dang'][i],'width:46px')}<div class="t"><b>Tầng ${f}</b><small>${i===0?'Tầng hiện tại · chỉ dùng tiên hữu hệ Thổ, Kim':'Đã vượt · ★★★'}</small></div>${i===0?`<button class="bt sm" onclick="prep(0,${f},'thap')">Leo tháp</button>`:''}</div>`).join('');
+  const D=[['kim','Kim Khoáng Động','Thứ 2, 5','bg-hang'],['moc','Thanh Mộc Lâm','Thứ 3, 6','bg-rung'],['thuy','Bích Thủy Hồ','Thứ 4, 7','bg-bang'],['hoa','Xích Diễm Quật','Thứ 2, 6','bg-nham'],['tho','Hoàng Thổ Nguyên','Chủ nhật','bg-son-thuy'],['tam','Hồng Trần Uyển','Hằng ngày','bg-dien']];
+  return `<p style="color:var(--dim);font-size:10px;margin-bottom:6px">Mỗi ngày mở bí cảnh khác nhau, rơi vật liệu đột phá theo hệ.</p><div class="dg">${D.map((d,i)=>`<div class="dgc ${i===2||i===3?'':'off'}" style="border-color:${ELC[d[0]]}" onclick="${i===2||i===3?`prep(0,${i},'${d[0]}')`:`toast('Mở vào ${d[2]}')`}"><div style="background-image:url(${I(d[3])})"></div><img src="${eg(d[0])}"><span><b>${d[1]}</b>${d[2]} · ${i===2||i===3?'còn 3/3 lượt':'đang đóng'}</span></div>`).join('')}</div>`},
+ mail(t){return [['vp-thu','Quà đăng nhập ngày 6','Tiên ngọc x300'],['vp-ruong','Bồi thường bảo trì','Thể lực x120'],['vp-nguyen-bao','Thưởng xếp hạng','Linh thạch x500.000']].map(m=>`<div class="row"><img src="${I(m[0])}"><div class="t"><b>${m[1]}</b><small>Đính kèm: ${m[2]}</small></div><button class="bt sm" onclick="this.textContent='Đã nhận'">Nhận</button></div>`).join('')},
+ task(t){return [['vp-dan-lam','Tiêu 60 thể lực','42/60','Tiên ngọc 50'],['nv-ho-ly','Triệu hồi 1 lần','1/1','Linh thạch 20.000'],['i-chau-hoa','Đạt combo 8 trong trận','5/8','Thức Tỉnh Đan'],['q-doi-ma','Thắng 3 ải chủ tuyến','3/3','Rương bạc']].map(a=>`<div class="row"><img src="${I(a[0])}" style="${a[0].startsWith('nv')?'object-fit:cover;object-position:50% 12%;border-radius:8px':''}"><div class="t"><b>${a[1]}</b><small>${a[2]} · thưởng ${a[3]}</small><div class="pbar"><i style="width:${eval(a[2])*100}%"></i></div></div><button class="bt sm ${eval(a[2])>=1?'':'b2'}" onclick="toast('${eval(a[2])>=1?'Đã nhận thưởng':'Chưa hoàn thành'}')">${eval(a[2])>=1?'Nhận':'Đi'}</button></div>`).join('')}
+};
+const MOUNT=[['mt-phuong','Xích Viêm Phượng','Hệ Hỏa công +18% · tốc +40',5,'Hồ Cửu Nương'],['mt-hac','Vân Trung Hạc','Né tránh +12% · máu +8%',4,'Lăng Thiên'],['mt-con-ngu','Bắc Minh Côn','Hệ Thủy máu +20%',4,''],['mt-lien-dai','Bạch Liên Đài','Viên Tâm hồi +30%',3,'Tô Dao'],['mt-kiem','Thanh Hồng Kiếm','Hệ Kim công +12%',3,''],['mt-ho-lo','Tử Kim Hồ Lô','Kết thúc trận nhận thêm 10% vật liệu',2,'']];
+function itD(n){const i=ITEMS.find(x=>x[0]===n);const eqp=['Vũ khí','Giáp','Mũ','Giày','Nhẫn','Bội'].includes(i[4]);md(`<div class="it r${i[2]}" style="width:80px;margin:0 auto 6px">${im(i[0],i[4]==='Mảnh'?'width:100%;height:100%;object-fit:cover;object-position:50% 12%;border-radius:7px':'')}</div><h3 class="B g">${i[1]}</h3><p>${i[4]} · ${['','Thường','Hiếm','Sử thi','Truyền thuyết'][i[2]]}${i[3]>1?' · số lượng '+i[3]:''}</p>${eqp?`<div class="kv" style="margin:8px 0"><div><span>Công</span>+${i[2]*420}</div><div><span>Máu</span>+${i[2]*1800}</div><div><span>Bạo kích</span>+${i[2]*2}%</div><div><span>Cường hoá</span>+${i[2]*2}</div></div><p style="color:#ffd060">Bộ Trảm Tiên (2/4): hệ Kim công +10%</p>`:`<p style="margin:6px 0">${i[4]==='Đan dược'?'Dùng để nâng cấp hoặc đột phá tiên hữu.':'Nguyên liệu nâng cấp, rơi ở bí cảnh ngũ hành.'}</p>`}<div class="ac">${eqp?'<button class="bt sm" onclick="cm();toast(\'Đã trang bị cho Lăng Thiên\')">Trang bị</button><button class="bt b2 sm" onclick="cm();toast(\'Cường hoá +1\')">Cường hoá</button>':'<button class="bt sm" onclick="cm();toast(\'Đã dùng\')">Dùng</button>'}<button class="bt b3 sm" onclick="cm()">Đóng</button></div>`)}
+// ============ CHI TIẾT TIÊN HỮU ============
+let HI=0;
+function openHero(i,t=0){HI=i;const h=HER[i];$('ha').src=I(h[0]);$('hn').textContent=h[1];$('hs').innerHTML=`<span class="stars">${'★'.repeat(h[5])}</span> <img class="el" src="${eg(h[3])}"> <b style="font-size:10px">${EL[h[3]]} · ${h[2].toUpperCase()} · Lv ${h[4]}/60</b>`;$('hp').textContent=(h[6]*12+h[7]*2).toLocaleString('vi');
+ $('htb').innerHTML=['Tổng quan','Trang bị','Kỹ năng','Đột phá','Tọa kỵ'].map((n,k)=>`<button class="tab ${k===t?'on':''}" onclick="openHero(${i},${k})">${n}</button>`).join('');$('hpn').innerHTML=HR[t](h);$('hero').classList.add('on')}
+const HR=[
+ h=>`<div class="kv" style="margin-top:6px">${[['Công',h[6]],['Máu',h[7]],['Hồi',Math.round(h[6]/4)],['Tốc',112],['Bạo kích','15%'],['Kháng hệ','22%'],['Phá giáp','8%'],['Hút máu','5%']].map(a=>`<div><span>${a[0]}</span>${a[1]}</div>`).join('')}</div>
+  <div class="row" style="margin-top:8px">${im('vp-dan-hong','width:40px')}<div class="t"><b>Kinh nghiệm · Lv ${h[4]}</b><div class="pbar"><i style="width:72%"></i></div><small>Dùng Kinh Nghiệm Đan để lên cấp</small></div><button class="bt sm" onclick="toast('Lên cấp ${h[4]+1}')">Lên cấp</button></div>
+  <div class="sec">Tiểu sử</div><p style="font-size:10px;color:#c8d0f0;line-height:1.5">${h[1]} vốn là đệ tử chân truyền của một tông môn đã diệt vong. Thề tìm lại Ngũ Hành Linh Châu thất lạc để phục hưng sư môn.</p>`,
+ h=>`<div class="eq" style="margin-top:8px">${[['vp-kiem','Vũ khí',4],['vp-mao','Mũ',4],['vp-ao','Giáp',3],['vp-hai','Giày',2],['vp-nhan','Nhẫn',3],['vp-boi','Bội',3]].map(e=>`<div onclick="itD('${e[0]}')"><div class="it r${e[2]}">${im(e[0])}</div>${e[1]} · +${e[2]*2}</div>`).join('')}</div><div class="sec">Pháp bảo</div><div class="row"><div class="it r4">${im('vp-chuong')}</div><div class="t"><b>Đông Hoàng Chung · Lv 8</b><small>Mỗi 4 lượt: choáng toàn bộ địch 1 lượt</small></div><button class="bt b2 sm" onclick="toast('Đổi pháp bảo')">Đổi</button></div><div class="ac"><button class="bt sm" onclick="toast('Đã mặc trang bị tốt nhất')">Mặc tốt nhất</button><button class="bt b2 sm" onclick="toast('Cường hoá toàn bộ')">Cường hoá tất cả</button></div>`,
+ h=>`<div class="sk" style="margin-top:8px">${im(h[8][0])}<div><b>${h[8][1]}</b><span class="tg" style="background:#3a8ae0">Chủ động</span><span class="tg" style="background:#5a3aa0">Hồi ${h[8][3]} lượt</span><p>${h[8][2]}</p></div></div>
+  <div class="sk">${im('kn-quang')}<div><b>${h[9][0]}</b><span class="tg" style="background:#c88a10">Đội trưởng</span><p>${h[9][1]}</p></div></div>
+  ${[['kn-phong','Thân pháp','Bị động','Né tránh +8%'],['kn-thuan','Hộ thể','Thức tỉnh','Mở khi đạt 5 sao: giảm 15% sát thương']].map(s=>`<div class="sk">${im(s[0])}<div><b>${s[1]}</b><span class="tg" style="background:#2a8a5a">${s[2]}</span><p>${s[3]}</p></div></div>`).join('')}
+  <div class="row"><img src="${I('vp-sach')}"><div class="t"><b>Công pháp: Ngũ Hành Quy Nguyên Quyết</b><small>Tầng 4/10 · mỗi tầng tăng 5% công cho viên ${EL[h[3]]}</small><div class="pbar"><i style="width:40%"></i></div></div><button class="bt sm" onclick="toast('Tu luyện tầng 5')">Tu</button></div>`,
+ h=>`<div class="star">${[1,2,3,4,5,6].map(k=>`<span class="${k>h[5]?'off':''}">★</span>`).join('')}</div><p style="text-align:center;color:var(--dim);font-size:10px">Đột phá lên ${h[5]+1} sao: công +18%, mở thêm kỹ năng bị động</p><div class="rw">${[['vp-dan-vang',4,'8/6'],['nv-ma-tu',4,'0/40'],['vp-long-lan',4,'6/10']].map(r=>`<div style="text-align:center;font-size:9.5px"><div class="it r${r[1]}">${im(r[0],r[0].startsWith('nv')?'width:100%;height:100%;object-fit:cover;object-position:50% 12%;border-radius:7px':'')}</div>${r[2]}</div>`).join('')}</div><div class="ac"><button class="bt" onclick="toast('Còn thiếu vật liệu')">Đột phá</button></div><div class="sec">Thức tỉnh</div><div class="row">${im('vp-dan-tim','width:40px')}<div class="t"><b>Thức tỉnh: ${h[1]} · Chân Thân</b><small>Đổi ngoại hình, kỹ năng chủ động +1 hiệu ứng</small></div><button class="bt b3 sm" onclick="toast('Cần 6 sao')">Xem</button></div>`,
+ h=>{const m=MOUNT.find(x=>x[4]===h[1])||MOUNT[2];return `<div style="text-align:center;padding:8px 0">${im(m[0],'width:170px;margin:auto;filter:drop-shadow(0 0 14px #6ae0ff)')}<b class="B g" style="font-size:17px">${m[1]}</b> <span class="stars">${'★'.repeat(m[3])}</span><p style="font-size:10px;color:#c8d0f0">${m[2]}</p></div><div class="sec">Đổi tọa kỵ</div><div class="mnt">${MOUNT.map(x=>`<div class="${x===m?'on':''}" onclick="toast('${h[1]} cưỡi ${x[1]}')">${im(x[0])}<b style="display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${x[1]}</b><small style="color:var(--dim)">${x[4]||'Rảnh'}</small></div>`).join('')}</div>`}];
+// ============ TRIỆU HỒI ============
+function pull(n){const R=[];for(let k=0;k<n;k++){const r=Math.random();R.push(r<.04?1:r<.1?0:r<.3?2:r<.5?3:r<.7?5:r<.85?6:7)}if(n===10&&!R.some(i=>HER[i][2]==='ssr'))R[9]=1;
+ md(`<h3 class="B g">${n===10?'Kết quả 10 lần':'Kết quả'}</h3><div class="res10" style="${n===1?'grid-template-columns:1fr;width:120px;margin:auto':''}">${R.map((i,k)=>`<div style="animation-delay:${k*.08}s">${hcard(i).replace('onclick=','data-x=')}</div>`).join('')}</div><p style="margin-top:8px">Nhận <b style="color:#ffd060">${n*10} điểm Tiên duyên</b> · trùng lặp đổi thành mảnh</p><div class="ac"><button class="bt" onclick="pull(${n})">Tầm tiếp ${n} lần</button><button class="bt b2" onclick="cm()">Xong</button></div>`)}
+// ============ CHUẨN BỊ ============
+const STG={rung:['bg-rung',[['q-moc-yeu','moc',3200,3],['q-xa-yeu','moc',2600,2],['q-doi-ma','tho',2200,1]]],nham:['bg-nham',[['q-hoa-linh','hoa',2800,2],['q-hoa-linh','hoa',2800,3],['q-thach-quai','tho',4200,2]]],bang:['bg-bang',[['q-bang-tinh','thuy',3000,2],['q-quy-dang','kim',2400,1]]],boss:['bg-nham',[['nv-ma-tu','hoa',38000,2]]]};
+let ST;
+function prep(c,s,m){const k=m==='boss'?'boss':m==='hoa'?'nham':m==='thuy'||m==='thap'?'bang':'rung';ST=k;const S=STG[k];cm();
+ md(`<h3 class="B g">${m==='boss'?'Boss thế giới':m==='thap'?'Linh Châu Tháp · tầng '+s:m?'Bí cảnh ngũ hành':'Ải '+c+'-'+s}</h3><div style="height:110px;border-radius:10px;overflow:hidden;position:relative;background:url(${I(S[0])}) center/cover"><div class="vs" style="position:absolute;bottom:0;left:0;right:0">${S[1].map(f=>im(f[0],'width:'+(S[1].length>1?70:110)+'px')).join('')}</div></div>
+ <p style="margin:6px 0">Kẻ địch khắc chế: ${[...new Set(S[1].map(f=>f[1]))].map(e=>`<img class="el" src="${eg(e)}"> ${EL[e]}`).join(' · ')}<br>Lực chiến đề nghị <b style="color:#7aff9a">240.000</b> · Tiêu hao <b>6 thể lực</b></p>
+ <div style="display:flex;gap:4px;justify-content:center">${TEAM.map(i=>face(HER[i][0],46,'10px')).join('')}</div>
+ <div class="rw">${['vp-linh-thach','vp-dan-hong','vp-tinh-kim','vp-ngoc-tim'].map((r,k)=>`<div class="it r${k+1}">${im(r)}</div>`).join('')}</div>
+ <div class="ac"><button class="bt" onclick="cm();fight()">Chiến!</button><button class="bt b2" onclick="cm();openTab('ros',1)">Đổi đội</button><button class="bt b3 sm" onclick="cm();toast('Quét nhanh 3 lần · nhận thưởng')">Quét x3</button></div>`)}
+// ============ CHIẾN ĐẤU XẾP CHÂU ============
+const CW=6,CH=5,TY=['kim','moc','thuy','hoa','tho','tam'];let BD=[],OID=0,cs=0,sel=null,busy=0,F=[],THP,TMAX,turn=1,charge=[0,0,0,0,0],frozen=0;
+function fight(){$('pg').classList.remove('on');$('hero').classList.remove('on');ST=ST||'rung';const S=STG[ST];$('fld').style.backgroundImage=`url(${I(S[0])})`;F=S[1].map(f=>({img:f[0],el:f[1],hp:f[2],max:f[2],cd:f[3],cdm:f[3]+1}));TMAX=TEAM.reduce((a,i)=>a+HER[i][7],0);THP=TMAX;turn=1;charge=[60,30,90,100,20];frozen=0;
+ $('wv').textContent=ST==='boss'?'Boss · Huyết Ma':'Đợt 1/3';$('bat').classList.add('on');$('dock').style.display='none';drawFoes();drawTeam();newBoard();setTimeout(drawBoard,30)}
+function drawFoes(){$('foes').innerHTML=F.map((f,i)=>`<div class="foe ${f.hp<=0?'dead':''}" id="fo${i}" style="${F.length===1?'width:62%':''}"><div class="fnm">${f.img.startsWith('nv')?'Huyết Ma Lão Tổ':['Yêu thú','Tinh anh','Thủ lĩnh'][i]}</div><div class="fhp"><i style="width:${Math.max(0,f.hp/f.max*100)}%"></i></div><img class="fm" src="${I(f.img)}"><span class="fcd" style="${frozen?'border-color:#6ae0ff':''}">${frozen?'❄':f.cd}</span><img class="fel" src="${eg(f.el)}"></div>`).join('');$('thp').style.width=Math.max(0,THP/TMAX*100)+'%';$('tht').textContent=Math.max(0,THP).toLocaleString('vi')+' / '+TMAX.toLocaleString('vi')}
+function drawTeam(){$('tm').innerHTML=TEAM.map((i,k)=>{const h=HER[i];return `<div class="tmc ${charge[k]>=100?'full':''}" style="--c:${ELC[h[3]]};--p:${charge[k]}" onclick="skill(${k})"><div class="ring"><div>${im(h[0],'position:absolute;width:300%;left:-100%;top:-42%')}</div></div><img class="egm" src="${eg(h[3])}"><span class="at">${(h[6]/1000).toFixed(1)}k</span></div>`}).join('')}
+function newBoard(){do{BD=Array.from({length:CH},()=>Array.from({length:CW},()=>({t:TY[rnd(0,5)],id:++OID})))}while(matches().size)}
+function matches(){const m=new Set();for(let r=0;r<CH;r++)for(let c=0;c<CW-2;c++){const t=BD[r][c]&&BD[r][c].t;if(t&&BD[r][c+1]&&BD[r][c+2]&&BD[r][c+1].t===t&&BD[r][c+2].t===t){m.add(r+','+c);m.add(r+','+(c+1));m.add(r+','+(c+2))}}
+ for(let c=0;c<CW;c++)for(let r=0;r<CH-2;r++){const t=BD[r][c]&&BD[r][c].t;if(t&&BD[r+1][c]&&BD[r+2][c]&&BD[r+1][c].t===t&&BD[r+2][c].t===t){m.add(r+','+c);m.add((r+1)+','+c);m.add((r+2)+','+c)}}return m}
+function drawBoard(){const b=$('brd');cs=Math.floor(b.clientWidth/CW);b.style.height=cs*CH+'px';if(!b.querySelector('.cl')){let h='';for(let r=0;r<CH;r++)for(let c=0;c<CW;c++)h+=`<div class="cl" style="left:${c*cs}px;top:${r*cs}px;width:${cs}px;height:${cs}px;${(r+c)%2?'background:#ffffff08':''}"></div>`;b.innerHTML=h}
+ const seen=new Set();for(let r=0;r<CH;r++)for(let c=0;c<CW;c++){const o=BD[r][c];if(!o)continue;seen.add('o'+o.id);let e=$('o'+o.id);if(!e){e=document.createElement('div');e.className='orb';e.id='o'+o.id;e.style.width=e.style.height=cs+'px';e.style.left=c*cs+'px';e.style.top=(o.from!=null?o.from*cs:r*cs)+'px';e.innerHTML=`<img src="${eg(o.t)}">`;e.onclick=()=>tap(e);b.appendChild(e);e.offsetTop}e.dataset.r=r;e.dataset.c=c;e.style.left=c*cs+'px';e.style.top=r*cs+'px';delete o.from}
+ b.querySelectorAll('.orb').forEach(e=>{if(!seen.has(e.id))e.remove()})}
+async function tap(e){if(busy||frozenTurn)return;const r=+e.dataset.r,c=+e.dataset.c;if(!sel){sel=[r,c];e.classList.add('sel');return}const [r0,c0]=sel;document.querySelectorAll('.orb.sel').forEach(x=>x.classList.remove('sel'));sel=null;
+ if(Math.abs(r-r0)+Math.abs(c-c0)!==1){sel=[r,c];e.classList.add('sel');return}busy=1;swap(r,c,r0,c0);drawBoard();await sleep(180);
+ if(!matches().size){swap(r,c,r0,c0);drawBoard();await sleep(180);busy=0;toast('Không tạo được hàng 3');return}await resolve();busy=0}
+let frozenTurn=0;
+function swap(a,b,c,d){const t=BD[a][b];BD[a][b]=BD[c][d];BD[c][d]=t}
+async function resolve(){let combo=0;const tot={kim:0,moc:0,thuy:0,hoa:0,tho:0,tam:0};
+ while(true){const m=matches();if(!m.size)break;combo++;m.forEach(k=>{const [r,c]=k.split(',').map(Number);tot[BD[r][c].t]++;$('o'+BD[r][c].id)&&$('o'+BD[r][c].id).classList.add('pop')});
+  if(combo>1){const cb=$('cmb');cb.textContent=combo+' Combo!';cb.classList.remove('on');cb.offsetWidth;cb.classList.add('on')}await sleep(260);
+  m.forEach(k=>{const [r,c]=k.split(',').map(Number);BD[r][c]=null});
+  for(let c=0;c<CW;c++){const col=[];for(let r=CH-1;r>=0;r--)if(BD[r][c])col.push(BD[r][c]);let n=0;for(let r=CH-1;r>=0;r--){if(n<col.length)BD[r][c]=col[n++];else{const k=r-CH+col.length;BD[r][c]={t:TY[rnd(0,5)],id:++OID,from:r-(CH-col.length)}}}}
+  drawBoard();await sleep(260)}
+ // sát thương theo hệ
+ const mult=1+.25*(combo-1);let delay=0;
+ TEAM.forEach((i,k)=>{const h=HER[i],n=tot[h[3]];if(!n)return;charge[k]=Math.min(100,charge[k]+n*12);const alive=F.map((f,j)=>[f,j]).filter(x=>x[0].hp>0);if(!alive.length)return;const [f,j]=alive[rnd(0,alive.length-1)];
+  const adv={kim:'moc',moc:'tho',tho:'thuy',thuy:'hoa',hoa:'kim'}[h[3]]===f.el?1.5:1;const d=Math.round(h[6]*n*.35*mult*adv);setTimeout(()=>hitFoe(j,d,ELC[h[3]]),delay);delay+=170});
+ if(tot.tam){const hl=Math.round(tot.tam*900*mult);THP=Math.min(TMAX,THP+hl);setTimeout(()=>pop($('thp'),'+'+hl,'#7aff9a'),100)}
+ drawTeam();await sleep(delay+400);if(F.every(f=>f.hp<=0))return win();
+ enemyTurn()}
+function pop(el,t,c){const r=el.getBoundingClientRect(),a=$('app').getBoundingClientRect();const p=document.createElement('div');p.className='dmg';p.textContent=t;p.style.color=c;p.style.left=(r.left-a.left+r.width/2-30)+'px';p.style.top=(r.top-a.top-10)+'px';$('app').appendChild(p);setTimeout(()=>p.remove(),1000)}
+function hitFoe(j,d,c){const f=F[j];if(f.hp<=0)return;f.hp-=d;const e=$('fo'+j);if(!e)return;e.classList.remove('hit');e.offsetWidth;e.classList.add('hit');pop(e,d.toLocaleString('vi'),c);e.querySelector('.fhp i').style.width=Math.max(0,f.hp/f.max*100)+'%';if(f.hp<=0)setTimeout(()=>e.classList.add('dead'),300)}
+function enemyTurn(){turn++;$('bturn').textContent='Lượt '+turn;if(frozen){frozen--;drawFoes();return}let dmg=0;F.forEach(f=>{if(f.hp<=0)return;f.cd--;if(f.cd<=0){dmg+=Math.round(f.max*.25);f.cd=f.cdm}});if(dmg){THP-=dmg;pop($('thp'),'-'+dmg.toLocaleString('vi'),'#ff6a5a');$('tm').animate([{transform:'translateX(0)'},{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'none'}],{duration:300})}drawFoes();if(THP<=0)lose()}
+function skill(k){if(busy)return;const h=HER[TEAM[k]];if(charge[k]<100){md(`<div style="display:flex;gap:8px;align-items:center">${im(h[8][0],'width:56px')}<div><b class="B g" style="font-size:15px">${h[8][1]}</b><p style="text-align:left">${h[8][2]}</p><p style="text-align:left;color:var(--dim)">Tích lực ${charge[k]}% · nối viên ${EL[h[3]]} để nạp</p></div></div><div class="ac"><button class="bt b2 sm" onclick="cm()">Đóng</button></div>`);return}
+ charge[k]=0;const cb=$('cmb');cb.textContent=h[8][1];cb.classList.remove('on');cb.offsetWidth;cb.classList.add('on');
+ if(h[3]==='hoa'){BD.forEach(r=>r.forEach(o=>{if(o.t==='thuy'){o.t='hoa';const e=$('o'+o.id);if(e)e.querySelector('img').src=eg('hoa')}}))}
+ else if(h[3]==='thuy'){frozen=2}
+ else if(h[3]==='moc'){THP=Math.min(TMAX,THP+TMAX*.5);pop($('thp'),'+'+Math.round(TMAX*.5).toLocaleString('vi'),'#7aff9a')}
+ else F.forEach((f,j)=>{if(f.hp>0)setTimeout(()=>hitFoe(j,Math.round(h[6]*(h[3]==='tho'?6:3)),ELC[h[3]]),200+j*150)});
+ drawTeam();setTimeout(()=>{drawFoes();if(F.every(f=>f.hp<=0))win()},900)}
+function win(){md(`<h3 class="B g" style="font-size:26px">THẮNG LỢI</h3><div class="star" style="font-size:30px">★★★</div><p>Combo cao nhất: 6 · Lượt: ${turn}</p><div class="rw">${[['vp-linh-thach',2,'12.400'],['vp-dan-hong',1,'x6'],['vp-tinh-kim',3,'x3'],['nv-ma-tu',4,'x1']].map(r=>`<div style="text-align:center;font-size:9.5px"><div class="it r${r[1]}">${im(r[0],r[0].startsWith('nv')?'width:100%;height:100%;object-fit:cover;object-position:50% 12%;border-radius:7px':'')}</div>${r[2]}</div>`).join('')}</div><p>Đội nhận <b style="color:#7aff9a">+2.400 kinh nghiệm</b></p><div class="ac"><button class="bt" onclick="cm();endB()">Tiếp tục</button><button class="bt b2" onclick="cm();fight()">Đánh lại</button></div>`)}
+function lose(){md(`<h3 class="B" style="font-size:24px;color:#ff8a7a">THẤT BẠI</h3><p>Gợi ý: dùng tiên hữu hệ khắc chế, nâng cấp trang bị, đột phá sao.</p><div class="ac"><button class="bt" onclick="cm();THP=TMAX;drawFoes()">Hồi sinh (50 ngọc)</button><button class="bt b2" onclick="cm();endB()">Rời trận</button></div>`)}
+function endB(){$('bat').classList.remove('on');$('dock').style.display='flex'}
+function auto(){toast('Tự động: tìm nước đi tốt nhất...');for(let r=0;r<CH;r++)for(let c=0;c<CW-1;c++){swap(r,c,r,c+1);if(matches().size){swap(r,c,r,c+1);const a=$('o'+BD[r][c].id),b=$('o'+BD[r][c+1].id);tap(a);setTimeout(()=>tap(b),150);return}swap(r,c,r,c+1)}}
+function pause(){md(`<h3 class="B g">Tạm dừng</h3><div class="ac"><button class="bt" onclick="cm()">Tiếp tục</button><button class="bt b2" onclick="cm();endB()">Rời trận</button></div>`)}
+// ============ KHỞI ĐỘNG ============
+$('hav').innerHTML=face('nv-kiem-tu',42)+'<b>Lv 52</b>';['vp-linh-thach','vp-ngoc-tim','vp-dan-lam'].forEach((n,i)=>$('c'+(i+1)).src=I(n));
+$('evs').innerHTML=[['bg-trieu-hoi','Thần tuyển','Hồ Ly SSR',"openTab('sum')"],['bg-nham','Huyết Ma','Boss thế giới',"openTab('dg',1)"],['bg-son-thuy','Đăng nhập','Ngày 6/7',"md('<h3 class=\\'B g\\'>Đăng nhập 7 ngày</h3><div class=\\'rw\\' style=\\'flex-wrap:wrap\\'>'+['vp-ngoc-tim','vp-dan-vang','vp-ruong','vp-long-lan','vp-dan-tim','vp-nguyen-bao','nv-ho-ly'].map((r,k)=>'<div class=\\'it r'+(k>4?4:2)+'\\' style=\\'width:50px;'+(k<5?'opacity:.5':'')+'\\'>'+im(r,r.startsWith('nv')?'width:100%;height:100%;object-fit:cover;object-position:50% 12%;border-radius:7px':'')+'</div>').join('')+'</div><div class=\\'ac\\'><button class=\\'bt\\' onclick=\\'cm();toast(&quot;Nhận quà ngày 6&quot;)\\'>Nhận ngày 6</button></div>')"]].map(e=>`<div class="ev" onclick="${e[3]}"><div style="background-image:url(${I(e[0])})"></div><span>${e[1]}<small>${e[2]}</small></span></div>`).join('');
+$('rgt').innerHTML=[['vp-thu','Thư','mail',1],['vp-lenh','Nhiệm vụ','task',1],['vp-co','Xếp hạng',''],['vp-nguyen-bao','Cửa hàng',''],['vp-chuong','Tông môn','']].map(r=>`<button class="ri" onclick="${r[2]?`openTab('${r[2]}')`:`toast('${r[1]} đang mở')`}"><div class="o">${im(r[0])}</div><span>${r[1]}</span>${r[3]?'<i class="red"></i>':''}</button>`).join('');
+$('dock').innerHTML=[['home','vp-thap','Chính điện'],['ros','nv-kiem-tu','Tiên hữu'],['bag','vp-ruong','Hành trang'],['sum','i-chau-tam','Tầm tiên'],['chap','vp-co','Chinh chiến'],['dp','vp-lo','Động phủ']].map(d=>`<button class="dk ${d[0]==='home'?'on':''}" data-k="${d[0]}" onclick="openTab('${d[0]}')">${d[1].startsWith('nv')?`<div style="width:30px;height:30px;border-radius:50%;overflow:hidden;position:relative;border:1.5px solid #c8902a"><img src="${I(d[1])}" style="position:absolute;width:90px;left:-30px;top:-14px"></div>`:im(d[1])}${d[2]}</button>`).join('');
+drawHome();
+</script></body></html>

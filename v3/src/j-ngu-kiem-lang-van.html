@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Ngự Kiếm Lăng Vân</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Bai+Jamjuree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1e3a64;--ink2:#4a6a98;--gold:#c8a050;--gold2:#8a5a10;--sky:#6aaef0;--glass:rgba(255,255,255,.86)}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;background:#a8d8ff;font-family:'Bai Jamjuree',sans-serif;color:var(--ink);font-size:11px;overflow:hidden}
+#app{position:relative;width:100%;max-width:430px;height:100dvh;margin:auto;overflow:hidden;background:url(assets/bg-troi.webp) center top/cover}
+.C{font-family:'Cormorant Garamond',serif;font-weight:700;letter-spacing:.3px;line-height:1.05}
+img{display:block;user-select:none;-webkit-user-drag:none}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+.gl{border:14px solid transparent;border-image:url(assets/j-khung.webp) 44 fill / 14px stretch}
+.nb{height:32px;padding:0 16px;background:url(assets/j-nut.webp) center/100% 100%;font-weight:700;font-size:11.5px;color:var(--ink);white-space:nowrap}
+.nb.g{background-image:url(assets/j-nut2.webp);color:#5a3400}.nb.sm{height:26px;font-size:10px;padding:0 11px}.nb:active{transform:scale(.95)}
+.clouds{position:absolute;inset:0;background:url(assets/bg-van-hai.webp) 0 0/100% auto repeat-y;opacity:.32;mix-blend-mode:screen;animation:cl 60s linear infinite;pointer-events:none}
+@keyframes cl{to{background-position:0 1280px}}
+/* thanh trên */
+.top{position:absolute;left:6px;right:6px;top:6px;display:flex;align-items:center;gap:6px;padding:4px 6px;border-radius:14px;background:var(--glass);box-shadow:0 2px 10px #2a5a9a33;border:1px solid #fff}
+.av{width:42px;height:42px;border-radius:50%;border:2px solid var(--gold);overflow:hidden;flex:none;position:relative;background:#dceeff}
+.who{flex:1;min-width:0}.who b{font-size:15px;display:block}.who small{font-size:9px;color:var(--ink2);white-space:nowrap;display:block}
+.rs{display:flex;flex-direction:column;gap:2px}
+.rp{display:flex;align-items:center;gap:3px;font-size:9.5px;font-weight:700;background:#eaf4ff;border:1px solid #c8daf0;border-radius:9px;padding:0 6px 0 2px;height:18px;white-space:nowrap}.rp img{width:15px}
+.evb{position:absolute;left:6px;right:6px;top:62px;display:flex;gap:5px}
+.evb button{flex:1;display:flex;align-items:center;gap:5px;padding:4px 6px;border-radius:10px;background:linear-gradient(90deg,#ffffffd8,#ffffff80);border:1px solid #fff;font-size:9.5px;text-align:left;line-height:1.2;box-shadow:0 2px 6px #2a5a9a22}
+.evb img{width:24px;flex:none}.evb b{display:block;font-size:10.5px}.evb small{color:#c0392b;font-weight:700}
+/* độ cao */
+.alt{position:absolute;left:8px;top:112px;bottom:178px;width:80px;display:flex;flex-direction:column-reverse;gap:2px}
+.alt div{flex:1;display:flex;align-items:center;gap:4px;font-size:8.5px;font-weight:700;color:var(--ink2);white-space:nowrap}
+.alt div span{background:#ffffffc8;border-radius:7px;padding:0 5px}
+.alt div:before{content:'';width:8px;height:8px;border-radius:50%;border:1.5px solid #fff;flex:none;background:#ffffff55}
+.alt div.done:before{background:#fff}.alt div.cur{color:#8a5a10;font-size:9.5px}.alt div.cur span{background:#fff;box-shadow:0 0 8px #f8c85088}.alt div.cur:before{width:12px;height:12px;background:radial-gradient(#fff6c0,#f8c850);box-shadow:0 0 8px #ffd060;border-color:#c8a050}
+.alt:after{content:'';position:absolute;left:4px;top:4px;bottom:4px;width:1.5px;background:linear-gradient(#fff0,#fff 20%,#fff);z-index:-1}
+/* đảo */
+.isl{position:absolute;left:50%;top:22%;width:64%;transform:translateX(-50%);animation:fly 6s ease-in-out infinite;cursor:pointer}
+@keyframes fly{50%{transform:translateX(-50%) translateY(-10px)}}
+.isl img{width:100%;filter:drop-shadow(0 10px 14px #2a5a9a55)}
+.isl span{position:absolute;left:50%;bottom:-6px;transform:translateX(-50%);background:var(--glass);border:1px solid #fff;border-radius:10px;padding:1px 9px;font-size:9.5px;font-weight:700;white-space:nowrap}
+.me{position:absolute;left:50%;bottom:152px;width:92px;transform:translateX(-50%);animation:fly2 2.6s ease-in-out infinite;pointer-events:none;filter:drop-shadow(0 0 10px #bfe6ff)}
+@keyframes fly2{50%{transform:translateX(-50%) translateY(-8px)}}
+/* kiếm bên phải */
+.swords{position:absolute;right:-6px;top:116px;display:flex;flex-direction:column;gap:3px;align-items:flex-end}
+.sw{width:128px;height:32px;background:url(assets/j-tab.webp) center/100% 100%;display:flex;align-items:center;padding-left:24px;font-weight:700;font-size:10.5px;color:var(--ink);position:relative;transition:transform .15s}
+.sw:hover,.sw:active{transform:translateX(-8px)}
+.sw img{width:18px;margin-right:4px}.sw .d{position:absolute;left:18px;top:4px;width:7px;height:7px;border-radius:50%;background:#e8403a;border:1px solid #fff}
+/* đáy */
+.bot{position:absolute;left:0;right:0;bottom:0;height:150px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:12px;background:linear-gradient(#fff0,#ffffffa0)}
+.launch{position:relative;width:96px;height:96px;background:url(assets/j-vong.webp) center/100%;display:grid;place-items:center;margin:0 10px;animation:glw 2s infinite}
+@keyframes glw{50%{filter:drop-shadow(0 0 12px #ffe08a)}}
+.launch img{width:64px;transform:rotate(-40deg)}
+.launch b{position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);background:url(assets/j-nut2.webp) center/100% 100%;padding:3px 14px;font-size:14px;color:#5a3400;white-space:nowrap}
+.stg{position:absolute;bottom:118px;left:50%;transform:translateX(-50%);background:var(--glass);border:1px solid #fff;border-radius:12px;padding:3px 12px;text-align:center;font-size:9.5px;white-space:nowrap;box-shadow:0 2px 6px #2a5a9a33}
+.stg b{font-size:13px;display:block}
+.mini{display:flex;flex-direction:column;gap:6px;align-items:center}
+.mini button{width:52px;display:flex;flex-direction:column;align-items:center;font-size:8.5px;font-weight:700;position:relative}
+.mini .o{width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 40% 30%,#fff,#cfe4f8);border:1.5px solid var(--gold);display:grid;place-items:center;box-shadow:0 2px 6px #2a5a9a44}
+.mini .o img{width:26px}.mini .d{position:absolute;top:0;right:6px;width:8px;height:8px;border-radius:50%;background:#e8403a;border:1px solid #fff}
+/* bảng */
+#pn{position:absolute;inset:0;z-index:20;display:none;flex-direction:column;background:linear-gradient(#eaf4ffee,#f8fbffee);backdrop-filter:blur(6px)}
+#pn.on{display:flex;animation:sl .25s}@keyframes sl{from{transform:translateX(30px);opacity:0}}
+.ph{flex:none;display:flex;align-items:center;gap:8px;padding:8px 10px 4px}
+.ph h2{font-size:24px;flex:1;color:var(--ink)}.ph h2 small{font-family:'Bai Jamjuree';font-size:9.5px;color:var(--ink2);font-weight:500;display:block;letter-spacing:0}
+.ph .x{width:30px;height:30px;border-radius:50%;background:#fff;border:1.5px solid var(--gold);font-weight:700;color:var(--gold2);font-size:13px}
+.str{display:flex;gap:2px;overflow-x:auto;padding:2px 6px 4px;flex:none;scrollbar-width:none}.str::-webkit-scrollbar{display:none}
+.st{flex:none;width:104px;height:28px;background:url(assets/j-tab.webp) center/100% 100%;font-weight:700;font-size:9.5px;padding-left:12px;padding-right:20px;color:var(--ink2);white-space:nowrap}
+.st.on{background-image:url(assets/j-tab2.webp);color:#5a3400}
+.sub{display:flex;gap:4px;padding:2px 10px 4px;flex:none}
+.sb{height:22px;padding:0 10px;border-radius:11px;font-size:9.5px;font-weight:700;color:var(--ink2);background:#ffffffb0;border:1px solid #c8daf0;white-space:nowrap}.sb.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.pb{flex:1;overflow-y:auto;padding:4px 10px 16px;scrollbar-width:none}.pb::-webkit-scrollbar{display:none}
+.sec{font-family:'Cormorant Garamond';font-weight:700;font-size:15px;margin:8px 0 4px;display:flex;align-items:center;gap:6px}.sec:after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--gold),#fff0)}
+.card{background:#fff;border:1px solid #dbe8f6;border-radius:12px;padding:8px;margin-bottom:6px;box-shadow:0 2px 6px #2a5a9a14}
+.row{display:flex;align-items:center;gap:8px}
+.row>img,.row>.cl{width:42px;height:42px;flex:none}
+.row .t{flex:1;min-width:0}.row .t b{font-size:11.5px;display:block}.row .t small{display:block;font-size:9.5px;color:var(--ink2);line-height:1.35}
+.bar{height:5px;border-radius:3px;background:#e2ecf8;overflow:hidden;margin-top:3px}.bar i{display:block;height:100%;background:linear-gradient(90deg,#6aaef0,#c8a050)}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
+.cl{aspect-ratio:1;border-radius:10px;background:linear-gradient(#fff,#e8f2fc);border:1.5px solid;position:relative;display:grid;place-items:center}
+.cl img{width:74%}.cl b{position:absolute;right:4px;bottom:1px;font-size:8.5px}
+.q1{border-color:#b8c4d0}.q2{border-color:#6aaef0}.q3{border-color:#a070e0}.q4{border-color:#e8a830;box-shadow:0 0 6px #f8c85066}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:2px 10px;font-size:10.5px}.kv div{display:flex;justify-content:space-between;border-bottom:1px dashed #dbe8f6;padding:2px 0}.kv span{color:var(--ink2)}
+.ov{display:flex;gap:6px}.ov .pic{width:42%;flex:none;position:relative;border-radius:12px;overflow:hidden;background:linear-gradient(#bfe0ff,#fff)}.ov .pic img{width:100%}
+.mer{position:relative;height:420px;border-radius:14px;overflow:hidden;background:radial-gradient(#2a4a7a,#0e1e3a)}
+.mer img.b{position:absolute;left:50%;top:-10px;height:440px;transform:translateX(-50%);filter:grayscale(1) brightness(.35) sepia(1) hue-rotate(180deg) saturate(2);opacity:.85}
+.mer canvas{position:absolute;inset:0}
+.hp{position:absolute;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;border:2px solid #9adcff;background:#0e1e3a;box-shadow:0 0 6px #6ad0ff}
+.hp.on{background:radial-gradient(#fff,#6ad0ff);box-shadow:0 0 12px #9adcff}.hp.nx{border-color:#ffd060;animation:pp 1s infinite}@keyframes pp{50%{box-shadow:0 0 16px #ffd060}}
+.mer .lg{position:absolute;left:8px;bottom:8px;right:8px;color:#dcecff;font-size:9.5px}
+.ss{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.ss>div{background:#fff;border:1.5px solid #dbe8f6;border-radius:12px;padding:6px;text-align:center;position:relative}
+.ss>div.on{border-color:var(--gold);box-shadow:0 0 8px #f8c85055}
+.ss img{width:54px;margin:auto}.ss b{font-size:10.5px;display:block}.ss small{font-size:8.5px;color:var(--ink2);display:block;line-height:1.3}
+.ss canvas{width:100%;height:46px;margin-top:3px;border-radius:6px;background:#0e2a50}
+.ss .tag{position:absolute;top:4px;left:4px;font-size:8px;background:var(--ink);color:#fff;border-radius:5px;padding:0 4px}
+.mount{position:relative;height:220px;display:grid;place-items:center}
+.mount img{height:200px;animation:fly2b 3s ease-in-out infinite;filter:drop-shadow(0 10px 10px #2a5a9a66)}@keyframes fly2b{50%{transform:translateY(-8px)}}
+.mts{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:4px 0}.mts>div{flex:none;width:80px;background:#fff;border:1.5px solid #dbe8f6;border-radius:12px;padding:4px;text-align:center;font-size:9.5px}.mts>div.on{border-color:var(--gold)}.mts img{width:62px;margin:auto}
+.mode{height:92px;border-radius:14px;overflow:hidden;position:relative;margin-bottom:7px;border:1.5px solid #fff;box-shadow:0 3px 8px #2a5a9a33}
+.mode .bgm{position:absolute;inset:0;background-size:cover;background-position:center}.mode .sh{position:absolute;inset:0;background:linear-gradient(90deg,#0e2a50d8,#0e2a5000)}
+.mode .tx{position:absolute;left:10px;top:9px;color:#fff;width:62%}.mode .tx b{font-size:18px;display:block}.mode .tx small{font-size:9.5px;color:#dcecff;display:block;line-height:1.35}
+.mode img.m{position:absolute;right:8px;bottom:4px;height:84px}
+/* bay bắn */
+#gm{position:absolute;inset:0;z-index:40;display:none;background:#4a8ae0}
+#gm.on{display:block}
+#cv{position:absolute;inset:0;width:100%;height:100%;touch-action:none}
+.hud{position:absolute;left:8px;right:8px;top:8px;display:flex;align-items:center;gap:6px;pointer-events:none}
+.hud .hpb{flex:1;height:11px;border-radius:6px;background:#0e2a5088;border:1px solid #fff;overflow:hidden}.hud .hpb i{display:block;height:100%;background:linear-gradient(90deg,#3ae08a,#c8ffd8);transition:width .2s}
+.hud .sc{background:#0e2a5099;color:#fff;border-radius:9px;padding:2px 8px;font-size:10px;font-weight:700;white-space:nowrap}
+.hud .pz{pointer-events:auto;width:28px;height:28px;border-radius:50%;background:#fff;border:1.5px solid var(--gold);font-weight:700}
+.bossb{position:absolute;left:30px;right:30px;top:40px;display:none;text-align:center;color:#fff;font-size:11px;font-weight:700;text-shadow:0 1px 2px #000}
+.bossb .hpb{height:9px;border-radius:5px;background:#0008;border:1px solid #fff;overflow:hidden;margin-top:2px}.bossb .hpb i{display:block;height:100%;background:linear-gradient(90deg,#ff3a4a,#ffb0a0)}
+.skl{position:absolute;right:8px;bottom:14px;display:flex;flex-direction:column;gap:8px}
+.sk{width:58px;height:58px;background:url(assets/j-vong.webp) center/100%;display:grid;place-items:center;position:relative}
+.sk img{width:38px;border-radius:50%}.sk .cd{position:absolute;inset:7px;border-radius:50%;background:conic-gradient(#0e2a50c0 calc(var(--p)*1%),#0000 0)}
+.sk span{position:absolute;bottom:-9px;left:50%;transform:translateX(-50%);font-size:8.5px;font-weight:700;color:#fff;text-shadow:0 1px 2px #000;white-space:nowrap}
+.hint{position:absolute;left:0;right:0;bottom:40%;text-align:center;color:#fff;font-size:12px;font-weight:700;text-shadow:0 1px 3px #0e2a50;pointer-events:none;transition:opacity .5s}
+.gold{color:#8a5a10}
+/* hộp thoại */
+#mk{position:absolute;inset:0;z-index:60;background:#0e2a5066;display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(2px)}#mk.on{display:flex}
+.dl{width:100%;max-height:90%;overflow-y:auto;animation:pop .2s;scrollbar-width:none}@keyframes pop{from{transform:scale(.88);opacity:0}}
+.dl h3{text-align:center;font-size:22px;margin-bottom:4px}.dl p{text-align:center;font-size:11px;line-height:1.5;color:#2a4a78}
+.ac{display:flex;gap:6px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+#ts{position:absolute;left:50%;top:70px;transform:translateX(-50%);z-index:90;background:#fffffff2;border:1px solid var(--gold);border-radius:14px;padding:6px 14px;font-size:11px;font-weight:700;display:none;white-space:nowrap;box-shadow:0 3px 10px #2a5a9a44}
+.rw{display:flex;gap:6px;justify-content:center;margin:8px 0}.rw .cl{width:52px}
+</style></head><body><div id="app">
+<div class="clouds"></div>
+<div class="isl" onclick="openP('dp')"><img id="island"><span>Lăng Vân Các · cấp 7</span></div>
+<img class="me" id="meimg">
+<div class="top"><div class="av" onclick="openP('nv')" id="av"></div><div class="who"><b class="C">Vân Thiên Hành</b><small>Kim Đan sơ kỳ · Kiếm khí 128.400</small></div>
+ <div class="rs"><div class="rp" onclick="toast('Linh thạch')"><img id="r1">86.240</div><div class="rp" onclick="toast('Vân tinh: rơi ở Lôi Vân Hải')"><img id="r2">1.240</div></div>
+ <div class="rs"><div class="rp" onclick="toast('Thể lực bay: hồi 1/6 phút')"><img id="r3">42/60</div><div class="rp" onclick="toast('Tiên ngọc')"><img id="r4">880</div></div></div>
+<div class="evb"><button onclick="openP('bc')"><img id="e1"><div><b>Lôi Vân hội tụ</b><small>02:14:33</small></div></button><button onclick="openP('nk')"><img id="e2"><div><b>Nhiệm vụ ngày</b>4/7 hoàn thành</div></button><button onclick="openP('nv',2)"><img id="e3"><div><b>Kinh mạch</b>Có thể đả thông</div></button></div>
+<div class="alt" id="alt"></div>
+<div class="swords" id="swords"></div>
+<div class="stg"><b class="C">Thanh Minh Thiên · Ải 3-4</b>Độ cao 3.240 trượng · Lực chiến đề nghị 120K</div>
+<div class="bot">
+ <div class="mini"><button onclick="openP('nk')"><div class="o"><img id="m1"></div>Nhiệm vụ<i class="d"></i></button><button onclick="openP('thu')"><div class="o"><img id="m2"></div>Thư</button></div>
+ <button class="launch" onclick="prep()"><img id="lsw"><b class="C">Ngự Kiếm</b></button>
+ <div class="mini"><button onclick="openP('xh')"><div class="o"><img id="m3"></div>Xếp hạng</button><button onclick="openP('bc')"><div class="o"><img id="m4"></div>Bí cảnh<i class="d"></i></button></div>
+</div>
+
+<div id="pn"><div class="ph"><h2 class="C" id="pt"></h2><button class="x" onclick="closeP()">✕</button></div><div class="str" id="str"></div><div class="sub" id="sub"></div><div class="pb" id="pb"></div></div>
+
+<div id="gm"><canvas id="cv"></canvas>
+ <div class="hud"><button class="pz" onclick="pauseG()">❚❚</button><div class="hpb"><i id="ghp"></i></div><div class="sc" id="gsc">0</div><div class="sc" id="galt">3.240 trượng</div></div>
+ <div class="bossb" id="bossb">Huyết Ma Lão Tổ<div class="hpb"><i id="bhp"></i></div></div>
+ <div class="skl" id="skl"></div><div class="hint" id="hint">Kéo để điều khiển · kiếm tự bắn</div>
+</div>
+<div id="mk" onclick="if(event.target===this)cm()"><div class="dl gl" id="dl"></div></div>
+<div id="ts"></div>
+</div>
+<script>
+const $=i=>document.getElementById(i);
+const I=n=>(window.IMG&&IMG[n])||('assets/'+n+'.webp');
+const im=(n,s='')=>`<img src="${I(n)}" style="${s}">`;
+const face=(n,s)=>`<div style="width:${s}px;height:${s}px;overflow:hidden;border-radius:50%;position:relative;flex:none"><img src="${I(n)}" style="position:absolute;width:${s*3}px;left:${-s}px;top:${-s*.52}px"></div>`;
+function toast(t){const e=$('ts');e.textContent=t;e.style.display='block';clearTimeout(e._t);e._t=setTimeout(()=>e.style.display='none',1700)}
+function md(h){$('dl').innerHTML=h;$('mk').classList.add('on')}function cm(){$('mk').classList.remove('on')}
+const rnd=(a,b)=>a+Math.random()*(b-a);
+const TIERS=['Thanh Minh','Thái Hư','Huyền Chân','Tử Vi','Lưu Ly','Vân Hải','Bích Lạc','Tử Tiêu','Cửu Thiên'];
+const SW=[['nv','vp-ao','Nhân vật'],['kh','vp-kiem','Kiếm hạp',1],['hn','vp-ruong','Hành nang'],['cp','vp-sach','Công pháp'],['kn','kn-loi','Kỹ năng'],['tk','mt-hac','Tọa kỵ'],['bc','vp-chia-khoa','Bí cảnh',1],['dp','vp-lo','Động phủ']];
+const SUBS={nv:['Tổng quan','Cảnh giới','Kinh mạch'],kh:['Phi kiếm','Hộ thân'],hn:['Tất cả','Trang bị','Đan dược','Vật liệu'],cp:['Tâm pháp','Kiếm quyết'],kn:['Trận đấu','Bị động'],tk:['Tọa kỵ','Bồi dưỡng'],bc:['Danh sách','Phần thưởng'],dp:['Kiến trúc','Linh tuyền'],nk:['Hằng ngày','Chủ tuyến'],thu:['Thư'],xh:['Kiếm khí','Độ cao']};
+const NAMES={nv:'Nhân vật',kh:'Kiếm hạp',hn:'Hành nang',cp:'Công pháp',kn:'Kỹ năng',tk:'Tọa kỵ',bc:'Bí cảnh',dp:'Động phủ',nk:'Nhiệm vụ',thu:'Thư tín',xh:'Xếp hạng'};
+const DESC={nv:'Căn cốt, cảnh giới và kinh mạch',kh:'Ba thanh phi kiếm quyết định cách bắn',hn:'Đồ nhặt được trên mây',cp:'Tu luyện tăng uy lực kiếm khí',kn:'Ba tuyệt chiêu mang vào trận bay',tk:'Tọa kỵ tăng tốc và hộ thể',bc:'Những vùng trời đặc biệt',dp:'Đảo bay Lăng Vân Các',nk:'Việc cần làm',thu:'Tin từ sư môn',xh:'Đạo hữu toàn cõi'};
+// phi kiếm: tên, màu (độ xoay sắc), kiểu bắn, mô tả, phẩm
+const FS=[['Thanh Sương','0','tan','Tán xạ 5 tia hình quạt',4],['Xích Viêm','150','xuyen','Một tia lửa xuyên thấu',3],['Tử Điện','60','truy','Kiếm khí tự đuổi theo địch',4],['Bích Lạc','-60','song','Hai dòng song song, bắn nhanh',2],['Kim Hồng','200','tan','Tán xạ 3 tia, sát thương cao',3]];
+let EQS=[0,2,1],SK=['kn-kiem','kn-thuan','kn-loi'];
+const SKD={'kn-kiem':['Vạn Kiếm Quy Tông','Xoá đạn địch, gây 40 sát thương toàn màn',12],'kn-thuan':['Hộ Thể Kim Quang','Miễn thương 4 giây',15],'kn-loi':['Cửu Thiên Lôi Phạt','5 đạo sét đánh địch ngẫu nhiên',10],'kn-bang':['Băng Phong','Đạn địch chậm 50% trong 5 giây',14],'kn-hoa':['Hỏa Long','Rồng lửa quét ngang màn',16],'kn-phong':['Phong Độn','Tốc bay x2, né đạn 3 giây',9]};
+const ITEMS=[['vp-kiem','Thanh Sương Kiếm',4,1,'Trang bị'],['vp-ao','Lăng Vân Bào',3,1,'Trang bị'],['vp-mao','Bích Ngọc Quan',3,1,'Trang bị'],['vp-hai','Đạp Vân Lý',4,1,'Trang bị'],['vp-boi','Phong Linh Bội',2,1,'Trang bị'],['vp-nhan','Thiên Lôi Giới',3,1,'Trang bị'],
+ ['vp-dan-lam','Ngự Phong Đan',2,16,'Đan dược'],['vp-dan-hong','Hồi Khí Đan',1,40,'Đan dược'],['vp-dan-vang','Kết Đan Linh Dược',4,2,'Đan dược'],['vp-binh-su','Vân Lộ',3,7,'Đan dược'],
+ ['vp-linh-thach','Linh thạch',2,860,'Vật liệu'],['vp-ngoc-tim','Vân tinh',3,124,'Vật liệu'],['vp-phuong-vu','Lôi Ưng Vũ',3,9,'Vật liệu'],['vp-tinh-kim','Canh Kim',3,22,'Vật liệu'],['vp-long-lan','Giao Lân',4,3,'Vật liệu'],['vp-chau','Định Phong Châu',4,1,'Vật liệu'],['vp-bua','Tị Lôi Phù',2,12,'Đan dược'],['vp-guong','Hộ Tâm Kính',3,1,'Trang bị']];
+const MT=[['mt-kiem','Phi Hồng Kiếm','Tốc bay +20% · đạn +1',4],['mt-hac','Bạch Vân Hạc','Máu +15% · nhặt đồ xa hơn',4],['mt-phuong','Xích Phượng','Đuôi lửa gây sát thương',5],['mt-con-ngu','Bắc Minh Côn','Chắn 3 phát đạn mỗi ải',4],['mt-ho-lo','Tử Kim Hồ Lô','Thu linh thạch x1,5',3],['mt-lien-dai','Liên Đài','Hồi 1% máu mỗi giây',3]];
+let selM=0;
+// ============ HOME ============
+function home(){$('island').src=I('j-dao');$('meimg').src=I('j-ngu-kiem');$('av').innerHTML=face('nv-kiem-tu',38);['vp-linh-thach','vp-ngoc-tim','vp-dan-lam','vp-chau'].forEach((n,i)=>$('r'+(i+1)).src=I(n));['kn-loi','vp-lenh','vp-sach'].forEach((n,i)=>$('e'+(i+1)).src=I(n));['vp-lenh','vp-thu','vp-co','vp-chia-khoa'].forEach((n,i)=>$('m'+(i+1)).src=I(n));$('lsw').src=I('mt-kiem');
+ $('alt').innerHTML=TIERS.map((t,i)=>`<div class="${i===0?'cur':''}"><span>${t}</span></div>`).join('');
+ $('swords').innerHTML=SW.map(s=>`<button class="sw" onclick="openP('${s[0]}')">${im(s[1])}${s[2]}${s[3]?'<i class="d"></i>':''}</button>`).join('')}
+// ============ BẢNG ============
+let CK='nv',CS=0;
+function openP(k,s=0){CK=k;CS=s;$('pt').innerHTML=NAMES[k]+`<small>${DESC[k]}</small>`;const inMain=SW.some(x=>x[0]===k);
+ $('str').innerHTML=inMain?SW.map(x=>`<button class="st ${x[0]===k?'on':''}" onclick="openP('${x[0]}')">${x[2]}</button>`).join(''):'';$('str').style.display=inMain?'flex':'none';
+ $('sub').innerHTML=SUBS[k].map((n,i)=>`<button class="sb ${i===s?'on':''}" onclick="openP('${k}',${i})">${n}</button>`).join('');$('pb').innerHTML=RD[k](s);$('pb').scrollTop=0;$('pn').classList.add('on');
+ if(k==='kh'&&s===0)setTimeout(drawPat,20);if(k==='nv'&&s===2)setTimeout(drawMer,20);const a=$('str').querySelector('.on');if(a)$('str').scrollLeft=a.offsetLeft-$('str').clientWidth/2+52}
+function closeP(){$('pn').classList.remove('on')}
+const hue=h=>`filter:hue-rotate(${h}deg)`;
+const RD={
+ nv(s){if(s===0)return `<div class="ov"><div class="pic">${im('nv-kiem-tu')}</div><div style="flex:1"><div class="card"><div class="kv" style="grid-template-columns:1fr">${[['Kiếm khí','128.400'],['Khí huyết','24.800'],['Hộ thể','6.120'],['Tốc bay','148'],['Sát thương kiếm','3.860'],['Bạo kích','16%'],['Né đạn','11%'],['Hút linh','+8%']].map(a=>`<div><span>${a[0]}</span><b>${a[1]}</b></div>`).join('')}</div></div><div class="card" style="font-size:9.5px;line-height:1.45"><b class="C" style="font-size:13px">Linh căn: Phong · Lôi</b><br>Căn cốt Thượng phẩm. Hợp với kiếm quyết tốc độ và phi kiếm truy kích.</div></div></div>
+  <div class="sec C">Trang bị hộ thân</div><div class="grid">${ITEMS.filter(i=>i[4]==='Trang bị').map(i=>`<div class="cl q${i[2]}" onclick="itD('${i[0]}')">${im(i[0])}</div>`).join('')}</div>`;
+  if(s===1)return ['Luyện Khí','Trúc Cơ','Kim Đan','Nguyên Anh','Hóa Thần','Phản Hư','Hợp Đạo','Đại Thừa','Phi Thăng'].map((r,i)=>`<div class="card row" style="${i===2?'border-color:#c8a050;box-shadow:0 0 10px #f8c85044':i>2?'opacity:.55':''}">${im(i>2?'vp-chau':'vp-dan-vang','width:34px;height:34px')}<div class="t"><b class="C" style="font-size:15px">${r}</b><small>${i<2?'Đã đạt':i===2?'Sơ kỳ · 46% · mở bay tới '+TIERS[2]+' Thiên':'Mở vùng trời '+TIERS[Math.min(8,i)]}</small>${i===2?'<div class="bar"><i style="width:46%"></i></div>':''}</div>${i===2?'<button class="nb g sm" onclick="toast(\'Cần thêm 54% tu vi\')">Đột phá</button>':''}</div>`).join('');
+  return `<div class="mer" id="mer">${im('nv-kiem-tu').replace('<img','<img class="b"')}<canvas id="mcv"></canvas>${MER.map((m,i)=>`<div class="hp ${i<5?'on':i===5?'nx':''}" style="left:${m[0]}%;top:${m[1]}%" onclick="huyet(${i})"></div>`).join('')}<div class="lg">Mạch Nhâm · đả thông 5/12 huyệt · mỗi huyệt tăng kiếm khí</div></div>`},
+ kh(s){if(s===1)return `<div class="grid">${ITEMS.filter(i=>i[4]==='Trang bị').map(i=>`<div class="cl q${i[2]}" onclick="itD('${i[0]}')">${im(i[0])}</div>`).join('')}</div><div class="card" style="margin-top:8px"><b>Bộ Lăng Vân (3/6)</b><small style="display:block;color:var(--ink2)">3 món: tốc bay +10% · 6 món: Vạn Kiếm hồi chiêu -3 giây</small></div>`;
+  return `<p style="font-size:9.5px;color:var(--ink2);margin-bottom:6px">Mang theo 3 phi kiếm. Kiếm chính quyết định cách bắn, 2 kiếm phụ bắn kèm.</p><div class="ss">${EQS.map((f,k)=>{const F=FS[f];return `<div class="on"><span class="tag">${k?'Phụ':'Chính'}</span>${im('vp-kiem',hue(F[1]))}<b>${F[0]}</b><small>${F[3]}</small><canvas data-p="${F[2]}" data-h="${F[1]}"></canvas></div>`}).join('')}</div>
+  <div class="sec C">Kho phi kiếm</div>${FS.map((F,i)=>`<div class="card row">${im('vp-kiem','width:40px;height:40px;'+hue(F[1]))}<div class="t"><b>${F[0]} <span style="color:${['','#8a98aa','#3a8ae0','#a050e0','#d89020'][F[4]]};font-size:9.5px">${['','Phàm','Linh','Huyền','Tiên'][F[4]]} phẩm</span></b><small>${F[3]} · sát thương ${60+F[4]*30}</small></div><button class="nb ${EQS.includes(i)?'':'g'} sm" onclick="${EQS.includes(i)?`toast('Đang mang')`:`EQS[0]=${i};openP('kh')`}">${EQS.includes(i)?'Đang mang':'Làm kiếm chính'}</button></div>`).join('')}`},
+ hn(s){const c=['','Trang bị','Đan dược','Vật liệu'][s];const L=ITEMS.filter(i=>!c||i[4]===c);return `<div style="display:flex;justify-content:space-between;font-size:9.5px;color:var(--ink2);margin-bottom:6px"><span>Ô chứa 58/100</span><span onclick="toast('Đã sắp xếp')">⇅ Sắp xếp</span></div><div class="grid">${L.map(i=>`<div class="cl q${i[2]}" onclick="itD('${i[0]}')">${im(i[0])}${i[3]>1?`<b>${i[3]}</b>`:''}</div>`).join('')}</div>`},
+ cp(s){const L=s===0?[['vp-sach','Lăng Vân Tâm Kinh','Tầng 5/9','Tốc bay +5% mỗi tầng',55],['vp-quyen','Thái Thượng Ngự Phong Quyết','Tầng 3/9','Né đạn +2% mỗi tầng',33],['vp-sach','Cửu Tiêu Lôi Điển','Tầng 1/9','Lôi Phạt thêm 1 đạo mỗi 3 tầng',10]]:[['vp-quyen','Phân Quang Kiếm Quyết','Tầng 4/7','Tán xạ thêm 1 tia',57],['vp-quyen','Truy Hồn Kiếm Quyết','Tầng 2/7','Kiếm truy kích nhanh hơn 10%',28],['vp-quyen','Phá Không Kiếm Quyết','Chưa học','Tia xuyên thấu thêm 1 mục tiêu',0]];
+  return L.map(c=>`<div class="card row">${im(c[0])}<div class="t"><b>${c[1]}</b><small>${c[2]} · ${c[3]}</small><div class="bar"><i style="width:${c[4]}%"></i></div></div><button class="nb ${c[4]?'':'g'} sm" onclick="toast('${c[4]?'Tu luyện +1 tầng':'Cần Phá Không tàn quyển x3'}')">${c[4]?'Tu luyện':'Học'}</button></div>`).join('')+`<div class="card" style="text-align:center"><b class="C" style="font-size:14px">Ngộ đạo hôm nay</b><p style="font-size:9.5px;color:var(--ink2);margin:3px 0">“Kiếm theo gió, gió theo tâm. Tâm không vướng, kiếm tự nhanh.”</p><button class="nb sm" onclick="toast('Ngộ tính +2')">Tham ngộ</button></div>`},
+ kn(s){if(s===1)return [['kn-phong','Thân Như Phong','Hitbox nhỏ hơn 20%'],['kn-tinh','Tinh Quang Hộ Thể','Mỗi 30 giây miễn 1 phát đạn'],['kn-hoi','Hồi Linh','Nhặt linh thạch hồi 1% máu'],['kn-quang','Kiếm Tâm Thông Minh','Bạo kích +8% khi máu đầy']].map(a=>`<div class="card row">${im(a[0])}<div class="t"><b>${a[1]}</b><small>${a[2]}</small></div></div>`).join('');
+  return `<p style="font-size:9.5px;color:var(--ink2);margin-bottom:6px">3 tuyệt chiêu nằm bên phải màn bay. Chạm chiêu trong kho để thay vào ô đang chọn.</p><div class="ss">${SK.map((k,i)=>`<div class="on" onclick="slot=${i};toast('Chọn ô ${i+1}')"><span class="tag">Ô ${i+1}</span>${im(k,'width:50px')}<b>${SKD[k][0]}</b><small>Hồi ${SKD[k][2]} giây</small></div>`).join('')}</div><div class="sec C">Kho tuyệt chiêu</div>${Object.entries(SKD).map(([k,v])=>`<div class="card row" onclick="SK[slot]='${k}';openP('kn')">${im(k)}<div class="t"><b>${v[0]}</b><small>${v[1]} · hồi ${v[2]} giây</small></div>${SK.includes(k)?'<b style="color:#3a8a5a;font-size:9.5px">Đang dùng</b>':''}</div>`).join('')}`},
+ tk(s){const m=MT[selM];if(s===1)return `<div class="card row">${im(m[0],'width:56px;height:56px')}<div class="t"><b>${m[1]} · cấp 6</b><small>Thân thiết 72/100</small><div class="bar"><i style="width:72%"></i></div></div></div>${[['vp-hat','Linh cốc','+5 thân thiết'],['vp-phuong-vu','Lôi Ưng Vũ','Mở thiên phú: Lôi Dực'],['vp-long-lan','Giao Lân','Tăng 1 sao']].map(a=>`<div class="card row">${im(a[0])}<div class="t"><b>${a[1]}</b><small>${a[2]}</small></div><button class="nb sm" onclick="toast('Đã dùng ${a[1]}')">Dùng</button></div>`).join('')}`;
+  return `<div class="mount">${im(m[0])}</div><div style="text-align:center"><b class="C" style="font-size:20px">${m[1]}</b> <span style="color:#d89020">${'★'.repeat(m[3])}</span><p style="font-size:10.5px;color:var(--ink2)">${m[2]}</p></div><div class="ac" style="margin:6px 0"><button class="nb g" onclick="toast('Đang ngự ${m[1]}')">Ngự</button><button class="nb" onclick="openP('tk',1)">Bồi dưỡng</button></div><div class="mts">${MT.map((x,i)=>`<div class="${i===selM?'on':''}" onclick="selM=${i};openP('tk')">${im(x[0])}<b style="display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${x[1]}</b></div>`).join('')}</div>`},
+ bc(s){if(s===1)return [['vp-ngoc-tim','Vân tinh x120','Lôi Vân Hải: sống sót 3 phút'],['vp-kiem','Phi kiếm Tử Điện','Kiếm Trủng: hạ 5 boss'],['vp-chau','Định Phong Châu','Tinh Hà: nhặt 300 sao']].map(a=>`<div class="card row">${im(a[0])}<div class="t"><b>${a[1]}</b><small>${a[2]}</small></div></div>`).join('');
+  return [['bg-van-hai','Lôi Vân Hải','Bay càng lâu càng nhiều Vân tinh. Sét đánh ngẫu nhiên.','q-quy-dang','Mở: 02:14:33'],['bg-nham','Kiếm Trủng','Liên tiếp 5 boss giữ kiếm cổ. Thua là dừng.','q-thach-quai','Còn 2 lượt'],['bg-ho-dem','Tinh Hà','Bay đêm nhặt sao, không có địch.','q-bang-tinh','Còn 3 lượt'],['bg-troi','Phi Thăng Đài','Đua độ cao với đạo hữu toàn cõi.','mt-phuong','Thứ 7']].map(b=>`<div class="mode" onclick="prep('${b[1]}')"><div class="bgm" style="background-image:url(${I(b[0])})"></div><div class="sh"></div><div class="tx"><b class="C">${b[1]}</b><small>${b[2]}</small><small style="color:#ffe08a;font-weight:700">${b[4]}</small></div>${im(b[3]).replace('<img','<img class="m"')}</div>`).join('')},
+ dp(s){if(s===1)return `<div style="text-align:center">${im('vp-binh-su','width:100px;margin:8px auto')}<b class="C" style="font-size:18px">Linh tuyền · cấp 5</b><p style="font-size:10px;color:var(--ink2)">Mỗi giờ ngưng 1 bình Vân Lộ · đầy sau 1 giờ 20 phút</p><div class="bar" style="margin:8px 30px"><i style="width:40%"></i></div><button class="nb g" onclick="toast('Thu 3 Vân Lộ')">Thu</button></div>`;
+  return `<div style="position:relative;height:200px;border-radius:14px;overflow:hidden;background:url(${I('bg-troi')}) center 30%/cover;margin-bottom:6px">${im('j-dao','position:absolute;left:50%;top:10px;width:78%;transform:translateX(-50%)')}</div>${[['vp-kiem','Kiếm Lư','Rèn và nâng phi kiếm',6,'00:42:10'],['vp-lo','Đan Các','Luyện Ngự Phong Đan',5,''],['vp-hat','Vân Điền','Trồng linh thảo trên mây',4,'03:10:00'],['mt-hac','Hạc Đình','Nuôi tọa kỵ, mỗi giờ +thân thiết',3,''],['vp-sach','Tàng Thư Lâu','Nghiên cứu kiếm quyết',4,'']].map(b=>`<div class="card row">${im(b[0])}<div class="t"><b>${b[1]} · cấp ${b[3]}</b><small>${b[2]}${b[4]?' · đang nâng '+b[4]:''}</small>${b[4]?'<div class="bar"><i style="width:55%"></i></div>':''}</div><button class="nb ${b[4]?'':'g'} sm" onclick="toast('${b[4]?'Tăng tốc bằng 20 tiên ngọc':'Nâng '+b[1]}')">${b[4]?'Tăng tốc':'Nâng'}</button></div>`).join('')}`},
+ nk(s){return [['q-doi-ma','Hạ 50 dơi ma','36/50','Linh thạch 2.000'],['vp-ngoc-tim','Nhặt 200 Vân tinh','200/200','Tiên ngọc 30'],['kn-loi','Dùng Lôi Phạt 5 lần','2/5','Tị Lôi Phù x2'],['mt-kiem','Bay 10.000 trượng','8.420/10.000','Rương mây']].map(a=>`<div class="card row">${im(a[0])}<div class="t"><b>${a[1]}</b><small>${a[2]} · thưởng ${a[3]}</small></div><button class="nb ${a[2].split('/')[0]===a[2].split('/')[1]?'g':''} sm" onclick="toast('${a[2].split('/')[0]===a[2].split('/')[1]?'Đã nhận':'Bay ngay'}')">${a[2].split('/')[0]===a[2].split('/')[1]?'Nhận':'Đi'}</button></div>`).join('')},
+ thu(){return [['vp-thu','Sư tôn','Lôi Vân sắp hội tụ, nhớ mang Tị Lôi Phù.'],['vp-ruong','Hệ thống','Quà bay đủ 7 ngày đã tới.']].map(a=>`<div class="card row">${im(a[0])}<div class="t"><b>${a[1]}</b><small>${a[2]}</small></div><button class="nb sm" onclick="this.textContent='Đã đọc'">Đọc</button></div>`).join('')},
+ xh(s){return [['nv-tien-nu','Tô Linh Lung','412.800'],['nv-ho-ly','Hồ Tiểu Mị','388.200'],['nv-loi-tuong','Lôi Bá Thiên','341.000'],['nv-kiem-tu','Vân Thiên Hành (bạn)','128.400']].map((r,i)=>`<div class="card row"><b class="C" style="font-size:20px;width:26px;color:${['#d89020','#8a98aa','#b06a2a','#4a6a98'][i]}">${i===3?214:i+1}</b>${face(r[0],38)}<div class="t"><b>${r[1]}</b><small>${s?'Độ cao '+(9-i*2)+'.200 trượng':'Kiếm khí '+r[2]}</small></div></div>`).join('')}
+};
+let slot=0;
+const MER=[[50,22],[50,30],[50,38],[46,46],[54,46],[50,54],[38,40],[62,40],[34,56],[66,56],[44,70],[56,70]];
+function drawMer(){const c=$('mcv'),m=$('mer');if(!c)return;c.width=m.clientWidth*2;c.height=m.clientHeight*2;const x=c.getContext('2d');x.scale(2,2);const W=m.clientWidth,H=m.clientHeight;const L=[[0,1],[1,2],[2,3],[2,4],[3,5],[4,5],[2,6],[2,7],[6,8],[7,9],[5,10],[5,11]];
+ L.forEach(([a,b],i)=>{x.beginPath();x.moveTo(MER[a][0]*W/100,MER[a][1]*H/100);x.lineTo(MER[b][0]*W/100,MER[b][1]*H/100);x.strokeStyle=i<4?'#9adcff':'#9adcff44';x.lineWidth=i<4?3:1.5;x.shadowColor='#6ad0ff';x.shadowBlur=i<4?10:0;x.stroke()})}
+function huyet(i){const n=['Bách Hội','Ấn Đường','Đản Trung','Cự Khuyết','Kỳ Môn','Khí Hải','Kiên Tỉnh','Thiên Tông','Khúc Trì','Nội Quan','Túc Tam Lý','Dũng Tuyền'][i];md(`<h3 class="C">Huyệt ${n}</h3><p>${i<5?'Đã đả thông · kiếm khí +1.200':i===5?'Có thể đả thông ngay: tốn 2 Kết Đan Linh Dược':'Cần đả thông huyệt trước'}</p><div class="ac">${i===5?'<button class="nb g" onclick="cm();toast(\'Đả thông Khí Hải · kiếm khí +1.800\')">Đả thông</button>':''}<button class="nb" onclick="cm()">Đóng</button></div>`)}
+function drawPat(){document.querySelectorAll('canvas[data-p]').forEach(c=>{c.width=c.clientWidth*2;c.height=c.clientHeight*2;const x=c.getContext('2d');x.scale(2,2);const W=c.clientWidth,H=c.clientHeight,p=c.dataset.p,col=`hsl(${200+ +c.dataset.h},90%,75%)`;x.strokeStyle=col;x.shadowColor=col;x.shadowBlur=6;x.lineWidth=2;
+ const ln=(a,b,cc,d)=>{x.beginPath();x.moveTo(a,b);x.lineTo(cc,d);x.stroke()};
+ if(p==='tan')for(let k=-2;k<=2;k++)ln(W/2,H-4,W/2+k*W/6,6);else if(p==='xuyen'){x.lineWidth=5;ln(W/2,H-4,W/2,4)}else if(p==='song'){ln(W/2-8,H-4,W/2-8,4);ln(W/2+8,H-4,W/2+8,4)}else{x.beginPath();x.moveTo(W/2,H-4);x.quadraticCurveTo(W*.1,H/2,W*.8,8);x.stroke();x.beginPath();x.moveTo(W/2,H-4);x.quadraticCurveTo(W*.9,H/2,W*.25,8);x.stroke()}
+ x.fillStyle='#fff';x.beginPath();x.arc(W/2,H-4,3,0,7);x.fill()})}
+function itD(n){const i=ITEMS.find(x=>x[0]===n);const eq=i[4]==='Trang bị';md(`<div class="cl q${i[2]}" style="width:76px;margin:0 auto 6px">${im(i[0])}</div><h3 class="C">${i[1]}</h3><p>${i[4]} · ${['','Phàm','Linh','Huyền','Tiên'][i[2]]} phẩm${i[3]>1?' · x'+i[3]:''}</p>${eq?`<div class="card" style="margin-top:6px"><div class="kv"><div><span>Hộ thể</span>+${i[2]*380}</div><div><span>Tốc bay</span>+${i[2]*4}</div><div><span>Né đạn</span>+${i[2]}%</div><div><span>Cường hoá</span>+${i[2]*3}</div></div></div><p style="color:#3a8a5a">So với đang mặc: hộ thể +${i[2]*60} ▲</p>`:`<p style="margin-top:4px">${i[4]==='Đan dược'?'Dùng trước khi bay hoặc trong túi bay.':'Dùng để rèn phi kiếm, nâng động phủ.'}</p>`}<div class="ac">${eq?'<button class="nb g" onclick="cm();toast(\'Đã mặc\')">Mặc</button><button class="nb" onclick="cm();toast(\'Cường hoá +1\')">Cường hoá</button>':'<button class="nb g" onclick="cm();toast(\'Đã dùng\')">Dùng</button>'}<button class="nb" onclick="cm()">Đóng</button></div>`)}
+function prep(mode){closeP();const F=FS[EQS[0]];md(`<h3 class="C">${typeof mode==='string'?mode:'Thanh Minh Thiên · Ải 3-4'}</h3><p>Độ cao mục tiêu: <b>4.000 trượng</b> · Boss cuối: <b style="color:#c0392b">Huyết Ma Lão Tổ</b></p><div style="display:flex;justify-content:center;gap:4px;margin:8px 0">${['q-doi-ma','q-hoa-linh','q-quy-dang','nv-ma-tu'].map(q=>`<div class="cl q2" style="width:54px">${im(q,'width:84%;object-fit:contain;'+(q==='nv-ma-tu'?'object-position:50% 10%;height:84%;object-fit:cover;border-radius:6px':''))}</div>`).join('')}</div>
+ <div class="card row" style="text-align:left">${im('vp-kiem','width:38px;'+hue(F[1]))}<div class="t"><b>Kiếm chính: ${F[0]}</b><small>${F[3]}</small></div><button class="nb sm" onclick="cm();openP('kh')">Đổi</button></div>
+ <div class="card row" style="text-align:left">${SK.map(k=>im(k,'width:30px;height:30px')).join('')}<div class="t"><small>Tuyệt chiêu đã mang</small></div><button class="nb sm" onclick="cm();openP('kn')">Đổi</button></div>
+ <div class="ac"><button class="nb g" onclick="cm();startG()">Cất cánh · 6 thể lực</button><button class="nb" onclick="cm()">Để sau</button></div>`)}
+// ============ BAY BẮN ============
+const IM={};['bg-van-hai','j-ngu-kiem','q-doi-ma','q-hoa-linh','q-quy-dang','nv-ma-tu','vp-linh-thach','vp-ngoc-tim'].forEach(n=>{IM[n]=new Image();IM[n].src=I(n)});
+let G=null,raf=0;
+function startG(){const c=$('cv'),a=$('app');$('gm').classList.add('on');const W=a.clientWidth,H=a.clientHeight;c.width=W*2;c.height=H*2;const x=c.getContext('2d');x.setTransform(2,0,0,2,0,0);
+ G={x,W,H,px:W/2,py:H-130,tx:W/2,ty:H-130,hp:100,sc:0,alt:3240,t:0,by:0,B:[],E:[],EB:[],D:[],FX:[],fire:0,spawn:0,boss:null,shield:0,cd:[0,0,0],kills:0,over:0,paused:0,slow:0,lt:performance.now()};
+ $('bossb').style.display='none';$('hint').style.opacity=1;setTimeout(()=>$('hint').style.opacity=0,2200);
+ $('skl').innerHTML=SK.map((k,i)=>`<button class="sk" onclick="useSk(${i})">${im(k)}<div class="cd" id="cd${i}" style="--p:0"></div><span>${SKD[k][0].split(' ').slice(-2).join(' ')}</span></button>`).join('');
+ cancelAnimationFrame(raf);raf=requestAnimationFrame(loop)}
+const cvEl=$('cv');
+function ptr(e){if(!G)return;const r=cvEl.getBoundingClientRect();G.tx=e.clientX-r.left;G.ty=e.clientY-r.top-60}
+cvEl.addEventListener('pointerdown',ptr);cvEl.addEventListener('pointermove',e=>{if(e.buttons||e.pointerType==='touch')ptr(e)});
+function useSk(i){if(!G||G.cd[i]>0)return;const k=SK[i];G.cd[i]=SKD[k][2];
+ if(k==='kn-kiem'){G.EB=[];G.E.forEach(e=>e.hp-=40);if(G.boss)G.boss.hp-=40;for(let n=0;n<24;n++)G.FX.push({x:rnd(0,G.W),y:G.H+20,vy:-14,life:40,t:'sw'})}
+ else if(k==='kn-thuan'||k==='kn-phong')G.shield=240;
+ else if(k==='kn-loi'){const T=[...G.E];if(G.boss)T.push(G.boss);for(let n=0;n<5;n++){const e=T[Math.floor(Math.random()*T.length)];if(e){e.hp-=35;G.FX.push({x:e.x,y:e.y,life:18,t:'bolt'})}}}
+ else if(k==='kn-bang')G.slow=300;else{G.E.forEach(e=>e.hp-=30);G.FX.push({x:0,y:G.H/2,life:30,t:'fire'})}}
+function spawn(){const r=Math.random(),W=G.W;if(r<.5)G.E.push({k:'q-doi-ma',x:rnd(30,W-30),y:-40,s:52,hp:6,vy:1.6,ph:rnd(0,6),fire:rnd(60,140)});else if(r<.82)G.E.push({k:'q-hoa-linh',x:rnd(30,W-30),y:-40,s:48,hp:9,vy:1.1,ph:0,fire:rnd(40,90)});else G.E.push({k:'q-quy-dang',x:rnd(40,W-40),y:-50,s:58,hp:18,vy:.7,ph:0,fire:80})}
+function glowLine(x,x1,y1,x2,y2,w,col){x.strokeStyle=col.replace('A','.35');x.lineWidth=w*3;x.beginPath();x.moveTo(x1,y1);x.lineTo(x2,y2);x.stroke();x.strokeStyle=col.replace('A','1');x.lineWidth=w;x.stroke()}
+function orb(x,px,py,r,c){x.fillStyle=c+'55';x.beginPath();x.arc(px,py,r*1.9,0,7);x.fill();x.fillStyle=c;x.beginPath();x.arc(px,py,r,0,7);x.fill();x.fillStyle='#fff';x.beginPath();x.arc(px,py,r*.45,0,7);x.fill()}
+function loop(now){const g=G;if(!g)return;raf=requestAnimationFrame(loop);const dt=Math.min(70,now-(g.lt||now));g.lt=now;if(g.paused||g.over)return;const k=dt/16.67||1;const x=g.x,W=g.W,H=g.H;g.t+=k;
+ g.by=(g.by+2.2*k)%H;const bi=IM['bg-van-hai'];if(bi.complete){const bh=W*bi.height/bi.width,o=g.by%bh;x.drawImage(bi,0,o-bh,W,bh);x.drawImage(bi,0,o,W,bh);x.drawImage(bi,0,o+bh,W,bh)}else{x.fillStyle='#4a8ae0';x.fillRect(0,0,W,H)}
+ const lf=Math.min(1,.2*k);g.px+=(g.tx-g.px)*lf;g.py+=(Math.max(80,Math.min(H-60,g.ty))-g.py)*lf;g.px=Math.max(20,Math.min(W-20,g.px));
+ if((g.fire+=k)>=7){g.fire=0;const p=FS[EQS[0]][2],hu=200+ +FS[EQS[0]][1];const add=(vx,vy,w=3,pi=0)=>g.B.push({x:g.px,y:g.py-40,vx,vy,w,hu,pi});
+  if(p==='tan'){for(let q=-2;q<=2;q++)add(q*1.4,-11)}else if(p==='xuyen')add(0,-14,6,1);else if(p==='song'){add(0,-12);g.B.push({x:g.px-12,y:g.py-36,vx:0,vy:-12,w:3,hu})}else{add(-2,-10,3,2);add(2,-10,3,2)}
+  if((g.f2=(g.f2||0)+1)%2===0){g.B.push({x:g.px-22,y:g.py-14,vx:-.4,vy:-11,w:2,hu:200+ +FS[EQS[1]][1]});g.B.push({x:g.px+22,y:g.py-14,vx:.4,vy:-11,w:2,hu:200+ +FS[EQS[2]][1]})}}
+ if(!g.boss){if((g.spawn+=k)>(g.t<600?40:28)){g.spawn=0;spawn()}if(g.kills>=24||g.t>1500){g.boss={k:'nv-ma-tu',x:W/2,y:-120,s:150,hp:260,max:260,ph:0,fire:0,n:0};$('bossb').style.display='block'}}
+ const sl=g.slow>0?.5:1;if(g.slow>0)g.slow-=k;
+ x.save();x.globalCompositeOperation='lighter';x.lineCap='round';
+ g.B=g.B.filter(b=>{if(b.pi===2){const t=g.E[0]||g.boss;if(t){const dx=t.x-b.x,dy=t.y-b.y,d=Math.hypot(dx,dy)||1;b.vx+=dx/d*.9;b.vy+=dy/d*.9;const v=Math.hypot(b.vx,b.vy);b.vx*=11/v;b.vy*=11/v}}
+  b.x+=b.vx*k;b.y+=b.vy*k;glowLine(x,b.x,b.y,b.x-b.vx*1.8,b.y-b.vy*1.8,b.w,`hsla(${b.hu},95%,75%,A)`);
+  for(const e of g.E)if(Math.hypot(e.x-b.x,e.y-b.y)<e.s*.45){e.hp-=b.w>4?2:1;e.flash=3;if(!b.pi||b.pi===2)return false}
+  if(g.boss&&Math.abs(g.boss.x-b.x)<55&&Math.abs(g.boss.y+20-b.y)<70){g.boss.hp-=b.w>4?.6:.35;g.boss.flash=3;return false}
+  return b.y>-20&&b.x>-20&&b.x<W+20});
+ x.restore();
+ g.E=g.E.filter(e=>{e.ph+=.04*k;e.y+=e.vy*sl*k;if(e.k==='q-doi-ma')e.x+=Math.sin(e.ph*2)*2*k;x.save();if(e.flash){e.flash--;x.filter='brightness(2)'}x.drawImage(IM[e.k],e.x-e.s/2,e.y-e.s/2,e.s,e.s);x.restore();
+  if((e.fire-=k)<=0&&e.y>0){e.fire=e.k==='q-quy-dang'?110:90;if(e.k==='q-quy-dang'){for(let a=0;a<10;a++)g.EB.push({x:e.x,y:e.y,vx:Math.cos(a*.628)*2.2,vy:Math.sin(a*.628)*2.2,c:'#a8ffe0'})}else{const dx=g.px-e.x,dy=g.py-e.y,d=Math.hypot(dx,dy);g.EB.push({x:e.x,y:e.y+10,vx:dx/d*3.4,vy:dy/d*3.4,c:e.k==='q-hoa-linh'?'#ffb04a':'#ff6a8a'})}}
+  if(e.hp<=0){g.kills++;g.sc+=e.k==='q-quy-dang'?300:120;burst(e.x,e.y,'#ffe08a');if(Math.random()<.5)g.D.push({x:e.x,y:e.y,k:Math.random()<.7?'vp-linh-thach':'vp-ngoc-tim'});return false}
+  if(Math.hypot(e.x-g.px,e.y-g.py)<30){hurt(14);return false}return e.y<H+60});
+ if(g.boss){const b=g.boss;b.ph+=.015*k;b.y+=(120-b.y)*Math.min(1,.02*k);b.x=W/2+Math.sin(b.ph)*W*.3;x.save();if(b.flash){b.flash--;x.filter='brightness(1.8)'}const ih=b.s*1.66;x.drawImage(IM['nv-ma-tu'],b.x-b.s/2,b.y-ih*.32,b.s,ih);x.restore();
+  if((b.fire+=k)>=34){b.fire=0;b.n++;const n=b.hp<b.max/2?16:12;for(let a=0;a<n;a++){const an=a/n*Math.PI*2+b.ph*3;g.EB.push({x:b.x,y:b.y+30,vx:Math.cos(an)*2.4,vy:Math.sin(an)*2.4+.6,c:'#ff3a5a',r:6})}
+   if(b.n%3===0){const dx=g.px-b.x,dy=g.py-b.y,d=Math.hypot(dx,dy);for(let q=-1;q<=1;q++)g.EB.push({x:b.x,y:b.y+30,vx:dx/d*4+q,vy:dy/d*4,c:'#ffb0c0',r:7})}}
+  $('bhp').style.width=Math.max(0,b.hp/b.max*100)+'%';if(b.hp<=0){burst(b.x,b.y,'#ff6a8a',60);g.sc+=5000;g.boss=null;g.over=1;setTimeout(()=>endG(1),900)}}
+ x.save();x.globalCompositeOperation='lighter';g.EB=g.EB.filter(b=>{b.x+=b.vx*sl*k;b.y+=b.vy*sl*k;orb(x,b.x,b.y,b.r||4.5,b.c);
+  if(Math.hypot(b.x-g.px,b.y-(g.py-10))<(g.shield>0?30:8)){if(!(g.shield>0))hurt(9);return false}return b.y<H+10&&b.y>-10&&b.x>-10&&b.x<W+10});x.restore();
+ g.D=g.D.filter(d=>{d.y+=1.8*k;const dx=g.px-d.x,dy=g.py-d.y,dd=Math.hypot(dx,dy);if(dd<90){d.x+=dx/dd*4*k;d.y+=dy/dd*4*k}x.drawImage(IM[d.k],d.x-11,d.y-11,22,22);if(dd<18){g.sc+=50;return false}return d.y<H+20});
+ const pi=IM['j-ngu-kiem'];x.save();if(g.hit>0){g.hit-=k;x.globalAlpha=Math.floor(g.t)%6<3?.35:1}x.globalCompositeOperation='lighter';orb(x,g.px,g.py+8,10,'#9adcff');x.restore();x.save();if(g.hit>0)x.globalAlpha=Math.floor(g.t)%6<3?.35:1;x.drawImage(pi,g.px-30,g.py-58,60,84);x.restore();
+ if(g.shield>0){g.shield-=k;x.save();x.globalCompositeOperation='lighter';x.strokeStyle='rgba(255,230,140,.9)';x.lineWidth=3;x.beginPath();x.arc(g.px,g.py-14,36+Math.sin(g.t*.3)*2,0,7);x.stroke();x.fillStyle='rgba(255,220,120,.12)';x.fill();x.restore()}
+ x.save();x.globalCompositeOperation='lighter';g.FX=g.FX.filter(f=>{f.life-=k;if(f.t==='p'){f.x+=f.vx*k;f.y+=f.vy*k;f.vx*=.94;f.vy*=.94;x.fillStyle=f.c;x.globalAlpha=Math.max(0,f.life/30);x.beginPath();x.arc(f.x,f.y,2.5,0,7);x.fill()}
+  else if(f.t==='sw'){f.y+=f.vy*k;glowLine(x,f.x,f.y,f.x,f.y+44,3,'rgba(200,240,255,A)')}
+  else if(f.t==='bolt'){x.globalAlpha=Math.max(0,f.life/18);x.strokeStyle='rgba(230,210,255,.95)';x.lineWidth=4;x.beginPath();let yy=0,xx=f.x;x.moveTo(xx,0);while(yy<f.y){yy+=22;xx=f.x+rnd(-14,14);x.lineTo(xx,yy)}x.stroke();x.lineWidth=12;x.strokeStyle='rgba(180,140,255,.3)';x.stroke()}
+  else if(f.t==='fire'){x.fillStyle='rgba(255,120,40,'+Math.max(0,f.life/60)+')';x.fillRect(0,H*.2,W,H*.4)}
+  x.globalAlpha=1;return f.life>0});x.restore();
+ g.alt+=.6*k;$('ghp').style.width=g.hp+'%';$('gsc').textContent=g.sc.toLocaleString('vi');$('galt').textContent=Math.round(g.alt).toLocaleString('vi')+' trượng';
+ g.cd=g.cd.map((c,i)=>{const v=Math.max(0,c-dt/1000);const e=$('cd'+i);if(e)e.style.setProperty('--p',v/SKD[SK[i]][2]*100);return v});
+ if(g.hp<=0){g.over=1;setTimeout(()=>endG(0),500)}}
+function burst(px,py,c,n=16){for(let i=0;i<n;i++){const a=Math.random()*7,v=rnd(1,5);G.FX.push({t:'p',x:px,y:py,vx:Math.cos(a)*v,vy:Math.sin(a)*v,c,life:30})}}
+function hurt(d){if(G.hit>0||G.shield>0)return;G.hp=Math.max(0,G.hp-d);G.hit=40;$('gm').animate([{transform:'translateX(0)'},{transform:'translateX(-5px)'},{transform:'translateX(5px)'},{transform:'none'}],{duration:220})}
+function pauseG(){G.paused=1;md(`<h3 class="C">Tạm dừng</h3><p>Độ cao ${Math.round(G.alt).toLocaleString('vi')} trượng · điểm ${G.sc.toLocaleString('vi')}</p><div class="ac"><button class="nb g" onclick="cm();G.paused=0">Bay tiếp</button><button class="nb" onclick="cm();quitG()">Hạ cánh</button></div>`)}
+function quitG(){cancelAnimationFrame(raf);G=null;$('gm').classList.remove('on')}
+function endG(w){const s=G.sc,a=Math.round(G.alt);md(w?`<h3 class="C">Phá ải · ★★★</h3><p>Hạ <b>Huyết Ma Lão Tổ</b> ở độ cao ${a.toLocaleString('vi')} trượng</p><div class="rw">${[['vp-linh-thach',2,'4.200'],['vp-ngoc-tim',3,'x36'],['vp-kiem',4,'Tử Điện'],['vp-phuong-vu',3,'x2']].map(r=>`<div style="text-align:center;font-size:9px"><div class="cl q${r[1]}">${im(r[0],r[0]==='vp-kiem'?hue(60):'')}</div>${r[2]}</div>`).join('')}</div><p>Điểm: <b>${s.toLocaleString('vi')}</b> · mở <b>Ải 3-5</b></p><div class="ac"><button class="nb g" onclick="cm();quitG()">Về đảo</button><button class="nb" onclick="cm();startG()">Bay lại</button></div>`
+ :`<h3 class="C" style="color:#c0392b">Rơi khỏi mây</h3><p>Bay được ${a.toLocaleString('vi')} trượng · điểm ${s.toLocaleString('vi')}</p><p style="font-size:10px">Gợi ý: đổi phi kiếm tán xạ, nâng Hộ Thể, ngự Bắc Minh Côn để chắn đạn.</p><div class="ac"><button class="nb g" onclick="cm();startG()">Bay lại</button><button class="nb" onclick="cm();quitG();openP('kh')">Kiếm hạp</button></div>`)}
+home();
+</script></body></html>
